@@ -70,11 +70,38 @@
     <Filter Include="Utils\Source">
       <UniqueIdentifier>{18bfdc0e-6928-4c07-b3fd-1dab1c0aaff6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Persistence\Data Files">
+      <UniqueIdentifier>{70078c64-5f19-4d9a-9d6d-d3d6d0720471}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
     <None Include="app.ico">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="BankClerks.txt">
+      <Filter>Persistence\Data Files</Filter>
+    </None>
+    <None Include="CreditAccounts.txt">
+      <Filter>Persistence\Data Files</Filter>
+    </None>
+    <None Include="Customers.txt">
+      <Filter>Persistence\Data Files</Filter>
+    </None>
+    <None Include="DepositTransactions.txt">
+      <Filter>Persistence\Data Files</Filter>
+    </None>
+    <None Include="HomeLoanAccounts.txt">
+      <Filter>Persistence\Data Files</Filter>
+    </None>
+    <None Include="SavingsAccounts.txt">
+      <Filter>Persistence\Data Files</Filter>
+    </None>
+    <None Include="TransferTransactions.txt">
+      <Filter>Persistence\Data Files</Filter>
+    </None>
+    <None Include="WithdrawalTransactions.txt">
+      <Filter>Persistence\Data Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -120,11 +147,17 @@
     <ClCompile Include="Date.cpp">
       <Filter>Data Structures\Source</Filter>
     </ClCompile>
+    <ClCompile Include="UserServices.cpp">
+      <Filter>Users\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="AccountServices.cpp">
+      <Filter>Accounts\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Session.cpp">
+      <Filter>Persistence\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Form1.h">
-      <Filter>Forms</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Forms</Filter>
     </ClInclude>
@@ -191,10 +224,27 @@
     <ClInclude Include="Date.h">
       <Filter>Data Structures\Header</Filter>
     </ClInclude>
+    <ClInclude Include="UserServices.h">
+      <Filter>Users\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountServices.h">
+      <Filter>Accounts\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginForm.h">
+      <Filter>Forms</Filter>
+    </ClInclude>
+    <ClInclude Include="Session.h">
+      <Filter>Persistence\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LoginForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

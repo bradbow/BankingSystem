@@ -7,6 +7,7 @@
 #include "Customer.h"
 #include "DataSource.h"
 #include "BankClerk.h"
+#include <time.h>
 
 #ifndef _USER_SERVICES_H
 #define _USER_SERVICES_H

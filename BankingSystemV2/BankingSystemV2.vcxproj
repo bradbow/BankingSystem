@@ -86,9 +86,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico" />
+    <None Include="BankClerks.txt" />
+    <None Include="CreditAccounts.txt" />
+    <None Include="Customers.txt" />
+    <None Include="DepositTransactions.txt" />
+    <None Include="HomeLoanAccounts.txt" />
     <None Include="ReadMe.txt" />
+    <None Include="SavingsAccounts.txt" />
+    <None Include="TransferTransactions.txt" />
+    <None Include="WithdrawalTransactions.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AccountServices.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="BankClerk.cpp" />
     <ClCompile Include="BankingSystemV2.cpp" />
@@ -97,6 +106,7 @@
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="DebitAccount.cpp" />
     <ClCompile Include="Deposit.cpp" />
+    <ClCompile Include="Session.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -104,11 +114,13 @@
     <ClCompile Include="TextFileDataSource.cpp" />
     <ClCompile Include="Transfer.cpp" />
     <ClCompile Include="User.cpp" />
+    <ClCompile Include="UserServices.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Withdrawal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />
+    <ClInclude Include="AccountServices.h" />
     <ClInclude Include="BankClerk.h" />
     <ClInclude Include="BaseException.hpp" />
     <ClInclude Include="CreditAccount.h" />
@@ -118,19 +130,21 @@
     <ClInclude Include="Date.h" />
     <ClInclude Include="DebitAccount.h" />
     <ClInclude Include="Deposit.h" />
-    <ClInclude Include="Form1.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="HomeLoanAccount.hpp" />
     <ClInclude Include="IdMap.h" />
+    <ClInclude Include="LoginForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="SavingsAccount.hpp" />
+    <ClInclude Include="Session.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TextFileDataSource.h" />
     <ClInclude Include="Transaction.h" />
     <ClInclude Include="TransactionExceptions.hpp" />
     <ClInclude Include="Transfer.h" />
     <ClInclude Include="User.h" />
+    <ClInclude Include="UserServices.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Withdrawal.h" />
   </ItemGroup>
@@ -138,9 +152,8 @@
     <ResourceCompile Include="app.rc" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resX">
-      <DependentUpon>Form1.h</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

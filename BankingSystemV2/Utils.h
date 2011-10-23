@@ -10,6 +10,10 @@ using namespace std;
 class StringUtils
 {
 public:
+
+	/*
+		Returns a vector of substrings trimmed of whitespace
+	*/
 	static vector<string> splitString(string str, char delimiter);
 };
 

@@ -3,8 +3,8 @@
 // accounts. Uses the Singleton Pattern to ensure there is only
 // ever one UserServices
 
-#include <time.h>
-#include "UserServices.h"
+
+#include "stdafx.h"
 
 UserServices* UserServices::_userServicesInstance = NULL;
 DataSource* UserServices::_ds = NULL;
@@ -42,7 +42,14 @@ void UserServices::createBankClerk(){
 bool UserServices::validateUser(int userID, string password){
 
 	User *validate = getUser(userID);
-	return validate->_password == password;
+	if (validate != NULL)
+	{
+		return validate->_password == password;
+	}
+	else
+	{
+		return false;
+	}
 }
 // precondition: valid userId passed in
 // postcondition: exchanges old password for new one
@@ -86,9 +93,7 @@ void UserServices::updateCustomerDetails(int userID, string details[]){
 // precondition: valid userID passed in
 // postcondition: user matching userID is returned
 User *UserServices::getUser(int userID){
-
-	User *user = new User(userID, "password");
-	return user;
+	return _ds->getUser(userID);
 }
 
 // precondition: none

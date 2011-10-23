@@ -5,6 +5,9 @@
 #include "Utils.h"
 using namespace std;
 
+// ----------------------------------------------------------------------------------------- //
+// constant reference arrays
+
 const string MONTH_NAMES [] = 
 	{
 		"Jan", "Feb", "Mar", "Apr", "May", "Jun", 
@@ -23,6 +26,10 @@ const int DAYS_IN_MONTH_LEAP_YEAR[] =
 const int DAYS_PER_YEAR = 365;
 const int DAYS_PER_LEAP_YEAR = 366;	
 
+// ----------------------------------------------------------------------------------------- //
+
+// ----------------------------------------------------------------------------------------- //
+// Constructors / Descructors
 
 Date::Date(string strDate, char delim)
 {
@@ -34,9 +41,39 @@ Date::Date(string strDate, char delim)
 	_year = TypeConverter(dateSplit[YEAR]);
 
 	// set the day and month names
-	_monthName = MONTH_NAMES[TypeConverter(dateSplit[MONTH - 1])];
+	int index = TypeConverter(dateSplit[MONTH]);
+	_monthName = MONTH_NAMES[index - 1];
 	// TODO calculate day name
 
+}
+
+// ----------------------------------------------------------------------------------------- //
+// Members
+
+bool Date::isLeapYear(int year)
+{
+
+	if (year % 4 == 0)
+	{
+		if (year % 100 == 0)
+		{
+			return year % 400 == 0;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	else
+	{
+		return false;
+	}
+
+}
+
+int Date::getDaysBetweenDates(const Date* dtOne, const Date* dtTwo)
+{
+	return 0;
 }
 
 

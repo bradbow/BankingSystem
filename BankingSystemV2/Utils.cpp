@@ -1,8 +1,10 @@
 #include "Utils.h"
 #include "stdafx.h"
+#include <boost/algorithm/string.hpp>
 #include <vector>
 #include <sstream>
 using namespace std;
+using namespace boost;
 
 // --------------------------------------------------------------------------------------------- //
 // StringUtils
@@ -12,17 +14,22 @@ vector<string> StringUtils::splitString(string str, char delimeter)
 	vector<string> vecSubStrs;	
 	string strSub;
 	strSub = str;
+	string strTemp;
 	int nIndex = 0;
 	
 	while ((nIndex = strSub.find(delimeter)) >= 0)
 	{
-		vecSubStrs.push_back(strSub.substr(0, nIndex));
+		strTemp = strSub.substr(0, nIndex);
+		trim(strTemp);
+		vecSubStrs.push_back(strTemp);
 		strSub = strSub.substr(nIndex + 1);
 	}
 
 	if (!strSub.empty())
 	{
-		vecSubStrs.push_back(strSub.substr(0, nIndex));
+		strTemp = strSub.substr(0, nIndex);
+		trim(strTemp);
+		vecSubStrs.push_back(strTemp);
 	}
 
 	return vecSubStrs;

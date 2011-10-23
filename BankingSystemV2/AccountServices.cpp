@@ -3,10 +3,7 @@
 // accounts. Uses the Singleton Pattern to ensure there is only
 // ever one AccountServices
 
-#include "AccountServices.h"
-#include "DebitAccount.h"
-#include "ApplicationController.h"
-#include "Customer.h"
+#include "stdafx.h"
 #include <sstream>
 
 using std::stringstream;
