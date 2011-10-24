@@ -67,7 +67,7 @@ protected:
 	static IdMap<int, Account*> _accounts;
 	static IdMap<int, Transaction*> _transactions;
 
-	// helper methods
+	// helper methods for loading data
 	void ConstructAndAddCustomer(string line);
 	void ConstructAndAddBankClerk(string line);
 	void ConstructAndAddSavingsAccount(string line);
@@ -77,8 +77,19 @@ protected:
 	void ConstructAndAddDepositTransaction(string line);
 	void ConstructAndAddTransferTransaction(string line);
 
-	// function pointer arrray
-	void (TextFileDataSource::*m_pfns[TextFileDataSource::NUMBER_OF_FILES])(string);
+	// helper methods for persisting data
+	void persistCustomers();
+	void persistBankClerks();
+	void persistSavingsAccounts();
+	void persistCredidCardAccounts();
+	void persistHomeLoanAccounts();
+	void persistWithdrawals();
+	void persistDeposits();
+	void persistTransfers();
+
+	// function pointer arrrays
+	void (TextFileDataSource::*m_pfnsLoad[TextFileDataSource::NUMBER_OF_FILES])(string);
+	void (TextFileDataSource::*m_pfnsPersist[TextFileDataSource::NUMBER_OF_FILES])();
 
 private:
 

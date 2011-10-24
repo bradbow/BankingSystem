@@ -4,6 +4,7 @@
 // from a customers list of accounts
 // Customer.cpp
 #include "stdafx.h"
+#include <sstream>
 #include <iostream>
 #include <iterator>
 
@@ -100,6 +101,28 @@ bool Customer::hasAccount(int accountID){
 bool Customer::hasAcocunt(void){
 
 	return !_accounts.empty();
+}
+
+std::string Customer::toString()
+{
+		stringstream ss;
+		ss << _userId << ",";
+		ss << _password << ",";
+		ss << _name << ",";
+		ss << _address << ",";
+		ss << _phoneNumber << ",";
+		
+		set<int>::iterator sit = _accounts.begin();
+		ss << *sit;
+		for (; sit != _accounts.end(); ++sit)
+		{
+			ss << ";" << *sit;
+		}
+
+		std::string str;
+		getline(ss, str);
+
+		return str;
 }
 
 

@@ -89,6 +89,7 @@
     <None Include="BankClerks.txt" />
     <None Include="CreditAccounts.txt" />
     <None Include="Customers.txt" />
+    <None Include="Customers2.txt" />
     <None Include="DepositTransactions.txt" />
     <None Include="HomeLoanAccounts.txt" />
     <None Include="ReadMe.txt" />

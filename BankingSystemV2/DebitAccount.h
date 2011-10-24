@@ -24,6 +24,7 @@ public:
 	void withdraw(double amount);
 	virtual void deposit(double amount) throw (TransactionException);
 	virtual void applyInterest();
+	virtual std::string toString() = 0;
 
 	// -------------------------------------------------------------------------------------------- //
 

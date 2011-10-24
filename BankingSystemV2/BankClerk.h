@@ -18,6 +18,7 @@ public:
 	// postcondition: memory deallocated
 	~BankClerk(void);
 	string operator<< (const BankClerk &rhs);
+	virtual std::string toString();
 
 private:
 	static const int NUM_FIELDS = 2;

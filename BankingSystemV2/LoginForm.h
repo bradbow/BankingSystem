@@ -210,13 +210,13 @@ namespace BankingSystemV2 {
 		// closing the form - save data
 		System::Void LoginForm_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) 
 		{
-
-			TextFileDataSource::getInstance();
-
+			_ac->saveDataToDataSource();
 		}
+
 
 		// end of Event Handlers
 		// ------------------------------------------------------------------------------------- //
+
 
 };
 }

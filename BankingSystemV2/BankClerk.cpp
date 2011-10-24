@@ -18,5 +18,17 @@ BankClerk::~BankClerk(void)
 {
 }
 
+std::string BankClerk::toString()
+{
+	stringstream ss;
+	ss << _userId << ", ";
+	ss << _password;
+
+	std::string str;
+	getline(ss, str);
+
+	return str;
+}
+
 
 

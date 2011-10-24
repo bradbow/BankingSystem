@@ -4,6 +4,7 @@
 #define _HOMELOANACCOUNT_H
 
 #include "creditaccount.h"
+#include <sstream>
 #include <string>
 
 class HomeLoanAccount : public CreditAccount
@@ -45,6 +46,25 @@ public:
 	void setMinRepayment(double value){_minRepayment = value;}
 	
 	// -------------------------------------------------------------------------------------------- //
+	// members
+
+	std::string toString()
+	{
+		stringstream ss;
+		ss << getAccountId() << ", ";
+		ss << getCustomerId() << ", ";
+		ss << getAccountName() << ", ";
+		ss << getInterestRate() << ", ";
+		ss << getBalance() << ", ";
+		ss << _address << ", ";
+		ss << _option << ", ";
+		ss << _minRepayment;
+
+		std::string str;
+		getline(ss, str);
+
+		return str;
+	}
 
 private:
 

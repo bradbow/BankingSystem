@@ -68,7 +68,8 @@ public:
 	// precondition: none
 	// postcondition: returns true if accounts is not empty
 	bool hasAcocunt(void);
-	string operator<<(const Customer &rhs);
+
+	virtual std::string toString();
 
 private:
 	string _name;

@@ -4,6 +4,7 @@
 #define _CREDITACCOUNT_HPP
 
 #include "CreditAccount.h"
+#include <sstream>
 
 class CreditCardAccount : public CreditAccount
 {
@@ -34,6 +35,23 @@ public:
 	void setOverdraftLimit(double value){_overdraftLimit = value;}
 
 	// -------------------------------------------------------------------------------------------- //
+	// members
+
+	std::string toString()
+	{
+		stringstream ss;
+		ss << getAccountId() << ", ";
+		ss << getCustomerId() << ", ";
+		ss << getAccountName() << ", ";
+		ss << getInterestRate() << ", ";
+		ss << getBalance() << ", ";
+		ss << _overdraftLimit;
+
+		std::string str;
+		getline(ss, str);
+
+		return str;
+	}
 
 private:
 

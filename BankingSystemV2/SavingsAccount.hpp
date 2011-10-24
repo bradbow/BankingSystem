@@ -3,6 +3,7 @@
 #ifndef _SAVINGS_ACCOUNT_H
 #define _SAVINGS_ACCOUNT_H
 
+#include <sstream>
 #include "DebitAccount.h"
 
 /*
@@ -25,7 +26,22 @@ public:
 	){}
 	
 	// -------------------------------------------------------------------------------------------- //
-	
+	// members
+
+	std::string toString()
+	{
+		stringstream ss;
+		ss << getAccountId() << ", ";
+		ss << getCustomerId() << ", ";
+		ss << getAccountName() << ", ";
+		ss << getInterestRate() << ", ";
+		ss << getBalance();
+
+		std::string str;
+		getline(ss, str);
+
+		return str;
+	}
 };
 
 #endif

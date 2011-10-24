@@ -40,8 +40,8 @@ void AccountServices::makeSavingsAccount
 {
 	
 	int accountId = getNextAccountId();
-	DebitAccount da (accountId, customerId, accountName, interestRate);
-	_ds->addAccount(&da);
+	SavingsAccount sa (accountId, customerId, accountName, interestRate);
+	_ds->addAccount(&sa);
 
 }
 
