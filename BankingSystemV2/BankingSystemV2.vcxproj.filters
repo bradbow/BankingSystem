@@ -73,6 +73,12 @@
     <Filter Include="Persistence\Data Files">
       <UniqueIdentifier>{70078c64-5f19-4d9a-9d6d-d3d6d0720471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Application\Header">
+      <UniqueIdentifier>{8a7a758a-7e21-4c50-ab28-b4ca778fe4d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Source">
+      <UniqueIdentifier>{e9116f41-1fcc-4860-a302-a694432f6d94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -105,15 +111,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BankingSystemV2.cpp">
-      <Filter>Application</Filter>
-    </ClCompile>
-    <ClCompile Include="AssemblyInfo.cpp">
-      <Filter>Application</Filter>
-    </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Application</Filter>
-    </ClCompile>
     <ClCompile Include="CreditAccount.cpp">
       <Filter>Accounts\Source</Filter>
     </ClCompile>
@@ -156,6 +153,18 @@
     <ClCompile Include="Session.cpp">
       <Filter>Persistence\Source</Filter>
     </ClCompile>
+    <ClCompile Include="ApplicationController.cpp">
+      <Filter>Application\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="BankingSystemV2.cpp">
+      <Filter>Application\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="AssemblyInfo.cpp">
+      <Filter>Application\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Application\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -184,9 +193,6 @@
     </ClInclude>
     <ClInclude Include="CreditCardAccount.hpp">
       <Filter>Accounts\Header</Filter>
-    </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Application</Filter>
     </ClInclude>
     <ClInclude Include="BankClerk.h">
       <Filter>Users\Header</Filter>
@@ -235,6 +241,12 @@
     </ClInclude>
     <ClInclude Include="Session.h">
       <Filter>Persistence\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Application\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationController.h">
+      <Filter>Application\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

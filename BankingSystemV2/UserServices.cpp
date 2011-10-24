@@ -24,6 +24,7 @@ UserServices *UserServices::instance(void){
 	return _userServicesInstance;
 
 }
+
 // precondition: valid customer details passed in
 // postcondition: customer created and added to applicationData
 void UserServices::createCustomer(string name, string address, string phoneNumber){
@@ -31,12 +32,14 @@ void UserServices::createCustomer(string name, string address, string phoneNumbe
 	//Customer created(applicationData.nextCustomerName(), generatePassword(), name, address, phoneNumber);
 	//applicationData.addUser(created);
 }
+
 // precondition: valid bank clerk details passed in
 // postcondition: bank clerk created and added to applicationData
 void UserServices::createBankClerk(){
 	//BankClerk created(applicationData.nextBankClerkName(), generatePassword())
 	//applicationData.addUser(created);
 }
+
 // precondition: none
 // postcondition: validates userName and password pair
 bool UserServices::validateUser(int userID, string password){
@@ -51,6 +54,7 @@ bool UserServices::validateUser(int userID, string password){
 		return false;
 	}
 }
+
 // precondition: valid userId passed in
 // postcondition: exchanges old password for new one
 void UserServices::changePassword(int userID, string password){
@@ -58,6 +62,7 @@ void UserServices::changePassword(int userID, string password){
 	User *validate = getUser(userID);
 	validate->_password = password;
 }
+
 // precondition: valid userId passed in
 // postconditon: password reset to new password which is then returned
 string UserServices::resetPassword(int userID){
@@ -66,12 +71,14 @@ string UserServices::resetPassword(int userID){
 	validate->_password = generatePassword();
 	return validate->_password;
 }
+
 // precondition: none
 // returns true if user exists in application data, false otherwise
 bool UserServices::userExists(int userID){
 
 	return true;
 }
+
 // precondition: none
 // postcondition: returns true if user matching userID is successfully
 // deleted
@@ -79,6 +86,7 @@ bool UserServices::deleteUser(int userID){
 	
 	return true;
 }
+
 // precondition: valid user details passed in
 // postcondition: old details are exchanged for new
 void UserServices::updateCustomerDetails(int userID, string details[]){
@@ -90,6 +98,7 @@ void UserServices::updateCustomerDetails(int userID, string details[]){
 	update.setAddress(details[1]);
 	update.setPhoneNumber(details[2]);
 }
+
 // precondition: valid userID passed in
 // postcondition: user matching userID is returned
 User *UserServices::getUser(int userID){

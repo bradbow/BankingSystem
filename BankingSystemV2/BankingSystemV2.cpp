@@ -1,40 +1,27 @@
 // BankingSystemV2.cpp : main project file.
 
 #include "stdafx.h"
-#include "LoginForm.h"
 #include "TextFileDataSource.h"
+#include "ApplicationController.h"
 
-using namespace BankingSystemV2;
-
-string fileNames [8] = 
-	{
-		"Customers.txt", "BankClerks.txt", "SavingsAccounts.txt", "CreditAccounts.txt", 
-		"HomeLoanAccounts.txt", "WithdrawalTransactions.txt", "DepositTransactions.txt", 
-		"TransferTransactions.txt"
-	};
-
-[STAThreadAttribute]
 int main(array<System::String ^> ^args)
 {
 	
-	// set the data source
-	TextFileDataSource* ds = TextFileDataSource::getInstance();
-	ds->setFileNames(fileNames);
-	ds->loadData();
+	// set data source, this could be any derivative of the DataSource interface
+	TextFileDataSource* data = TextFileDataSource::getInstance();
 
-	// create services
-	UserServices* us = UserServices::instance();
-	AccountServices* as = AccountServices::instance();
-
-	// link data source to services
-	us->setDataSource(ds);
-	as->setDataSource(ds);
+	// create controller and link to data source
+	ApplicationController* controller = ApplicationController::getInstance();
+	controller->setDataSource(data);
 	
-	// Enabling Windows XP visual effects before any controls are created
-	Application::EnableVisualStyles();
-	Application::SetCompatibleTextRenderingDefault(false); 
+	// load the data
+	controller->loadDataFromDataSource();
 
-	// Create the main window and run it
-	Application::Run(gcnew LoginForm());
+	// create services and link them to data source
+	controller->createAndLinkServices();
+
+	// launch the login form
+	controller->launchLoginForm();
+
 	return 0;
 }

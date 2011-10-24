@@ -7,9 +7,13 @@ IdMap<int, User*> TextFileDataSource::_users;
 IdMap<int, Account*> TextFileDataSource::_accounts;
 IdMap<int, Transaction*> TextFileDataSource::_transactions;
 TextFileDataSource* TextFileDataSource::_ds = NULL;
-std::string* TextFileDataSource::_fileNames = NULL; 
 
-
+string fileNames [TextFileDataSource::NUMBER_OF_FILES] = 
+	{
+		"Customers.txt", "BankClerks.txt", "SavingsAccounts.txt", "CreditAccounts.txt", 
+		"HomeLoanAccounts.txt", "WithdrawalTransactions.txt", "DepositTransactions.txt", 
+		"TransferTransactions.txt"
+	};
 // --------------------------------------------------------------------------------------------- //
 // constructors / destructors / instance retrieval
 
@@ -44,15 +48,6 @@ TextFileDataSource::TextFileDataSource()
 
 }
 
-void TextFileDataSource::setFileNames(std::string fileNames[])
-{
-	_fileNames = fileNames;//new string [NUMBER_OF_FILES];
-	/*for (int i = 0; i < NUMBER_OF_FILES; i++)
-	{
-		_fileNames[i] = fileNames[i];
-	}*/
-}
-
 // --------------------------------------------------------------------------------------------- //
 // member methods
 
@@ -62,7 +57,7 @@ void TextFileDataSource::loadData()
 	{
 		// TODO assert on array size
 		std::ifstream rfsFile;
-		rfsFile.open(_fileNames[nFile].c_str());
+		rfsFile.open(fileNames[nFile].c_str());
 		string line;
 
 		if (rfsFile)

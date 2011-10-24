@@ -2,6 +2,7 @@
 #include "UserServices.h"
 #include "Session.h"
 #include <msclr\marshal_cppstd.h>
+#include "ApplicationController.h"
 
 namespace BankingSystemV2 {
 
@@ -18,12 +19,10 @@ namespace BankingSystemV2 {
 	public ref class LoginForm : public System::Windows::Forms::Form
 	{
 	public:
-		LoginForm(void)
+		LoginForm(ApplicationController* ac)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+			_ac = ac;
 		}
 
 	protected:
@@ -149,6 +148,7 @@ namespace BankingSystemV2 {
 			this->MaximizeBox = false;
 			this->Name = L"LoginForm";
 			this->Text = L"Ezy Bank Login";
+			this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &LoginForm::LoginForm_FormClosed);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -156,6 +156,8 @@ namespace BankingSystemV2 {
 #pragma endregion
 
 	private: 
+
+		ApplicationController* _ac;
 
 		// ------------------------------------------------------------------------------------- //
 		// Event Handlers
@@ -205,7 +207,16 @@ namespace BankingSystemV2 {
 			this->lblInvalid->Visible = false;
 		}
 
+		// closing the form - save data
+		System::Void LoginForm_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) 
+		{
+
+			TextFileDataSource::getInstance();
+
+		}
+
 		// end of Event Handlers
 		// ------------------------------------------------------------------------------------- //
+
 };
 }

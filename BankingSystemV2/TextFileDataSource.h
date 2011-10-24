@@ -34,7 +34,6 @@ public:
 
 	// constructors / destructors
 	static TextFileDataSource* getInstance();
-	void setFileNames(string fileNames[]);
 	virtual ~TextFileDataSource(void){};
 
 	// persistence
@@ -60,10 +59,8 @@ public:
 	
 protected:
 
+	// instance
 	static TextFileDataSource* _ds;
-
-	// file names
-	static std::string* _fileNames;
 
 	// object collections
 	static IdMap<int, User*> _users;
