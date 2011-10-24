@@ -10,75 +10,41 @@ template <class I, class D>
 class IdMap
 {
 public:
-
-	// TODO fix iterator
-	friend class TextFileDataSource;
 	
+	// ----------------------------------------------------------------------------------------- //
+	// constructor / destructor
+
 	IdMap(void){std::map<I, D> _idmap;}
+
+	// ----------------------------------------------------------------------------------------- //
+	// member methods
 
 	void add(I id, D elem);
 	void remove(I id);
 	D get(I id);
 
-	/*typename class Iterator 
-	{
-
-	public:
-
-		IdMap::Iterator::Iterator(map<I, D>::iterator it)
-		{
-			keyValuePair = it;
-		}
-		
-		Iterator& operator=(const Iterator& other)
-		{
-			keyValuePair = other.keyValuePair;
-			return (*this);
-		}
-
-		bool operator==(const Iterator& other)
-		{
-			return keyValuePair == other.keyValuePair;
-		}
-
-		bool operator!=(const Iterator& other)
-		{
-			return keyValuePair != other.keyValuePair;
-		}
-
-		Iterator& operator++()
-		{
-			++keyValuePair;
-		}
-
-		Iterator& operator++(int)
-		{
-			Iterator tmp(*this);
-			++(*this);
-			return tmp;
-		}
-
-		pair<const I, D>& operator*()
-		{
-			return *keyValuePair;
-		}
-
-	private:
-		pair<const I, D>* keyValuePair;
-
-	};*/
-
+	// ----------------------------------------------------------------------------------------- //
 	// iterators
-	//Iterator<I, D> begin();
-	//Iterator<I, D> end();
+	typename map<I, D>::iterator begin();
+	typename map<I, D>::iterator end();
+
+	// ----------------------------------------------------------------------------------------- //
 
 private:
 
+	// ----------------------------------------------------------------------------------------- //
+	// data members
+
 	std::map<I, D> _idMap;
+
+	// ----------------------------------------------------------------------------------------- //
 
 };
 
 #endif
+
+// --------------------------------------------------------------------------------------------- //
+// Member methods
 
 template <class I, class D>
 void IdMap<I, D>::add(I id, D elem)
@@ -114,18 +80,23 @@ D IdMap<I, D>::get(I id)
 
 }
 
-//template <class I, class D>
-//Iterator IdMap<I, D>::begin()
-//{
-//	map<I, D>::iterator mit = _idMap.begin();
-//	return Iterator(mit);
-//}
-//
-//template <class I, class D>
-//Iterator IdMap<I, D>::end()
-//{
-//	map<I, D>::iterator mit = _idMap.end();
-//	return Iterator(mit);
-//}
+// --------------------------------------------------------------------------------------------- //
+// Iterators
+
+template <class I, class D>
+typename map<I, D>::iterator IdMap<I, D>::begin()
+{
+	I f = _idMap.begin()->first;
+	D d = _idMap.begin()->second;
+	return _idMap.begin();
+}
+
+template <class I, class D>
+typename map<I, D>::iterator IdMap<I, D>::end()
+{
+	return _idMap.end();
+}
+
+// --------------------------------------------------------------------------------------------- //
 
 

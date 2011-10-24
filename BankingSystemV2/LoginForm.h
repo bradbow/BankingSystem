@@ -211,6 +211,7 @@ namespace BankingSystemV2 {
 		System::Void LoginForm_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) 
 		{
 			_ac->saveDataToDataSource();
+			int hold = 1;
 		}
 
 

@@ -392,13 +392,15 @@ void TextFileDataSource::ConstructAndAddTransferTransaction(string line)
 
 void TextFileDataSource::persistCustomers()
 {
-	std::ofstream outputFile;
+	
+std::ofstream outputFile;
 	std::string fileName = "Customers.txt";
 	outputFile.open(fileName.c_str());
 
 	map<int, User*>::iterator mit;
-	for (mit = _users._idMap.begin(); mit != _users._idMap.end(); ++mit)
+	for (mit = _users.begin(); mit != _users.end(); ++mit)
 	{
+		User* temp = (mit->second);
 		Customer* cp = dynamic_cast<Customer*>(mit->second);
 		if (cp)
 		{
