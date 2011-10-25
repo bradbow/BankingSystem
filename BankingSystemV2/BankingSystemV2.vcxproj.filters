@@ -5,10 +5,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Forms">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Application">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -78,6 +74,13 @@
     </Filter>
     <Filter Include="Application\Source">
       <UniqueIdentifier>{e9116f41-1fcc-4860-a302-a694432f6d94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Forms2">
+      <UniqueIdentifier>{fd7045b5-5389-4bc8-877e-b49b8b79f4a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="User Controls">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -168,10 +171,16 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Application\Source</Filter>
     </ClCompile>
+    <ClCompile Include="TempForm.cpp">
+      <Filter>User Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="myuc.cpp">
+      <Filter>User Controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
-      <Filter>Forms</Filter>
+      <Filter>User Controls</Filter>
     </ClInclude>
     <ClInclude Include="Account.h">
       <Filter>Accounts\Header</Filter>
@@ -240,7 +249,7 @@
       <Filter>Accounts\Header</Filter>
     </ClInclude>
     <ClInclude Include="LoginForm.h">
-      <Filter>Forms</Filter>
+      <Filter>User Controls</Filter>
     </ClInclude>
     <ClInclude Include="Session.h">
       <Filter>Persistence\Header</Filter>
@@ -251,6 +260,42 @@
     <ClInclude Include="ApplicationController.h">
       <Filter>Application\Header</Filter>
     </ClInclude>
+    <ClInclude Include="CreditViewControl.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="DepositControl.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="BankClerk_Form.h">
+      <Filter>Forms2</Filter>
+    </ClInclude>
+    <ClInclude Include="Customer_Form.h">
+      <Filter>Forms2</Filter>
+    </ClInclude>
+    <ClInclude Include="HomeLoanViewControl.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="SavingsViewControl.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="TransactionControl.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="TransferControl.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="WithdrawControl.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="PasswordChangeControl.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="TempForm.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="myuc.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
@@ -260,6 +305,12 @@
   <ItemGroup>
     <EmbeddedResource Include="LoginForm.resx">
       <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BankClerk_Form.resx">
+      <Filter>Forms2</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer_Form.resx">
+      <Filter>Forms2</Filter>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

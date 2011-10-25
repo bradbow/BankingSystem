@@ -397,38 +397,39 @@ std::ofstream outputFile;
 	std::string fileName = "Customers2.txt";
 	outputFile.open(fileName.c_str());
 
-	//map<int, User*>::iterator mit;
-	//for (mit = _users.begin(); mit != _users.end(); ++mit)
+	map<int, User*>::iterator mit;
+	map<int, User*> userMap = _users.getMap();
+	for (mit = userMap.begin(); mit != userMap.end(); ++mit)
+	{
+		Customer* cp = dynamic_cast<Customer*>(mit->second);
+		if (cp)
+		{
+			std::string str = cp->toString();
+			outputFile << str << endl;
+		}
+	}
+
+	// this works
+	//vector<std::string> vecstrs(2);
+	//vecstrs[0] = "the first string";
+	//vecstrs[1] = ", the second string";
+	//vector<std::string>::iterator vit;
+	//for (vit = vecstrs.begin(); vit != vecstrs.end(); vit++)
 	//{
-	//	Customer* cp = dynamic_cast<Customer*>(mit->second);
-	//	if (cp)
-	//	{
-	//		std::string str = cp->toString();
-	//		outputFile << str << endl;
-	//	}
+	//	outputFile << *(vit) << endl;
 	//}
 
 	// this works
-	vector<std::string> vecstrs(2);
-	vecstrs[0] = "the first string";
-	vecstrs[1] = ", the second string";
-	vector<std::string>::iterator vit;
-	for (vit = vecstrs.begin(); vit != vecstrs.end(); vit++)
-	{
-		outputFile << *(vit);
-	}
-
-	// this works
-	std::map<int, std::string> m;
+	/*std::map<int, std::string> m;
 	m[0] = "first string";
 	m[1] = "second string";
-	m[2] = "third string";
+	m[2] = "third string";*/
 
-	std::map<int, std::string>::iterator mit;
+	/*std::map<int, std::string>::iterator mit;
 	for (mit = m.begin(); mit != m.end(); mit++)
 	{
-		outputFile << mit->second;
-	}
+		outputFile << mit->second << endl;
+	}*/
 	
 	int hold = 1;
 	outputFile.close();

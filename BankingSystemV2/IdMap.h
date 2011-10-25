@@ -29,7 +29,7 @@ public:
 	// iterators
 	typename map<I, D>::iterator begin();
 	typename map<I, D>::iterator end();
-
+	typename map<I, D> getMap(){return _idMap;}
 	// ----------------------------------------------------------------------------------------- //
 
 private:
