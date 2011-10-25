@@ -10,6 +10,8 @@ template <class I, class D>
 class IdMap
 {
 public:
+
+	friend class TextFileDataSource;
 	
 	// ----------------------------------------------------------------------------------------- //
 	// constructor / destructor
