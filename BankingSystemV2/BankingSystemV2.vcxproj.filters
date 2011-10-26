@@ -82,6 +82,9 @@
     <Filter Include="Forms">
       <UniqueIdentifier>{d3085755-f1fe-4174-b926-1c8343ee76cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="User Controls\Source">
+      <UniqueIdentifier>{63be540a-bb40-481b-a948-c29c298cd114}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -174,6 +177,30 @@
     <ClCompile Include="LoginForm.cpp">
       <Filter>Forms</Filter>
     </ClCompile>
+    <ClCompile Include="CCreditView.cpp">
+      <Filter>User Controls\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CDeposit.cpp">
+      <Filter>User Controls\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CHomeLoanView.cpp">
+      <Filter>User Controls\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CSavingsView.cpp">
+      <Filter>User Controls\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CTransactions.cpp">
+      <Filter>User Controls\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CTransfer.cpp">
+      <Filter>User Controls\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CWithdraw.cpp">
+      <Filter>User Controls\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CPasswordChange.cpp">
+      <Filter>User Controls\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h">
@@ -256,6 +283,30 @@
     </ClInclude>
     <ClInclude Include="LoginForm.h">
       <Filter>Forms</Filter>
+    </ClInclude>
+    <ClInclude Include="CCreditView.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="CDeposit.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="CHomeLoanView.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="CSavingsView.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="CTransactions.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="CTransfer.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="CWithdraw.h">
+      <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="CPasswordChange.h">
+      <Filter>User Controls</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

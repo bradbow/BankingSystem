@@ -103,8 +103,16 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="BankClerk.cpp" />
     <ClCompile Include="BankingSystemV2.cpp" />
+    <ClCompile Include="CCreditView.cpp" />
+    <ClCompile Include="CDeposit.cpp" />
+    <ClCompile Include="CHomeLoanView.cpp" />
+    <ClCompile Include="CPasswordChange.cpp" />
     <ClCompile Include="CreditAccount.cpp" />
+    <ClCompile Include="CSavingsView.cpp" />
+    <ClCompile Include="CTransactions.cpp" />
+    <ClCompile Include="CTransfer.cpp" />
     <ClCompile Include="Customer.cpp" />
+    <ClCompile Include="CWithdraw.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="DebitAccount.cpp" />
     <ClCompile Include="Deposit.cpp" />
@@ -127,9 +135,33 @@
     <ClInclude Include="ApplicationController.h" />
     <ClInclude Include="BankClerk.h" />
     <ClInclude Include="BaseException.hpp" />
+    <ClInclude Include="CCreditView.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="CDeposit.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="CHomeLoanView.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="CPasswordChange.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
     <ClInclude Include="CreditAccount.h" />
     <ClInclude Include="CreditCardAccount.hpp" />
+    <ClInclude Include="CSavingsView.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="CTransactions.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="CTransfer.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
     <ClInclude Include="Customer.h" />
+    <ClInclude Include="CWithdraw.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
     <ClInclude Include="DataSource.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="DebitAccount.h" />
