@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CPasswordChange.h"
+#include "ApplicationController.h"
 
 namespace BankingSystemV2 {
 
@@ -20,7 +21,6 @@ namespace BankingSystemV2 {
 		BankClerk_Form(ApplicationController* ac) : _ac(ac)
 		{
 			InitializeComponent();
-			
 		}
 
 	protected:
@@ -38,6 +38,10 @@ namespace BankingSystemV2 {
 
 //COMPONENT DEFINITIONS
 
+=======
+	
+	private: ApplicationController* _ac;
+>>>>>>> working
 	private: System::Windows::Forms::MenuStrip^  menuStrip1;
 	private: System::Windows::Forms::Panel^  panel_AdjustInteresttRate;
 	private: System::Windows::Forms::Panel^  panel_CustomerAcc;
@@ -96,10 +100,13 @@ namespace BankingSystemV2 {
 	private: System::Windows::Forms::TabPage^  tabPage_Customer;
 	private: System::Windows::Forms::TabPage^  tabPage_SetInterest;
 	private: System::Windows::Forms::TabPage^  tabPage_Admin;
+<<<<<<< HEAD
 
 
 
 	protected: 
+=======
+>>>>>>> working
 
 	private:
 		/// <summary>
@@ -198,6 +205,10 @@ namespace BankingSystemV2 {
 			this->menuStrip1->Name = L"menuStrip1";
 			this->menuStrip1->Size = System::Drawing::Size(634, 24);
 			this->menuStrip1->TabIndex = 0;
+<<<<<<< HEAD
+=======
+			this->menuStrip1->Text = L"menuStrip1";
+>>>>>>> working
 			// 
 			// ToolStripMenuItem_logOut
 			// 
@@ -621,6 +632,10 @@ namespace BankingSystemV2 {
 			this->tabPage_CreateHomeLoan->Name = L"tabPage_CreateHomeLoan";
 			this->tabPage_CreateHomeLoan->Size = System::Drawing::Size(402, 321);
 			this->tabPage_CreateHomeLoan->TabIndex = 3;
+<<<<<<< HEAD
+=======
+			this->tabPage_CreateHomeLoan->Text = L"Create Home Loan";
+>>>>>>> working
 			// 
 			// button_CHLCreateAccount
 			// 
@@ -781,6 +796,7 @@ namespace BankingSystemV2 {
 
 		}
 #pragma endregion
+<<<<<<< HEAD
 
 private: System::Void createSavingsAccToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 			 //this->panel1->Visible = true;
@@ -816,4 +832,8 @@ private: System::Void button_CustomerSearch_Click(System::Object^  sender, Syste
 			
 		 }
 };
+=======
+
+	};
+>>>>>>> working
 }

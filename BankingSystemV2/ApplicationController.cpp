@@ -68,7 +68,11 @@ void ApplicationController::launchAppropriateUserForm(User* u)
 	Customer* c = dynamic_cast<Customer*>(u);
 	if (c) 
 	{
+<<<<<<< HEAD
 		Application::Run(gcnew Customer_Form(this));
+=======
+		//Application::Run(gcnew Customer_Form(this));
+>>>>>>> working
 		return;
 	}
 

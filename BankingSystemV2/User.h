@@ -27,7 +27,7 @@ public:
 	// destructor
 	// precondition: none
 	// postcondition: memory deallocated
-	~User(void);
+	virtual ~User(void);
 
 	int getUserId(){return _userId;}
 	virtual std::string toString() = 0;
