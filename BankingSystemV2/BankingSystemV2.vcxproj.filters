@@ -85,6 +85,9 @@
     <Filter Include="User Controls\Source">
       <UniqueIdentifier>{63be540a-bb40-481b-a948-c29c298cd114}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Forms\Source">
+      <UniqueIdentifier>{4288ddfe-bf32-4ae6-a587-7e5b4a2171b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -174,9 +177,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Application\Source</Filter>
     </ClCompile>
-    <ClCompile Include="LoginForm.cpp">
-      <Filter>Forms</Filter>
-    </ClCompile>
     <ClCompile Include="CCreditView.cpp">
       <Filter>User Controls\Source</Filter>
     </ClCompile>
@@ -200,6 +200,12 @@
     </ClCompile>
     <ClCompile Include="CPasswordChange.cpp">
       <Filter>User Controls\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="BankClerk_Form.cpp">
+      <Filter>Forms\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginForm.cpp">
+      <Filter>Forms\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +313,9 @@
     </ClInclude>
     <ClInclude Include="CPasswordChange.h">
       <Filter>User Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="BankClerk_Form.h">
+      <Filter>Forms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

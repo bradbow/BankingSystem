@@ -102,6 +102,7 @@
     <ClCompile Include="ApplicationController.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="BankClerk.cpp" />
+    <ClCompile Include="BankClerk_Form.cpp" />
     <ClCompile Include="BankingSystemV2.cpp" />
     <ClCompile Include="CCreditView.cpp" />
     <ClCompile Include="CDeposit.cpp" />
@@ -134,6 +135,9 @@
     <ClInclude Include="AccountServices.h" />
     <ClInclude Include="ApplicationController.h" />
     <ClInclude Include="BankClerk.h" />
+    <ClInclude Include="BankClerk_Form.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="BaseException.hpp" />
     <ClInclude Include="CCreditView.h">
       <FileType>CppControl</FileType>
