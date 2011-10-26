@@ -7,6 +7,7 @@
 #include "CTransfer.h"
 #include "CPasswordChange.h"
 #include "CTransactions.h"
+#include "ApplicationController.h"
 
 namespace BankingSystemV2 {
 
@@ -23,7 +24,7 @@ namespace BankingSystemV2 {
 	public ref class Customer_Form : public System::Windows::Forms::Form
 	{
 	public:
-		Customer_Form(void)
+		Customer_Form(ApplicationController* ac)
 		{	
 
 			InitializeComponent();
@@ -33,9 +34,7 @@ namespace BankingSystemV2 {
 			cHomeLoanView1->Dock = System::Windows::Forms::DockStyle::Fill;
 			cCreditView1->Dock = System::Windows::Forms::DockStyle::Fill;
 			cTransfer1->Dock = System::Windows::Forms::DockStyle::Fill;
-			//
-			//TODO: Add the constructor code here
-			//
+			_ac = ac;
 		}
 
 	protected:
@@ -49,245 +48,40 @@ namespace BankingSystemV2 {
 				delete components;
 			}
 		}
+	private: ApplicationController* _ac;
 	private: System::Windows::Forms::MenuStrip^  menuStrip1;
-
-
-
-
-
 	private: System::Windows::Forms::ToolStripMenuItem^  logOutToolStripMenuItem;
 	private: System::Windows::Forms::Panel^  Customer_Accounts_panel;
-
-
 	private: System::Windows::Forms::ToolStripMenuItem^  adminToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  securityToolStripMenuItem;
-
 	private: System::Windows::Forms::TabControl^  tabControl1;
 	private: System::Windows::Forms::TabPage^  tabPage1;
 	private: System::Windows::Forms::SplitContainer^  splitContainer1;
 	private: System::Windows::Forms::Label^  AvailableActions_label;
 	private: System::Windows::Forms::ListBox^  AvailableActions_listBox;
-
-
 	private: System::Windows::Forms::Label^  SelectAccount_label;
 	private: System::Windows::Forms::ListBox^  SelectAccount_listBox;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::TabPage^  tabPage2;
 	private: System::Windows::Forms::Button^  button4;
-private: System::Windows::Forms::Label^  label_Phone;
-
-private: System::Windows::Forms::TextBox^  textBox_Phone;
-private: System::Windows::Forms::TextBox^  textBox_Address;
-
-
-private: System::Windows::Forms::TextBox^  textBox_Name;
-
+	private: System::Windows::Forms::Label^  label_Phone;
+	private: System::Windows::Forms::TextBox^  textBox_Phone;
+	private: System::Windows::Forms::TextBox^  textBox_Address;
+	private: System::Windows::Forms::TextBox^  textBox_Name;
 	private: System::Windows::Forms::Label^  label27;
-private: System::Windows::Forms::Label^  label_Name;
-
+	private: System::Windows::Forms::Label^  label_Name;
 	private: System::Windows::Forms::TabPage^  tabPage3;
-private: System::Windows::Forms::Button^  button_CreateAccount;
-
-private: System::Windows::Forms::Label^  label_AccountName;
-private: System::Windows::Forms::TextBox^  textBox_AccountName;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-private: BankingSystemV2::CSavingsView^  cSavingsView1;
-
-
-
-private: System::Windows::Forms::ToolStripMenuItem^  accountsToolStripMenuItem;
-private: BankingSystemV2::CPasswordChange^  passwordChange1;
-private: BankingSystemV2::CWithdraw^  cWithdraw1;
-private: BankingSystemV2::CDeposit^  cDeposit1;
-private: BankingSystemV2::CHomeLoanView^  cHomeLoanView1;
-private: BankingSystemV2::CCreditView^  cCreditView1;
-private: BankingSystemV2::CTransfer^  cTransfer1;
-private: BankingSystemV2::CTransactions^  cTransactions1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	protected: 
-
+	private: System::Windows::Forms::Button^  button_CreateAccount;
+	private: System::Windows::Forms::Label^  label_AccountName;
+	private: System::Windows::Forms::TextBox^  textBox_AccountName;
+	private: BankingSystemV2::CSavingsView^  cSavingsView1;
+	private: System::Windows::Forms::ToolStripMenuItem^  accountsToolStripMenuItem;
+	private: BankingSystemV2::CPasswordChange^  passwordChange1;
+	private: BankingSystemV2::CWithdraw^  cWithdraw1;
+	private: BankingSystemV2::CDeposit^  cDeposit1;
+	private: BankingSystemV2::CHomeLoanView^  cHomeLoanView1;
+	private: BankingSystemV2::CCreditView^  cCreditView1;
+	private: BankingSystemV2::CTransfer^  cTransfer1;
+	private: BankingSystemV2::CTransactions^  cTransactions1;
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -412,7 +206,6 @@ private: BankingSystemV2::CTransactions^  cTransactions1;
 			this->tabPage1->Size = System::Drawing::Size(576, 312);
 			this->tabPage1->TabIndex = 0;
 			this->tabPage1->Text = L"Select";
-			this->tabPage1->Click += gcnew System::EventHandler(this, &Customer_Form::tabPage1_Click);
 			// 
 			// splitContainer1
 			// 
@@ -625,7 +418,6 @@ private: BankingSystemV2::CTransactions^  cTransactions1;
 			this->cSavingsView1->Name = L"cSavingsView1";
 			this->cSavingsView1->Size = System::Drawing::Size(570, 159);
 			this->cSavingsView1->TabIndex = 0;
-			this->cSavingsView1->Load += gcnew System::EventHandler(this, &Customer_Form::cSavingsView1_Load);
 			// 
 			// cTransfer1
 			// 
@@ -680,23 +472,6 @@ private: BankingSystemV2::CTransactions^  cTransactions1;
 
 		}
 #pragma endregion
-	private: System::Void tabPage1_Click(System::Object^  sender, System::EventArgs^  e) {
-			 }
 
-private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void CreditView_panel_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-		 }
-private: System::Void TransactionHistory_panel_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
-		 }
-
-private: System::Void label30_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void label32_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void textBox16_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void cSavingsView1_Load(System::Object^  sender, System::EventArgs^  e) {
-		 }
-};
+	};
 }
