@@ -207,6 +207,9 @@
     <ClCompile Include="LoginForm.cpp">
       <Filter>Forms\Source</Filter>
     </ClCompile>
+    <ClCompile Include="Customer_Form.cpp">
+      <Filter>Forms\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h">
@@ -315,6 +318,9 @@
       <Filter>User Controls</Filter>
     </ClInclude>
     <ClInclude Include="BankClerk_Form.h">
+      <Filter>Forms</Filter>
+    </ClInclude>
+    <ClInclude Include="Customer_Form.h">
       <Filter>Forms</Filter>
     </ClInclude>
   </ItemGroup>

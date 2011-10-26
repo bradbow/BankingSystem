@@ -113,6 +113,7 @@
     <ClCompile Include="CTransactions.cpp" />
     <ClCompile Include="CTransfer.cpp" />
     <ClCompile Include="Customer.cpp" />
+    <ClCompile Include="Customer_Form.cpp" />
     <ClCompile Include="CWithdraw.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="DebitAccount.cpp" />
@@ -163,6 +164,9 @@
       <FileType>CppControl</FileType>
     </ClInclude>
     <ClInclude Include="Customer.h" />
+    <ClInclude Include="Customer_Form.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="CWithdraw.h">
       <FileType>CppControl</FileType>
     </ClInclude>
