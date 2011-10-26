@@ -423,9 +423,9 @@ std::ofstream outputFile;
 	/*std::map<int, std::string> m;
 	m[0] = "first string";
 	m[1] = "second string";
-	m[2] = "third string";*/
+	m[2] = "third string";
 
-	/*std::map<int, std::string>::iterator mit;
+	std::map<int, std::string>::iterator mit;
 	for (mit = m.begin(); mit != m.end(); mit++)
 	{
 		outputFile << mit->second << endl;
