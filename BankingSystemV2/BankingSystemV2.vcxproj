@@ -108,13 +108,12 @@
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="DebitAccount.cpp" />
     <ClCompile Include="Deposit.cpp" />
-    <ClCompile Include="myuc.cpp" />
+    <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="TempForm.cpp" />
     <ClCompile Include="TextFileDataSource.cpp" />
     <ClCompile Include="Transfer.cpp" />
     <ClCompile Include="User.cpp" />
@@ -127,76 +126,34 @@
     <ClInclude Include="AccountServices.h" />
     <ClInclude Include="ApplicationController.h" />
     <ClInclude Include="BankClerk.h" />
-    <ClInclude Include="BankClerk_Form.h" />
     <ClInclude Include="BaseException.hpp" />
     <ClInclude Include="CreditAccount.h" />
     <ClInclude Include="CreditCardAccount.hpp" />
-    <ClInclude Include="CreditViewControl.h">
-      <FileType>CppControl</FileType>
-    </ClInclude>
     <ClInclude Include="Customer.h" />
-    <ClInclude Include="Customer_Form.h" />
     <ClInclude Include="DataSource.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="DebitAccount.h" />
     <ClInclude Include="Deposit.h" />
-    <ClInclude Include="DepositControl.h">
-      <FileType>CppControl</FileType>
-    </ClInclude>
     <ClInclude Include="HomeLoanAccount.hpp" />
-    <ClInclude Include="HomeLoanViewControl.h">
-      <FileType>CppControl</FileType>
-    </ClInclude>
     <ClInclude Include="IdMap.h" />
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="myuc.h">
-      <FileType>CppControl</FileType>
-    </ClInclude>
-    <ClInclude Include="PasswordChangeControl.h">
-      <FileType>CppControl</FileType>
-    </ClInclude>
     <ClInclude Include="resource.h" />
     <ClInclude Include="SavingsAccount.hpp" />
-    <ClInclude Include="SavingsViewControl.h">
-      <FileType>CppControl</FileType>
-    </ClInclude>
     <ClInclude Include="Session.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="TempForm.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="TextFileDataSource.h" />
     <ClInclude Include="Transaction.h" />
-    <ClInclude Include="TransactionControl.h">
-      <FileType>CppControl</FileType>
-    </ClInclude>
     <ClInclude Include="TransactionExceptions.hpp" />
     <ClInclude Include="Transfer.h" />
-    <ClInclude Include="TransferControl.h">
-      <FileType>CppControl</FileType>
-    </ClInclude>
     <ClInclude Include="User.h" />
     <ClInclude Include="UserServices.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Withdrawal.h" />
-    <ClInclude Include="WithdrawControl.h">
-      <FileType>CppControl</FileType>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="BankClerk_Form.resx" />
-    <EmbeddedResource Include="Customer_Form.resx" />
-    <EmbeddedResource Include="LoginForm.resx">
-      <DependentUpon>LoginForm.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="myuc.resx">
-      <DependentUpon>myuc.h</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
