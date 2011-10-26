@@ -17,12 +17,10 @@ namespace BankingSystemV2 {
 	public ref class BankClerk_Form : public System::Windows::Forms::Form
 	{
 	public:
-		BankClerk_Form(void)
+		BankClerk_Form(ApplicationController* ac) : _ac(ac)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+			
 		}
 
 	protected:
@@ -36,245 +34,68 @@ namespace BankingSystemV2 {
 				delete components;
 			}
 		}
+
+
+//COMPONENT DEFINITIONS
+
 	private: System::Windows::Forms::MenuStrip^  menuStrip1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::Panel^  panel_AdjustInteresttRate;
 	private: System::Windows::Forms::Panel^  panel_CustomerAcc;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::SplitContainer^  splitContainer1;
 	private: System::Windows::Forms::Label^  label_Password_;
 	private: System::Windows::Forms::TextBox^  textBox_Password;
 	private: System::Windows::Forms::Button^  button_ResetPassword;
-
-
-
-
 	private: System::Windows::Forms::Button^  button_CustomerSearch;
-
-
-
-
 	private: System::Windows::Forms::Label^  label_CustomerId;
 	private: System::Windows::Forms::TextBox^  textBox_CustomerId;
 	private: System::Windows::Forms::TabControl^  tabControl_BCCustomer;
 	private: System::Windows::Forms::TabPage^  tabPage_Details;
-
-
-
-
-
-
-
 	private: System::Windows::Forms::Button^  button_UpdateDetail;
 	private: System::Windows::Forms::Button^  button_AccountCancel;
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::Label^  label_Accounts;
 	private: System::Windows::Forms::ListBox^  listBox_AccountSelection;
-
-
-
-
 	private: System::Windows::Forms::Label^  label_Address;
-
-
-
-private: System::Windows::Forms::TextBox^  textBox_Address;
-
-private: System::Windows::Forms::Label^  label_Phone;
-
-
-
-private: System::Windows::Forms::TextBox^  textBox_Phone;
-
-private: System::Windows::Forms::Label^  label_Name;
-private: System::Windows::Forms::TextBox^  textBox_Name;
-private: System::Windows::Forms::TabPage^  tabPage_CreateSavings;
-
-
-
-
-
-private: System::Windows::Forms::Label^  label_CSAccountName;
-private: System::Windows::Forms::TextBox^  textBox_CSAccountName;
-private: System::Windows::Forms::TabPage^  tabPage_CreateCredit;
-
-
-
-
-
-
-private: System::Windows::Forms::TabPage^  tabPage_CreateHomeLoan;
-
-
-
-
-
-
-
-
-
-private: System::Windows::Forms::Button^  button_CreateAccount;
-private: System::Windows::Forms::Button^  button_CCCreateAccount;
-
-
-
-private: System::Windows::Forms::Label^  label_CCOverdraft;
-private: System::Windows::Forms::TextBox^  textBox_CCOverdraft;
-
-
-
-
-private: System::Windows::Forms::Label^  label_CCAccountName;
-
-
-
-private: System::Windows::Forms::TextBox^  textBox_CCAccountName;
-private: System::Windows::Forms::Button^  button_CHLCreateAccount;
-
-
-private: System::Windows::Forms::Label^  label_MinRepayment;
-private: System::Windows::Forms::TextBox^  textBox_MinRepayment;
-
-
-
-
-
-
-private: System::Windows::Forms::Label^  label_CHLAmount;
-private: System::Windows::Forms::TextBox^  textBox_CHLAmount;
-private: System::Windows::Forms::Label^  label_RepaymentOption;
-private: System::Windows::Forms::ListBox^  listBox_RepaymentOption;
-
-
-
-
-
-
-private: System::Windows::Forms::Label^  label_PropertyAddress;
-private: System::Windows::Forms::TextBox^  textBox_PropertyAddress;
-
-
-
-
-
-
-private: System::Windows::Forms::Label^  label_CHLAccountName;
-
-
-
-private: System::Windows::Forms::TextBox^  textBox_CHLAccountName;
-
-
-
-
-
-private: System::Windows::Forms::Button^  button_SetRates;
-
-private: System::Windows::Forms::TextBox^  textBox_HomeLoanRate;
-
-
-
-private: System::Windows::Forms::Label^  label_HomeLoanRate;
-
-
-private: System::Windows::Forms::Label^  label_CreditRate;
-private: System::Windows::Forms::TextBox^  textBox_CreditRate;
-
-
-
-private: System::Windows::Forms::Label^  label_IRHeading;
-private: System::Windows::Forms::Label^  label_SavingsRate;
-private: System::Windows::Forms::TextBox^  textBox_SavingsRate;
-private: System::Windows::Forms::ToolStripMenuItem^  ToolStripMenuItem_logOut;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-private: BankingSystemV2::CPasswordChange^  passwordChange1;
-private: System::Windows::Forms::TabControl^  tabControl;
-private: System::Windows::Forms::TabPage^  tabPage_Customer;
-private: System::Windows::Forms::TabPage^  tabPage_SetInterest;
-private: System::Windows::Forms::TabPage^  tabPage_Admin;
-
-
-
-
-
-
+	private: System::Windows::Forms::TextBox^  textBox_Address;
+	private: System::Windows::Forms::Label^  label_Phone;
+	private: System::Windows::Forms::TextBox^  textBox_Phone;
+	private: System::Windows::Forms::Label^  label_Name;
+	private: System::Windows::Forms::TextBox^  textBox_Name;
+	private: System::Windows::Forms::TabPage^  tabPage_CreateSavings;
+	private: System::Windows::Forms::Label^  label_CSAccountName;
+	private: System::Windows::Forms::TextBox^  textBox_CSAccountName;
+	private: System::Windows::Forms::TabPage^  tabPage_CreateCredit;
+	private: System::Windows::Forms::TabPage^  tabPage_CreateHomeLoan;
+	private: System::Windows::Forms::Button^  button_CreateAccount;
+	private: System::Windows::Forms::Button^  button_CCCreateAccount;
+	private: System::Windows::Forms::Label^  label_CCOverdraft;
+	private: System::Windows::Forms::TextBox^  textBox_CCOverdraft;
+	private: System::Windows::Forms::Label^  label_CCAccountName;
+	private: System::Windows::Forms::TextBox^  textBox_CCAccountName;
+	private: System::Windows::Forms::Button^  button_CHLCreateAccount;
+	private: System::Windows::Forms::Label^  label_MinRepayment;
+	private: System::Windows::Forms::TextBox^  textBox_MinRepayment;
+	private: System::Windows::Forms::Label^  label_CHLAmount;
+	private: System::Windows::Forms::TextBox^  textBox_CHLAmount;
+	private: System::Windows::Forms::Label^  label_RepaymentOption;
+	private: System::Windows::Forms::ListBox^  listBox_RepaymentOption;
+	private: System::Windows::Forms::Label^  label_PropertyAddress;
+	private: System::Windows::Forms::TextBox^  textBox_PropertyAddress;
+	private: System::Windows::Forms::Label^  label_CHLAccountName;
+	private: System::Windows::Forms::TextBox^  textBox_CHLAccountName;
+	private: System::Windows::Forms::Button^  button_SetRates;
+	private: System::Windows::Forms::TextBox^  textBox_HomeLoanRate;
+	private: System::Windows::Forms::Label^  label_HomeLoanRate;
+	private: System::Windows::Forms::Label^  label_CreditRate;
+	private: System::Windows::Forms::TextBox^  textBox_CreditRate;
+	private: System::Windows::Forms::Label^  label_IRHeading;
+	private: System::Windows::Forms::Label^  label_SavingsRate;
+	private: System::Windows::Forms::TextBox^  textBox_SavingsRate;
+	private: System::Windows::Forms::ToolStripMenuItem^  ToolStripMenuItem_logOut;
+	private: BankingSystemV2::CPasswordChange^  passwordChange1;
+	private: System::Windows::Forms::TabControl^  tabControl;
+	private: System::Windows::Forms::TabPage^  tabPage_Customer;
+	private: System::Windows::Forms::TabPage^  tabPage_SetInterest;
+	private: System::Windows::Forms::TabPage^  tabPage_Admin;
 
 
 
@@ -284,6 +105,7 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
+		ApplicationController* _ac;
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
@@ -305,6 +127,8 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->label_SavingsRate = (gcnew System::Windows::Forms::Label());
 			this->textBox_SavingsRate = (gcnew System::Windows::Forms::TextBox());
 			this->panel_CustomerAcc = (gcnew System::Windows::Forms::Panel());
+			this->tabControl = (gcnew System::Windows::Forms::TabControl());
+			this->tabPage_Customer = (gcnew System::Windows::Forms::TabPage());
 			this->splitContainer1 = (gcnew System::Windows::Forms::SplitContainer());
 			this->label_Password_ = (gcnew System::Windows::Forms::Label());
 			this->textBox_Password = (gcnew System::Windows::Forms::TextBox());
@@ -346,14 +170,14 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->textBox_PropertyAddress = (gcnew System::Windows::Forms::TextBox());
 			this->label_CHLAccountName = (gcnew System::Windows::Forms::Label());
 			this->textBox_CHLAccountName = (gcnew System::Windows::Forms::TextBox());
-			this->passwordChange1 = (gcnew BankingSystemV2::CPasswordChange());
-			this->tabControl = (gcnew System::Windows::Forms::TabControl());
-			this->tabPage_Customer = (gcnew System::Windows::Forms::TabPage());
 			this->tabPage_SetInterest = (gcnew System::Windows::Forms::TabPage());
 			this->tabPage_Admin = (gcnew System::Windows::Forms::TabPage());
+			this->passwordChange1 = (gcnew BankingSystemV2::CPasswordChange());
 			this->menuStrip1->SuspendLayout();
 			this->panel_AdjustInteresttRate->SuspendLayout();
 			this->panel_CustomerAcc->SuspendLayout();
+			this->tabControl->SuspendLayout();
+			this->tabPage_Customer->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->splitContainer1))->BeginInit();
 			this->splitContainer1->Panel1->SuspendLayout();
 			this->splitContainer1->Panel2->SuspendLayout();
@@ -363,8 +187,6 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->tabPage_CreateSavings->SuspendLayout();
 			this->tabPage_CreateCredit->SuspendLayout();
 			this->tabPage_CreateHomeLoan->SuspendLayout();
-			this->tabControl->SuspendLayout();
-			this->tabPage_Customer->SuspendLayout();
 			this->tabPage_SetInterest->SuspendLayout();
 			this->tabPage_Admin->SuspendLayout();
 			this->SuspendLayout();
@@ -376,8 +198,6 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->menuStrip1->Name = L"menuStrip1";
 			this->menuStrip1->Size = System::Drawing::Size(634, 24);
 			this->menuStrip1->TabIndex = 0;
-			this->menuStrip1->Text = L"menuStrip1";
-			this->menuStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &BankClerk_Form::menuStrip1_ItemClicked);
 			// 
 			// ToolStripMenuItem_logOut
 			// 
@@ -409,7 +229,6 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->button_SetRates->TabIndex = 7;
 			this->button_SetRates->Text = L"Set Rates";
 			this->button_SetRates->UseVisualStyleBackColor = true;
-			this->button_SetRates->Click += gcnew System::EventHandler(this, &BankClerk_Form::button8_Click);
 			// 
 			// textBox_HomeLoanRate
 			// 
@@ -478,6 +297,29 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->panel_CustomerAcc->Size = System::Drawing::Size(634, 379);
 			this->panel_CustomerAcc->TabIndex = 3;
 			// 
+			// tabControl
+			// 
+			this->tabControl->Controls->Add(this->tabPage_Customer);
+			this->tabControl->Controls->Add(this->tabPage_SetInterest);
+			this->tabControl->Controls->Add(this->tabPage_Admin);
+			this->tabControl->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->tabControl->Location = System::Drawing::Point(0, 0);
+			this->tabControl->Name = L"tabControl";
+			this->tabControl->SelectedIndex = 0;
+			this->tabControl->Size = System::Drawing::Size(634, 379);
+			this->tabControl->TabIndex = 1;
+			// 
+			// tabPage_Customer
+			// 
+			this->tabPage_Customer->Controls->Add(this->splitContainer1);
+			this->tabPage_Customer->Location = System::Drawing::Point(4, 22);
+			this->tabPage_Customer->Name = L"tabPage_Customer";
+			this->tabPage_Customer->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage_Customer->Size = System::Drawing::Size(626, 353);
+			this->tabPage_Customer->TabIndex = 0;
+			this->tabPage_Customer->Text = L"Customer";
+			this->tabPage_Customer->UseVisualStyleBackColor = true;
+			// 
 			// splitContainer1
 			// 
 			this->splitContainer1->Dock = System::Windows::Forms::DockStyle::Fill;
@@ -534,6 +376,7 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->button_CustomerSearch->TabIndex = 2;
 			this->button_CustomerSearch->Text = L"Search";
 			this->button_CustomerSearch->UseVisualStyleBackColor = true;
+			this->button_CustomerSearch->Click += gcnew System::EventHandler(this, &BankClerk_Form::button_CustomerSearch_Click);
 			// 
 			// label_CustomerId
 			// 
@@ -778,8 +621,6 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->tabPage_CreateHomeLoan->Name = L"tabPage_CreateHomeLoan";
 			this->tabPage_CreateHomeLoan->Size = System::Drawing::Size(402, 321);
 			this->tabPage_CreateHomeLoan->TabIndex = 3;
-			this->tabPage_CreateHomeLoan->Text = L"Create Home Loan";
-			this->tabPage_CreateHomeLoan->Click += gcnew System::EventHandler(this, &BankClerk_Form::tabPage7_Click);
 			// 
 			// button_CHLCreateAccount
 			// 
@@ -798,7 +639,6 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->label_MinRepayment->Size = System::Drawing::Size(84, 13);
 			this->label_MinRepayment->TabIndex = 9;
 			this->label_MinRepayment->Text = L"Min Repayment:";
-			this->label_MinRepayment->Click += gcnew System::EventHandler(this, &BankClerk_Form::label15_Click);
 			// 
 			// textBox_MinRepayment
 			// 
@@ -806,7 +646,6 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->textBox_MinRepayment->Name = L"textBox_MinRepayment";
 			this->textBox_MinRepayment->Size = System::Drawing::Size(100, 20);
 			this->textBox_MinRepayment->TabIndex = 8;
-			this->textBox_MinRepayment->TextChanged += gcnew System::EventHandler(this, &BankClerk_Form::textBox12_TextChanged);
 			// 
 			// label_CHLAmount
 			// 
@@ -816,7 +655,6 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->label_CHLAmount->Size = System::Drawing::Size(73, 13);
 			this->label_CHLAmount->TabIndex = 7;
 			this->label_CHLAmount->Text = L"Loan Amount:";
-			this->label_CHLAmount->Click += gcnew System::EventHandler(this, &BankClerk_Form::label14_Click);
 			// 
 			// textBox_CHLAmount
 			// 
@@ -824,7 +662,6 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->textBox_CHLAmount->Name = L"textBox_CHLAmount";
 			this->textBox_CHLAmount->Size = System::Drawing::Size(100, 20);
 			this->textBox_CHLAmount->TabIndex = 6;
-			this->textBox_CHLAmount->TextChanged += gcnew System::EventHandler(this, &BankClerk_Form::textBox11_TextChanged);
 			// 
 			// label_RepaymentOption
 			// 
@@ -834,7 +671,6 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->label_RepaymentOption->Size = System::Drawing::Size(98, 13);
 			this->label_RepaymentOption->TabIndex = 5;
 			this->label_RepaymentOption->Text = L"Repayment Option:";
-			this->label_RepaymentOption->Click += gcnew System::EventHandler(this, &BankClerk_Form::label13_Click);
 			// 
 			// listBox_RepaymentOption
 			// 
@@ -844,7 +680,6 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->listBox_RepaymentOption->Name = L"listBox_RepaymentOption";
 			this->listBox_RepaymentOption->Size = System::Drawing::Size(95, 43);
 			this->listBox_RepaymentOption->TabIndex = 4;
-			this->listBox_RepaymentOption->SelectedIndexChanged += gcnew System::EventHandler(this, &BankClerk_Form::listBox2_SelectedIndexChanged);
 			// 
 			// label_PropertyAddress
 			// 
@@ -878,37 +713,6 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->textBox_CHLAccountName->Size = System::Drawing::Size(222, 20);
 			this->textBox_CHLAccountName->TabIndex = 0;
 			// 
-			// passwordChange1
-			// 
-			this->passwordChange1->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->passwordChange1->Location = System::Drawing::Point(3, 3);
-			this->passwordChange1->Name = L"passwordChange1";
-			this->passwordChange1->Size = System::Drawing::Size(620, 347);
-			this->passwordChange1->TabIndex = 4;
-			// 
-			// tabControl
-			// 
-			this->tabControl->Controls->Add(this->tabPage_Customer);
-			this->tabControl->Controls->Add(this->tabPage_SetInterest);
-			this->tabControl->Controls->Add(this->tabPage_Admin);
-			this->tabControl->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->tabControl->Location = System::Drawing::Point(0, 0);
-			this->tabControl->Name = L"tabControl";
-			this->tabControl->SelectedIndex = 0;
-			this->tabControl->Size = System::Drawing::Size(634, 379);
-			this->tabControl->TabIndex = 1;
-			// 
-			// tabPage_Customer
-			// 
-			this->tabPage_Customer->Controls->Add(this->splitContainer1);
-			this->tabPage_Customer->Location = System::Drawing::Point(4, 22);
-			this->tabPage_Customer->Name = L"tabPage_Customer";
-			this->tabPage_Customer->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage_Customer->Size = System::Drawing::Size(626, 353);
-			this->tabPage_Customer->TabIndex = 0;
-			this->tabPage_Customer->Text = L"Customer";
-			this->tabPage_Customer->UseVisualStyleBackColor = true;
-			// 
 			// tabPage_SetInterest
 			// 
 			this->tabPage_SetInterest->BackColor = System::Drawing::SystemColors::Control;
@@ -931,6 +735,14 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->tabPage_Admin->TabIndex = 2;
 			this->tabPage_Admin->Text = L"Admin";
 			// 
+			// passwordChange1
+			// 
+			this->passwordChange1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->passwordChange1->Location = System::Drawing::Point(3, 3);
+			this->passwordChange1->Name = L"passwordChange1";
+			this->passwordChange1->Size = System::Drawing::Size(620, 347);
+			this->passwordChange1->TabIndex = 4;
+			// 
 			// BankClerk_Form
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -946,6 +758,8 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->panel_AdjustInteresttRate->ResumeLayout(false);
 			this->panel_AdjustInteresttRate->PerformLayout();
 			this->panel_CustomerAcc->ResumeLayout(false);
+			this->tabControl->ResumeLayout(false);
+			this->tabPage_Customer->ResumeLayout(false);
 			this->splitContainer1->Panel1->ResumeLayout(false);
 			this->splitContainer1->Panel1->PerformLayout();
 			this->splitContainer1->Panel2->ResumeLayout(false);
@@ -960,8 +774,6 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 			this->tabPage_CreateCredit->PerformLayout();
 			this->tabPage_CreateHomeLoan->ResumeLayout(false);
 			this->tabPage_CreateHomeLoan->PerformLayout();
-			this->tabControl->ResumeLayout(false);
-			this->tabPage_Customer->ResumeLayout(false);
 			this->tabPage_SetInterest->ResumeLayout(false);
 			this->tabPage_Admin->ResumeLayout(false);
 			this->ResumeLayout(false);
@@ -969,8 +781,6 @@ private: System::Windows::Forms::TabPage^  tabPage_Admin;
 
 		}
 #pragma endregion
-	private: System::Void menuStrip1_ItemClicked(System::Object^  sender, System::Windows::Forms::ToolStripItemClickedEventArgs^  e) {
-			 }
 
 private: System::Void createSavingsAccToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 			 //this->panel1->Visible = true;
@@ -980,8 +790,7 @@ private: System::Void createCreditAccToolStripMenuItem_Click(System::Object^  se
 			 //this->Create_Credit_Acc_Panel->Visible = true;
 			 //this->Create_Credit_Acc_Panel->BringToFront();
 		 }
-private: System::Void tabPage3_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
+
 private: System::Void createAccountToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 
 			//this->tabControl1->BringToFront()
@@ -994,35 +803,17 @@ private: System::Void cReditToolStripMenuItem_Click(System::Object^  sender, Sys
 			//tabControl1->SelectedIndex = 0;
 
 		 }
-private: System::Void label2_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
 
-private: System::Void tabPage7_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void listBox2_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void textBox11_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void label13_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void textBox12_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void label15_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void label14_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void button8_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
-private: System::Void setRatesToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-		 }
+
 private: System::Void customerToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 
 			 this->panel_CustomerAcc->Visible = true;
 			 this->panel_CustomerAcc->BringToFront();
 		 }
-private: System::Void changePasswordToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 
+private: System::Void button_CustomerSearch_Click(System::Object^  sender, System::EventArgs^  e) {
 
+			
 		 }
 };
 }
