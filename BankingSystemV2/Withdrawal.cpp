@@ -10,9 +10,7 @@ Withdrawal::Withdrawal
 ) : Transaction(id, amount, customerId, dt)
 {
 	
-	// TODO is this better than account services having getSavingsAccount, getCreditCardAccount etc?
-	//_account = dynamic_cast<DebitAccount*>(AccountServices::instance()->getAccount(accountId));
-	_preTransactionBalance = _account->getBalance();
+	//_preTransactionBalance = _account->getBalance();
 
 }
 
@@ -21,10 +19,10 @@ Withdrawal::Withdrawal
 
 void Withdrawal::execute()
 {
-	_account->withdraw(_amount);
+	//_account->withdraw(_amount);
 }
 
 void Withdrawal::rollback()
 {
-	_account->setBalance(_preTransactionBalance);
+	//_account->setBalance(_preTransactionBalance);
 }

@@ -62,18 +62,20 @@ void ApplicationController::launchLoginForm()
 	Application::Run(gcnew LoginForm(this));
 }
 
-[STAThreadAttribute]
 void ApplicationController::launchAppropriateUserForm(User* u)
 {
 	Customer* c = dynamic_cast<Customer*>(u);
 	if (c) 
 	{
-		//Application::Run(gcnew Customer_Form(this));
-		return;
+		Customer_Form^ cu = gcnew Customer_Form(this);
+		cu->ShowDialog();
 	}
 
-	BankClerk* bc = dynamic_cast<BankClerk*>(u);
-	if (bc) {Application::Run(gcnew BankClerk_Form(this));}
+	/*BankClerk* bc = dynamic_cast<BankClerk*>(u);
+	if (bc) 
+	{
+		Application::Run(gcnew BankClerk_Form(this));
+	}*/
 
 	// TODO exception, not a valid user type, or general error etc.
 }

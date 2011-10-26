@@ -183,10 +183,9 @@ namespace BankingSystemV2 {
 			if (_us->validateUser(userId, password))
 			{
 				User* u = _us->getUser(userId);
-				Session* session = Session::getInstance();
-				session->setUser(u);
-
+				Session::getInstance()->setUser(u);
 				_ac->launchAppropriateUserForm(u);
+				this->Close();
 			}
 			else
 			{
