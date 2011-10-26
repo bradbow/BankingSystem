@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "LoginForm.h"
+#include "Customer_Form.h"
+#include "BankClerk_Form.h"
 
 using namespace BankingSystemV2;
 using namespace std;
@@ -60,14 +62,20 @@ void ApplicationController::launchLoginForm()
 	Application::Run(gcnew LoginForm(this));
 }
 
-void ApplicationController::launchCustomerForm()
+[STAThreadAttribute]
+void ApplicationController::launchAppropriateUserForm(User* u)
 {
+	Customer* c = dynamic_cast<Customer*>(u);
+	if (c) 
+	{
+		//Application::Run(gcnew Customer_Form(this));
+		return;
+	}
 
-}
+	BankClerk* bc = dynamic_cast<BankClerk*>(u);
+	if (bc) {Application::Run(gcnew BankClerk_Form(this));}
 
-void ApplicationController::launchBankClerkForm()
-{
-
+	// TODO exception, not a valid user type, or general error etc.
 }
 
 // --------------------------------------------------------------------------------------------- //

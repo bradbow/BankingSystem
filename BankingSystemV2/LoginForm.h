@@ -182,9 +182,11 @@ namespace BankingSystemV2 {
 			UserServices* _us = UserServices::instance();
 			if (_us->validateUser(userId, password))
 			{
-				MessageBox::Show("Successfully logged in");
+				User* u = _us->getUser(userId);
 				Session* session = Session::getInstance();
-				session->setUser(_us->getUser(userId));
+				session->setUser(u);
+
+				_ac->launchAppropriateUserForm(u);
 			}
 			else
 			{

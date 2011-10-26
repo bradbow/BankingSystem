@@ -12,8 +12,7 @@ public:
 
 	// form launching
 	void launchLoginForm();
-	void launchCustomerForm();
-	void launchBankClerkForm();
+	void launchAppropriateUserForm(User* u);
 	
 	// data source communication
 	static void setDataSource(DataSource* ds);

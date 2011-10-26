@@ -12,8 +12,7 @@ using namespace std;
 #ifndef _CUSTOMER_H
 #define _CUSTOMER_H 
 
-class Customer :
-	public User
+class Customer : public User
 {
 public:
 	

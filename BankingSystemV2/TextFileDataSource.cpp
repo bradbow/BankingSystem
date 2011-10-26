@@ -116,7 +116,7 @@ void TextFileDataSource::ConstructAndAddCustomer(string line)
 		vector<string> accountIds = StringUtils::splitString(lineSplit[ACCOUNT_IDS], ';');
 
 		// create customer
-		Customer* c = new Customer
+		Customer* c = new Customer 
 		(
 			TypeConverter(lineSplit[USER_ID]),
 			lineSplit[PASSWORD],
@@ -133,6 +133,7 @@ void TextFileDataSource::ConstructAndAddCustomer(string line)
 		}
 
 		_users.add(c->getUserId(), c);
+
 	}
 	else 
 	{
@@ -147,6 +148,7 @@ void TextFileDataSource::ConstructAndAddBankClerk(string line)
 	{
 		USER_ID,
 		PASSWORD,
+		EXTRA_MEMBER,
 		NUM_FIELDS
 	};
 
@@ -154,13 +156,14 @@ void TextFileDataSource::ConstructAndAddBankClerk(string line)
 
 	if (lineSplit.size() == NUM_FIELDS)
 	{
-		BankClerk bc
+		BankClerk* bc = new BankClerk
 		(
 			TypeConverter(lineSplit[USER_ID]),
-			lineSplit[PASSWORD]
+			lineSplit[PASSWORD],
+			TypeConverter(lineSplit[EXTRA_MEMBER])
 		);
 
-		_users.add(bc.getUserId(), &bc);
+		_users.add(bc->getUserId(), bc);
 	}
 	else
 	{
@@ -184,7 +187,7 @@ void TextFileDataSource::ConstructAndAddSavingsAccount(string line)
 
 	if (lineSplit.size() == NUM_FIELDS)
 	{
-	SavingsAccount sa
+	SavingsAccount* sa = new SavingsAccount
 	(
 		TypeConverter(lineSplit[ACCOUNT_ID]),
 		TypeConverter(lineSplit[CUSTOMER_ID]),
@@ -193,7 +196,7 @@ void TextFileDataSource::ConstructAndAddSavingsAccount(string line)
 		TypeConverter(lineSplit[BALANCE])
 	);
 
-	_accounts.add(sa.getAccountId(), &sa);
+	_accounts.add(sa->getAccountId(), sa);
 	}
 	else
 	{
@@ -219,7 +222,7 @@ void TextFileDataSource::ConstructAndAddCreditCardAccount(string line)
 
 	if (lineSplit.size() == NUM_FIELDS)
 	{
-		CreditCardAccount ca
+		CreditCardAccount* ca = new CreditCardAccount
 		(
 			TypeConverter(lineSplit[ACCOUNT_ID]),
 			TypeConverter(lineSplit[CUSTOMER_ID]),
@@ -229,7 +232,7 @@ void TextFileDataSource::ConstructAndAddCreditCardAccount(string line)
 			TypeConverter(lineSplit[LIMIT])
 		);
 
-		_accounts.add(ca.getAccountId(), &ca);
+		_accounts.add(ca->getAccountId(), ca);
 	}
 	else
 	{
@@ -260,7 +263,7 @@ void TextFileDataSource::ConstructAndAddHomeLoanAccount(string line)
 		int nOption = TypeConverter(lineSplit[REPAYMENT_OPTION]);
 		HomeLoanAccount::RepaymentOption option = static_cast<HomeLoanAccount::RepaymentOption>(nOption);
 
-		HomeLoanAccount hla
+		HomeLoanAccount* hla = new HomeLoanAccount
 		(
 			TypeConverter(lineSplit[ACCOUNT_ID]),
 			TypeConverter(lineSplit[CUSTOMER_ID]),
@@ -272,7 +275,7 @@ void TextFileDataSource::ConstructAndAddHomeLoanAccount(string line)
 			TypeConverter(lineSplit[MIN_REPAYMENT])
 		);
 
-		_accounts.add(hla.getAccountId(), &hla);
+		_accounts.add(hla->getAccountId(), hla);
 	}
 	else
 	{
@@ -298,7 +301,7 @@ void TextFileDataSource::ConstructAndAddWithdrawalTransaction(string line)
 	{
 		Date dt(lineSplit[DATE], '-');
 
-		Withdrawal w
+		Withdrawal* w = new Withdrawal
 		(
 			TypeConverter(lineSplit[ID]),
 			TypeConverter(lineSplit[AMOUNT]),
@@ -307,7 +310,7 @@ void TextFileDataSource::ConstructAndAddWithdrawalTransaction(string line)
 			TypeConverter(lineSplit[ACCOUNT_ID])
 		);
 
-		_transactions.add(w.getId(), &w);
+		_transactions.add(w->getId(), w);
 	}
 	else
 	{
@@ -334,7 +337,7 @@ void TextFileDataSource::ConstructAndAddDepositTransaction(string line)
 	{
 		Date dt(lineSplit[DATE], '-');
 
-		Deposit d
+		Deposit* d = new Deposit
 		(
 			TypeConverter(lineSplit[ID]),
 			TypeConverter(lineSplit[AMOUNT]),
@@ -343,7 +346,7 @@ void TextFileDataSource::ConstructAndAddDepositTransaction(string line)
 			TypeConverter(lineSplit[ACCOUNT_ID])
 		);
 
-		_transactions.add(d.getId(), &d);
+		_transactions.add(d->getId(), d);
 	}
 	else
 	{
@@ -371,7 +374,7 @@ void TextFileDataSource::ConstructAndAddTransferTransaction(string line)
 	{
 		Date dt(lineSplit[DATE], '-');
 
-		Transfer t
+		Transfer* t = new Transfer
 		(
 			TypeConverter(lineSplit[ID]),
 			TypeConverter(lineSplit[AMOUNT]),
@@ -381,7 +384,7 @@ void TextFileDataSource::ConstructAndAddTransferTransaction(string line)
 			TypeConverter(lineSplit[FROM_ACCOUNT_ID])
 		);
 
-		_transactions.add(t.getId(), &t);
+		_transactions.add(t->getId(), t);
 	}
 	else
 	{
@@ -393,20 +396,26 @@ void TextFileDataSource::ConstructAndAddTransferTransaction(string line)
 void TextFileDataSource::persistCustomers()
 {
 	
-std::ofstream outputFile;
+	std::ofstream outputFile;
 	std::string fileName = "Customers2.txt";
 	outputFile.open(fileName.c_str());
 
 	map<int, User*>::iterator mit;
 	map<int, User*> userMap = _users.getMap();
-	for (mit = userMap.begin(); mit != userMap.end(); ++mit)
+	int count = 0;
+	Customer* cp;
+	User* up;
+	for (mit = userMap.begin(); mit != userMap.end(); mit++)
 	{
-		Customer* cp = dynamic_cast<Customer*>(mit->second);
+		up = mit->second;
+		cp = dynamic_cast<Customer*>(up);
 		if (cp)
 		{
 			std::string str = cp->toString();
 			outputFile << str << endl;
 		}
+
+		count++;
 	}
 
 	// this works
