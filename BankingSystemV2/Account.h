@@ -4,6 +4,7 @@
 
 #include "TransactionExceptions.hpp"
 #include <string>
+
 #pragma warning( disable : 4290 )
 using std::string;
 
@@ -34,6 +35,7 @@ public:
 	string getAccountName(){return _accountName;}
 	double getInterestRate(){return _interestRate;}
 	double getBalance(){return _balance;}
+	string getAccountTypeName(){return _accountTypeName;}
 
 	// ----------------------------------------------------------------------------------------- // 
 	// setters
@@ -41,6 +43,7 @@ public:
 	void setAccountName(string value){_accountName = value;}
 	void setInterestRate(double value){_interestRate = value;}
 	void setBalance(double value){_balance = value;}
+	void setAccountTypeName(string value){_accountTypeName = value;}
 
 	// ----------------------------------------------------------------------------------------- // 
 	// behaviours
@@ -61,6 +64,7 @@ private:
 	string _accountName;
 	double _interestRate;
 	double _balance;
+	string _accountTypeName;
 
 	// ----------------------------------------------------------------------------------------- // 
 	

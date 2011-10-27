@@ -20,8 +20,8 @@ int main(array<System::String ^> ^args)
 	// create services and link them to data source
 	controller->createAndLinkServices();
 
-	// launch the login form
-	controller->launchLoginForm();
+	// start
+	controller->startApplication();
 
 	return 0;
 }

@@ -52,16 +52,20 @@ void ApplicationController::createAndLinkServices()
 // Form launching
 
 [STAThreadAttribute]
-void ApplicationController::launchLoginForm()
+void ApplicationController::startApplication()
 {
 	// Enabling Windows XP visual effects before any controls are created
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false); 
 
-	// Run application, initially showing login form
-	LoginForm^ lif = gcnew LoginForm(this);
-	lif->ShowDialog();
+	launchLoginForm();
 	Application::Run();
+}
+
+void ApplicationController::launchLoginForm()
+{
+	LoginForm^ lif = gcnew LoginForm(this);
+	lif->Show();
 }
 
 void ApplicationController::launchAppropriateUserForm(User* u)
@@ -71,15 +75,23 @@ void ApplicationController::launchAppropriateUserForm(User* u)
 	{
 		Customer_Form^ cu = gcnew Customer_Form(this);
 		cu->Show();
+	} 
+	else
+	{
+		BankClerk* bc = dynamic_cast<BankClerk*>(u);
+		if (bc) 
+		{
+			BankClerk_Form^ bcf = gcnew BankClerk_Form(this);
+			bcf->Show();
+		}
 	}
 
-	/*BankClerk* bc = dynamic_cast<BankClerk*>(u);
-	if (bc) 
-	{
-		Application::Run(gcnew BankClerk_Form(this));
-	}*/
-
 	// TODO exception, not a valid user type, or general error etc.
+}
+
+void ApplicationController::closeApplication()
+{
+	Application::Exit();
 }
 
 // --------------------------------------------------------------------------------------------- //

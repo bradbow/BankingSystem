@@ -1,6 +1,6 @@
 // BankClerk.h
 // Models a bank clerk
-#include "user.h"
+#include "User.h"
 
 #ifndef _BANKCLERK_H
 #define _BANKCLERK_H 

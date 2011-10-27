@@ -3,7 +3,7 @@
 // contains functions for adding and removing accounts
 // from a customers list of accounts
 
-#include "user.h"
+#include "User.h"
 #include <string>
 using std::string;
 #include <set>

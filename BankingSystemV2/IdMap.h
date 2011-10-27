@@ -29,6 +29,9 @@ public:
 	// iterators
 	typename map<I, D>::iterator begin();
 	typename map<I, D>::iterator end();
+	typename map<I, D>::iterator getIterator();
+	typename map<I, D>::iterator getIterator(I key);
+
 	typename map<I, D> getMap(){return _idMap;}
 	// ----------------------------------------------------------------------------------------- //
 
@@ -86,10 +89,20 @@ D IdMap<I, D>::get(I id)
 // Iterators
 
 template <class I, class D>
+typename map<I, D>::iterator IdMap<I, D>::getIterator()
+{
+	return _idMap.begin();
+}
+
+template <class I, class D>
+typename map<I, D>::iterator IdMap<I, D>::getIterator(I key)
+{
+	return _idMap.find(key);
+}
+
+template <class I, class D>
 typename map<I, D>::iterator IdMap<I, D>::begin()
 {
-	I f = _idMap.begin()->first;
-	D d = _idMap.begin()->second;
 	return _idMap.begin();
 }
 

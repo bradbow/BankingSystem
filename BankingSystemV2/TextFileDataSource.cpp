@@ -62,6 +62,27 @@ TextFileDataSource::TextFileDataSource()
 // --------------------------------------------------------------------------------------------- //
 // member methods
 
+//vector<Account*>* TextFileDataSource::getAccountsForCustomer(Customer* cp)
+//{
+//	vector<Account*>* accounts = new vector<Account*>();
+//
+//	map<int, Account*>::iterator ait = _accounts.getIterator();
+//	for (ait = _accounts.begin(); ait != _accounts.end(); ait++)
+//	{
+//		if (ait->second->getCustomerId() == cp->getUserId())
+//		{
+//			accounts->push_back(ait->second);
+//		}
+//	}
+//
+//	return accounts;
+//}
+
+//vector<Transaction*>* TextFileDataSource::getTransactionsForAccount(Account* ap)
+//{
+//	return NULL;
+//}
+
 void TextFileDataSource::loadData()
 {
 	for (int nFile = 0; nFile < NUMBER_OF_FILES; nFile++)

@@ -3,6 +3,8 @@
 #include <boost/algorithm/string.hpp>
 #include <vector>
 #include <sstream>
+#include <msclr\marshal_cppstd.h>
+using namespace System;
 using namespace std;
 using namespace boost;
 
@@ -72,4 +74,22 @@ bool TypeConverter::isVariantOfTrue()
 		);
 }
 
+//TypeConverter::operator std::string()
+//{
+//	return itoa(m_nData);
+//}
 // --------------------------------------------------------------------------------------------- //
+// DotNetUtils
+
+System::String^ DotNetUtils::StdStringToSystemString(std::string stdstr)
+{
+	System::String^ sysstr = gcnew String(stdstr.c_str());
+	return sysstr;
+}
+
+std::string  DotNetUtils::SystemStringToStdString(System::String^ sysstr)
+{
+	msclr::interop::marshal_context context;
+	std::string stdstr = context.marshal_as<std::string>(sysstr);
+	return stdstr;
+}

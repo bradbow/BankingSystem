@@ -184,7 +184,7 @@ namespace BankingSystemV2 {
 			{
 				User* u = _us->getUser(userId);
 				Session::getInstance()->setUser(u);
-				this->Close();
+				this->Hide();
 				_ac->launchAppropriateUserForm(u);
 			}
 			else
@@ -212,6 +212,7 @@ namespace BankingSystemV2 {
 		System::Void LoginForm_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) 
 		{
 			_ac->saveDataToDataSource();
+			_ac->closeApplication();
 		}
 
 		// end of Event Handlers

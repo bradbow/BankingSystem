@@ -23,7 +23,10 @@ public:
 	(
 		accountId, customerId, accountName,
 		interestRate, balance = 0
-	){}
+	)  
+	{
+		setAccountTypeName("Savings");
+	}
 	
 	// -------------------------------------------------------------------------------------------- //
 	// members

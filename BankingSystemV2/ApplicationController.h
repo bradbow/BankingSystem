@@ -22,6 +22,9 @@ public:
 	// service instantiation and linkage to data source
 	static void createAndLinkServices();
 
+	void closeApplication();
+	void startApplication();
+
 private:  
 
 	ApplicationController(){}

@@ -233,9 +233,6 @@
     <ClInclude Include="SavingsAccount.hpp">
       <Filter>Accounts\Header</Filter>
     </ClInclude>
-    <ClInclude Include="CreditCardAccount.hpp">
-      <Filter>Accounts\Header</Filter>
-    </ClInclude>
     <ClInclude Include="BankClerk.h">
       <Filter>Users\Header</Filter>
     </ClInclude>
@@ -323,10 +320,21 @@
     <ClInclude Include="Customer_Form.h">
       <Filter>Forms</Filter>
     </ClInclude>
+    <ClInclude Include="CreditCardAccount.hpp">
+      <Filter>Accounts\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BankClerk_Form.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer_Form.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

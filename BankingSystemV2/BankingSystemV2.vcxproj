@@ -199,6 +199,9 @@
     <EmbeddedResource Include="BankClerk_Form.resx">
       <DependentUpon>BankClerk_Form.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Customer_Form.resx">
+      <DependentUpon>Customer_Form.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

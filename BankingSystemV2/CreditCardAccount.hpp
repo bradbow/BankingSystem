@@ -22,7 +22,10 @@ public:
 	(
 		accountId, customerId, accountName, 
 		interestRate, balance
-	), _overdraftLimit(overdraftLimit) {}
+	), _overdraftLimit(overdraftLimit)
+	{
+		setAccountTypeName("Credit Card");
+	}
 
 	// -------------------------------------------------------------------------------------------- //
 	// getters

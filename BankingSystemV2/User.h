@@ -1,6 +1,7 @@
 // User.h
 
 #include <string>
+
 using std::string;
 
 #ifndef _USER_H

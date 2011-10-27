@@ -69,9 +69,7 @@ public:
 	// postcondition: Account matching accountID returned
 	Account *getAccount(int accountID);
 
-	// precondition: valid customerID passed in
-	// postcondition: list of accounts matching customerID returned
-	vector<Account*> getAccountsForCustomer(int customerID);
+	static vector<Account*> getAccountsForCustomer(Customer* cp);
 
 	void setDataSource(DataSource* ds){_ds = ds;}
 

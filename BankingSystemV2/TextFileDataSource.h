@@ -46,13 +46,11 @@ public:
 	virtual Transaction* getTransaction(int transactionId){return _transactions.get(transactionId);}
 
 	// methods to add application objects
-	// TODO Brad: implement
 	virtual void addUser(User* user){_users.add(user->getUserId(), user);}
 	virtual void addAccount(Account* account){_accounts.add(account->getAccountId(), account);}
 	virtual void addTransaction(Transaction* transaction){_transactions.add(transaction->getId(), transaction);}
 
 	// methods to remove application objects from data source
-	// TODO Brad: implement
 	virtual void removeUser(int userId){_users.remove(userId);}
 	virtual void removeAccount(int accountId){_accounts.remove(accountId);}
 	virtual void removeTransaction(int transactionId){_transactions.remove(transactionId);}

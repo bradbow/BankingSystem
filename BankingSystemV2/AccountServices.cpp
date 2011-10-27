@@ -70,6 +70,11 @@ void AccountServices::makeCreditCardAccount
 
 }
 
+Account* AccountServices::getAccount(int accId)
+{
+	return _ds->getAccount(accId);
+}
+
 //// precondition: valid parameters passed in
 //// postcondition: a home loan account is created and returned
 //HomeLoanAccount *AccountServices::createHomeLoanAccount (int accountID, string accountName, 

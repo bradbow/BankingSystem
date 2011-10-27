@@ -30,7 +30,10 @@ public:
 	(
 		accountId, customerId, accountName, 
 		interestRate, balance
-	), _address(address), _option(option), _minRepayment(minRepayment) {}
+	), _address(address), _option(option), _minRepayment(minRepayment)
+	{
+		setAccountTypeName("Home Loan");
+	}
 	
 	// -------------------------------------------------------------------------------------------- //
 	// getters

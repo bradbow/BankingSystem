@@ -7,6 +7,7 @@
 #include "User.h"
 #include "Account.h"
 #include "Transaction.h"
+#include <vector>
 
 class DataSource
 {
