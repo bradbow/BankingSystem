@@ -9,7 +9,7 @@ Withdrawal::Withdrawal
 	Date dt, int accountId
 ) : Transaction(id, amount, customerId, dt)
 {
-	
+	_transactionType = "Deposit";
 	//_preTransactionBalance = _account->getBalance();
 
 }

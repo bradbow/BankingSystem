@@ -75,6 +75,25 @@ Account* AccountServices::getAccount(int accId)
 	return _ds->getAccount(accId);
 }
 
+std::string AccountServices::repaymentOptionToString(HomeLoanAccount::RepaymentOption option)
+{
+	std::string str = "";
+	switch (option)
+	{
+	case HomeLoanAccount::MONTHLY:
+		str = "Monthly";
+		break;
+	case HomeLoanAccount::FORTNIGHTLY:
+		str = "Fortnightly";
+		break;
+	case HomeLoanAccount::WEEKLY:
+		str = "Weekly";
+		break;
+	}
+	return str;
+}
+
+
 //// precondition: valid parameters passed in
 //// postcondition: a home loan account is created and returned
 //HomeLoanAccount *AccountServices::createHomeLoanAccount (int accountID, string accountName, 

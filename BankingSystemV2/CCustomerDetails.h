@@ -36,20 +36,25 @@ namespace BankingSystemV2 {
 			}
 		}
 	private: System::Windows::Forms::GroupBox^  grbxPersonalDetails;
+	public: System::Windows::Forms::Button^  btnUpdateDetails;
+	private: 
+
+	private: 
 	protected: 
-	private: System::Windows::Forms::Button^  btnUpdateDetails;
-	private: System::Windows::Forms::TextBox^  textBox3;
-	private: System::Windows::Forms::TextBox^  textBox2;
-	private: System::Windows::Forms::TextBox^  textBox1;
-	private: System::Windows::Forms::Label^  lblCustomerPhone;
-	private: System::Windows::Forms::Label^  lblCustomerAddress;
-	private: System::Windows::Forms::Label^  lblCustomerName;
-	private: System::Windows::Forms::GroupBox^  grbxPassword;
-	private: System::Windows::Forms::Button^  btnChangePassword;
-	private: System::Windows::Forms::Label^  lblConfirmPassword;
-	private: System::Windows::Forms::Label^  lblPassword;
-	private: System::Windows::Forms::TextBox^  textBox5;
-	private: System::Windows::Forms::TextBox^  textBox4;
+
+	public: System::Windows::Forms::TextBox^  txtCustomerAddress;
+	public: System::Windows::Forms::TextBox^  txtCustomerPhone;
+	public: System::Windows::Forms::TextBox^  txtCustomerName;
+	public: System::Windows::Forms::Label^  lblCustomerPhone;
+	public: System::Windows::Forms::Label^  lblCustomerAddress;
+	public: System::Windows::Forms::Label^  lblCustomerName;
+	public: System::Windows::Forms::GroupBox^  grbxPassword;
+	public: System::Windows::Forms::Button^  btnChangePassword;
+	public: System::Windows::Forms::Label^  lblConfirmPassword;
+	public: System::Windows::Forms::Label^  lblPassword;
+	public: System::Windows::Forms::TextBox^  txtPassword;
+	public: System::Windows::Forms::TextBox^  txtConfirmPassword;
+
 
 	private:
 		/// <summary>
@@ -65,19 +70,19 @@ namespace BankingSystemV2 {
 		void InitializeComponent(void)
 		{
 			this->grbxPersonalDetails = (gcnew System::Windows::Forms::GroupBox());
-			this->grbxPassword = (gcnew System::Windows::Forms::GroupBox());
-			this->lblCustomerName = (gcnew System::Windows::Forms::Label());
-			this->lblCustomerAddress = (gcnew System::Windows::Forms::Label());
-			this->lblCustomerPhone = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
-			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
-			this->lblPassword = (gcnew System::Windows::Forms::Label());
-			this->lblConfirmPassword = (gcnew System::Windows::Forms::Label());
 			this->btnUpdateDetails = (gcnew System::Windows::Forms::Button());
+			this->txtCustomerAddress = (gcnew System::Windows::Forms::TextBox());
+			this->txtCustomerPhone = (gcnew System::Windows::Forms::TextBox());
+			this->txtCustomerName = (gcnew System::Windows::Forms::TextBox());
+			this->lblCustomerPhone = (gcnew System::Windows::Forms::Label());
+			this->lblCustomerAddress = (gcnew System::Windows::Forms::Label());
+			this->lblCustomerName = (gcnew System::Windows::Forms::Label());
+			this->grbxPassword = (gcnew System::Windows::Forms::GroupBox());
 			this->btnChangePassword = (gcnew System::Windows::Forms::Button());
+			this->lblConfirmPassword = (gcnew System::Windows::Forms::Label());
+			this->lblPassword = (gcnew System::Windows::Forms::Label());
+			this->txtConfirmPassword = (gcnew System::Windows::Forms::TextBox());
+			this->txtPassword = (gcnew System::Windows::Forms::TextBox());
 			this->grbxPersonalDetails->SuspendLayout();
 			this->grbxPassword->SuspendLayout();
 			this->SuspendLayout();
@@ -85,9 +90,9 @@ namespace BankingSystemV2 {
 			// grbxPersonalDetails
 			// 
 			this->grbxPersonalDetails->Controls->Add(this->btnUpdateDetails);
-			this->grbxPersonalDetails->Controls->Add(this->textBox3);
-			this->grbxPersonalDetails->Controls->Add(this->textBox2);
-			this->grbxPersonalDetails->Controls->Add(this->textBox1);
+			this->grbxPersonalDetails->Controls->Add(this->txtCustomerAddress);
+			this->grbxPersonalDetails->Controls->Add(this->txtCustomerPhone);
+			this->grbxPersonalDetails->Controls->Add(this->txtCustomerName);
 			this->grbxPersonalDetails->Controls->Add(this->lblCustomerPhone);
 			this->grbxPersonalDetails->Controls->Add(this->lblCustomerAddress);
 			this->grbxPersonalDetails->Controls->Add(this->lblCustomerName);
@@ -98,37 +103,35 @@ namespace BankingSystemV2 {
 			this->grbxPersonalDetails->TabStop = false;
 			this->grbxPersonalDetails->Text = L"Personal Details";
 			// 
-			// grbxPassword
+			// btnUpdateDetails
 			// 
-			this->grbxPassword->Controls->Add(this->btnChangePassword);
-			this->grbxPassword->Controls->Add(this->lblConfirmPassword);
-			this->grbxPassword->Controls->Add(this->lblPassword);
-			this->grbxPassword->Controls->Add(this->textBox5);
-			this->grbxPassword->Controls->Add(this->textBox4);
-			this->grbxPassword->Location = System::Drawing::Point(18, 220);
-			this->grbxPassword->Name = L"grbxPassword";
-			this->grbxPassword->Size = System::Drawing::Size(454, 154);
-			this->grbxPassword->TabIndex = 7;
-			this->grbxPassword->TabStop = false;
-			this->grbxPassword->Text = L"Password";
+			this->btnUpdateDetails->Location = System::Drawing::Point(190, 151);
+			this->btnUpdateDetails->Name = L"btnUpdateDetails";
+			this->btnUpdateDetails->Size = System::Drawing::Size(75, 23);
+			this->btnUpdateDetails->TabIndex = 3;
+			this->btnUpdateDetails->Text = L"Update Details";
+			this->btnUpdateDetails->UseVisualStyleBackColor = true;
 			// 
-			// lblCustomerName
+			// txtCustomerAddress
 			// 
-			this->lblCustomerName->AutoSize = true;
-			this->lblCustomerName->Location = System::Drawing::Point(75, 30);
-			this->lblCustomerName->Name = L"lblCustomerName";
-			this->lblCustomerName->Size = System::Drawing::Size(35, 13);
-			this->lblCustomerName->TabIndex = 0;
-			this->lblCustomerName->Text = L"Name";
+			this->txtCustomerAddress->Location = System::Drawing::Point(131, 71);
+			this->txtCustomerAddress->Name = L"txtCustomerAddress";
+			this->txtCustomerAddress->Size = System::Drawing::Size(297, 20);
+			this->txtCustomerAddress->TabIndex = 1;
 			// 
-			// lblCustomerAddress
+			// txtCustomerPhone
 			// 
-			this->lblCustomerAddress->AutoSize = true;
-			this->lblCustomerAddress->Location = System::Drawing::Point(65, 74);
-			this->lblCustomerAddress->Name = L"lblCustomerAddress";
-			this->lblCustomerAddress->Size = System::Drawing::Size(45, 13);
-			this->lblCustomerAddress->TabIndex = 1;
-			this->lblCustomerAddress->Text = L"Address";
+			this->txtCustomerPhone->Location = System::Drawing::Point(131, 113);
+			this->txtCustomerPhone->Name = L"txtCustomerPhone";
+			this->txtCustomerPhone->Size = System::Drawing::Size(297, 20);
+			this->txtCustomerPhone->TabIndex = 2;
+			// 
+			// txtCustomerName
+			// 
+			this->txtCustomerName->Location = System::Drawing::Point(131, 27);
+			this->txtCustomerName->Name = L"txtCustomerName";
+			this->txtCustomerName->Size = System::Drawing::Size(297, 20);
+			this->txtCustomerName->TabIndex = 0;
 			// 
 			// lblCustomerPhone
 			// 
@@ -139,49 +142,46 @@ namespace BankingSystemV2 {
 			this->lblCustomerPhone->TabIndex = 2;
 			this->lblCustomerPhone->Text = L"Phone";
 			// 
-			// textBox1
+			// lblCustomerAddress
 			// 
-			this->textBox1->Location = System::Drawing::Point(131, 27);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(297, 20);
-			this->textBox1->TabIndex = 3;
+			this->lblCustomerAddress->AutoSize = true;
+			this->lblCustomerAddress->Location = System::Drawing::Point(65, 74);
+			this->lblCustomerAddress->Name = L"lblCustomerAddress";
+			this->lblCustomerAddress->Size = System::Drawing::Size(45, 13);
+			this->lblCustomerAddress->TabIndex = 1;
+			this->lblCustomerAddress->Text = L"Address";
 			// 
-			// textBox2
+			// lblCustomerName
 			// 
-			this->textBox2->Location = System::Drawing::Point(131, 113);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(297, 20);
-			this->textBox2->TabIndex = 4;
+			this->lblCustomerName->AutoSize = true;
+			this->lblCustomerName->Location = System::Drawing::Point(75, 30);
+			this->lblCustomerName->Name = L"lblCustomerName";
+			this->lblCustomerName->Size = System::Drawing::Size(35, 13);
+			this->lblCustomerName->TabIndex = 0;
+			this->lblCustomerName->Text = L"Name";
 			// 
-			// textBox3
+			// grbxPassword
 			// 
-			this->textBox3->Location = System::Drawing::Point(131, 71);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(297, 20);
-			this->textBox3->TabIndex = 5;
+			this->grbxPassword->Controls->Add(this->btnChangePassword);
+			this->grbxPassword->Controls->Add(this->lblConfirmPassword);
+			this->grbxPassword->Controls->Add(this->lblPassword);
+			this->grbxPassword->Controls->Add(this->txtConfirmPassword);
+			this->grbxPassword->Controls->Add(this->txtPassword);
+			this->grbxPassword->Location = System::Drawing::Point(18, 220);
+			this->grbxPassword->Name = L"grbxPassword";
+			this->grbxPassword->Size = System::Drawing::Size(454, 154);
+			this->grbxPassword->TabIndex = 7;
+			this->grbxPassword->TabStop = false;
+			this->grbxPassword->Text = L"Password";
 			// 
-			// textBox4
+			// btnChangePassword
 			// 
-			this->textBox4->Location = System::Drawing::Point(138, 31);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(290, 20);
-			this->textBox4->TabIndex = 4;
-			// 
-			// textBox5
-			// 
-			this->textBox5->Location = System::Drawing::Point(138, 74);
-			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(290, 20);
-			this->textBox5->TabIndex = 5;
-			// 
-			// lblPassword
-			// 
-			this->lblPassword->AutoSize = true;
-			this->lblPassword->Location = System::Drawing::Point(57, 34);
-			this->lblPassword->Name = L"lblPassword";
-			this->lblPassword->Size = System::Drawing::Size(53, 13);
-			this->lblPassword->TabIndex = 6;
-			this->lblPassword->Text = L"Password";
+			this->btnChangePassword->Location = System::Drawing::Point(176, 111);
+			this->btnChangePassword->Name = L"btnChangePassword";
+			this->btnChangePassword->Size = System::Drawing::Size(103, 23);
+			this->btnChangePassword->TabIndex = 6;
+			this->btnChangePassword->Text = L"Change Password";
+			this->btnChangePassword->UseVisualStyleBackColor = true;
 			// 
 			// lblConfirmPassword
 			// 
@@ -192,23 +192,28 @@ namespace BankingSystemV2 {
 			this->lblConfirmPassword->TabIndex = 7;
 			this->lblConfirmPassword->Text = L"Confirm Password";
 			// 
-			// btnUpdateDetails
+			// lblPassword
 			// 
-			this->btnUpdateDetails->Location = System::Drawing::Point(190, 151);
-			this->btnUpdateDetails->Name = L"btnUpdateDetails";
-			this->btnUpdateDetails->Size = System::Drawing::Size(75, 23);
-			this->btnUpdateDetails->TabIndex = 6;
-			this->btnUpdateDetails->Text = L"Update Details";
-			this->btnUpdateDetails->UseVisualStyleBackColor = true;
+			this->lblPassword->AutoSize = true;
+			this->lblPassword->Location = System::Drawing::Point(57, 34);
+			this->lblPassword->Name = L"lblPassword";
+			this->lblPassword->Size = System::Drawing::Size(53, 13);
+			this->lblPassword->TabIndex = 6;
+			this->lblPassword->Text = L"Password";
 			// 
-			// btnChangePassword
+			// txtConfirmPassword
 			// 
-			this->btnChangePassword->Location = System::Drawing::Point(176, 111);
-			this->btnChangePassword->Name = L"btnChangePassword";
-			this->btnChangePassword->Size = System::Drawing::Size(103, 23);
-			this->btnChangePassword->TabIndex = 8;
-			this->btnChangePassword->Text = L"Change Password";
-			this->btnChangePassword->UseVisualStyleBackColor = true;
+			this->txtConfirmPassword->Location = System::Drawing::Point(138, 74);
+			this->txtConfirmPassword->Name = L"txtConfirmPassword";
+			this->txtConfirmPassword->Size = System::Drawing::Size(290, 20);
+			this->txtConfirmPassword->TabIndex = 5;
+			// 
+			// txtPassword
+			// 
+			this->txtPassword->Location = System::Drawing::Point(138, 31);
+			this->txtPassword->Name = L"txtPassword";
+			this->txtPassword->Size = System::Drawing::Size(290, 20);
+			this->txtPassword->TabIndex = 4;
 			// 
 			// CCustomerDetails
 			// 

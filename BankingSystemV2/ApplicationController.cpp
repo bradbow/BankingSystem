@@ -41,9 +41,12 @@ void ApplicationController::createAndLinkServices()
 {
 	AccountServices* as = AccountServices::instance();
 	UserServices* us = UserServices::instance();
+	TransactionServices* ts = TransactionServices::instance();
 
 	as->setDataSource(_ds);
 	us->setDataSource(_ds);
+	ts->setDataSource(_ds);
+	// TODO make setDataSource private and add ApplicationController as a friend
 
 	// TODO add transaction services here
 }

@@ -216,6 +216,9 @@
     <ClCompile Include="CCustomerDetails.cpp">
       <Filter>User Controls\Source</Filter>
     </ClCompile>
+    <ClCompile Include="TransactionServices.cpp">
+      <Filter>Transactions\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h">
@@ -335,6 +338,9 @@
     <ClInclude Include="CCustomerAccounts.h">
       <Filter>User Controls</Filter>
     </ClInclude>
+    <ClInclude Include="TransactionServices.h">
+      <Filter>Transactions\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
@@ -346,6 +352,15 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="Customer_Form.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CCustomerAccounts.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CCustomerDetails.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CTransactions.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

@@ -8,6 +8,7 @@ Deposit::Deposit
 	Date dt, int accountId
 ) : Transaction(id, amount, customerId, dt)
 {
+	_transactionType = "Deposit";
 	//_account = AccountServices::instance()->getAccount(accountId);
 	// _preTransactionBalance = _account->getBalance();
 }

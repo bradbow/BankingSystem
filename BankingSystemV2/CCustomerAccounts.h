@@ -35,20 +35,16 @@ namespace BankingSystemV2 {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::GroupBox^  grbxSummary;
-	private: System::Windows::Forms::GroupBox^  grbxDetails;
-	private: System::Windows::Forms::GroupBox^  grbxTransactions;
-	private: System::Windows::Forms::ListBox^  lbSummary;
-	private: System::Windows::Forms::Button^  btnTransfer;
-	private: System::Windows::Forms::Button^  btnWithdraw;
-	private: System::Windows::Forms::Button^  btnDeposit;
-	private: System::Windows::Forms::ListBox^  lbTransactionHistory;
-	private: System::Windows::Forms::Button^  btnNewAccount;
-	protected: 
 
-	protected: 
-
-
+	public: System::Windows::Forms::GroupBox^  grbxSummary;
+	public: System::Windows::Forms::GroupBox^  grbxDetails;
+	public: System::Windows::Forms::GroupBox^  grbxTransactions;
+	public: System::Windows::Forms::ListBox^  lbSummary;
+	public: System::Windows::Forms::Button^  btnTransfer;
+	public: System::Windows::Forms::Button^  btnWithdraw;
+	public: System::Windows::Forms::Button^  btnDeposit;
+	public: System::Windows::Forms::ListBox^  lbTransactionHistory;
+	public: System::Windows::Forms::Button^  btnNewAccount;
 
 	private:
 		/// <summary>

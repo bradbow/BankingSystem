@@ -11,17 +11,14 @@ class StringUtils
 {
 public:
 
-	/*
-		Returns a vector of substrings trimmed of whitespace
-	*/
 	static vector<string> splitString(string str, char delimiter);
 };
 
-class TypeConverter
+class TypeConv
 {
 public:
-	TypeConverter(string strData) : m_strData(strData){}
-	TypeConverter(int nData) : m_nData(nData){}
+	TypeConv(string strData) : m_strData(strData){}
+	TypeConv(int nData) : m_nData(nData){}
 
 	operator int();
 	operator double();
@@ -40,11 +37,6 @@ class DotNetUtils
 public:
 	static System::String^ StdStringToSystemString(std::string);
 	static std::string SystemStringToStdString(System::String^);
-};
-
-class StreamFormatter
-{
-	
 };
 
 #endif

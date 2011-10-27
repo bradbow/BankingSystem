@@ -9,7 +9,7 @@ Transfer::Transfer
 	Date dt, int toAccId, int fromAccId
 ) : Transaction(id, amount, customerId, dt)
 {
-	
+	_transactionType = "Deposit";
 	_toAccountId = toAccId;
 	_fromAccountId = fromAccId;
 	//_preFromAccountBalance = _fromAccount->getBalance();

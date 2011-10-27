@@ -67,12 +67,12 @@ public:
 
 	// precondition: valid accountID passed in
 	// postcondition: Account matching accountID returned
-	Account *getAccount(int accountID);
+	static Account *getAccount(int accountID);
 
-	static vector<Account*> getAccountsForCustomer(Customer* cp);
+	// return a string representation of the repayment option
+	static std::string repaymentOptionToString(HomeLoanAccount::RepaymentOption option);
 
 	void setDataSource(DataSource* ds){_ds = ds;}
-
 
 	// -------------------------------------------------------------------------------------------- //
 

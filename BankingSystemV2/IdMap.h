@@ -10,13 +10,13 @@ template <class I, class D>
 class IdMap
 {
 public:
-
-	friend class TextFileDataSource;
 	
 	// ----------------------------------------------------------------------------------------- //
 	// constructor / destructor
 
 	IdMap(void){std::map<I, D> _idmap;}
+
+	// TODO Brad: add destructor
 
 	// ----------------------------------------------------------------------------------------- //
 	// member methods

@@ -1,7 +1,6 @@
 #include "StdAfx.h"
 #include "Date.h"
 #include <vector>
-#include <string>
 #include "Utils.h"
 using namespace std;
 
@@ -36,12 +35,12 @@ Date::Date(string strDate, char delim)
 	vector<string> dateSplit = StringUtils::splitString(strDate, delim);
 	
 	// set the day, month, year numbers
-	_day = TypeConverter(dateSplit[DAY]);
-	_month = TypeConverter(dateSplit[MONTH]);
-	_year = TypeConverter(dateSplit[YEAR]);
+	_day = TypeConv(dateSplit[DAY]);
+	_month = TypeConv(dateSplit[MONTH]);
+	_year = TypeConv(dateSplit[YEAR]);
 
 	// set the day and month names
-	int index = TypeConverter(dateSplit[MONTH]);
+	int index = TypeConv(dateSplit[MONTH]);
 	_monthName = MONTH_NAMES[index - 1];
 	// TODO calculate day name
 

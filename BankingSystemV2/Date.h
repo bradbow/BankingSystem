@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 class Date
 {
 public:
@@ -12,7 +13,11 @@ public:
 	// Members
 	static bool isLeapYear(int year);
 	std::string calculateDayOfWeek();
-	std::string getDateString();
+	std::string getDateString()
+	{
+		std::string str = "dummy";
+		return str;
+	}
 	static int getDaysBetweenDates(const Date * dtOne, const Date * dtTwo);
 
 	// ----------------------------------------------------------------------------------------- //

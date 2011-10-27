@@ -4,9 +4,13 @@
 
 #include "TransactionExceptions.hpp"
 #include <string>
+#include <set>
+#include <sstream>
+#include <iomanip>
 
 #pragma warning( disable : 4290 )
 using std::string;
+using namespace std;
 
 #ifndef _ACCOUNT_H
 #define _ACCOUNT_H 
@@ -36,6 +40,7 @@ public:
 	double getInterestRate(){return _interestRate;}
 	double getBalance(){return _balance;}
 	string getAccountTypeName(){return _accountTypeName;}
+	std::set<int> getTransactions(){return _transaction;}
 
 	// ----------------------------------------------------------------------------------------- // 
 	// setters
@@ -51,6 +56,21 @@ public:
 	virtual void deposit(double amount) throw (TransactionException) = 0;
 	virtual void applyInterest() = 0;
 	virtual std::string toString() = 0;
+	void addTransaction(int id){_transaction.insert(id);}
+	void removeTransaction(int id){_transaction.erase(_transaction.find(id));}
+	bool hasTransaction(int id){return _transaction.find(id) == _transaction.end();}
+	
+	std::string getSummary()
+	{
+		std::string str;
+		std::stringstream ss;
+		ss << setfill(' ') << setw(15) << left << _accountId;
+		ss << setw(25) << _accountTypeName;
+		ss << setw(40) << _accountName;
+		ss << setw(10) << right << fixed << setprecision(2) << "$ " << _balance;
+		getline(ss, str);
+		return str;
+	}
 
 	// ----------------------------------------------------------------------------------------- // 
 
@@ -65,6 +85,7 @@ private:
 	double _interestRate;
 	double _balance;
 	string _accountTypeName;
+	std::set<int> _transaction;
 
 	// ----------------------------------------------------------------------------------------- // 
 	

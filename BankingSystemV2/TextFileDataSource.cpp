@@ -62,27 +62,6 @@ TextFileDataSource::TextFileDataSource()
 // --------------------------------------------------------------------------------------------- //
 // member methods
 
-//vector<Account*>* TextFileDataSource::getAccountsForCustomer(Customer* cp)
-//{
-//	vector<Account*>* accounts = new vector<Account*>();
-//
-//	map<int, Account*>::iterator ait = _accounts.getIterator();
-//	for (ait = _accounts.begin(); ait != _accounts.end(); ait++)
-//	{
-//		if (ait->second->getCustomerId() == cp->getUserId())
-//		{
-//			accounts->push_back(ait->second);
-//		}
-//	}
-//
-//	return accounts;
-//}
-
-//vector<Transaction*>* TextFileDataSource::getTransactionsForAccount(Account* ap)
-//{
-//	return NULL;
-//}
-
 void TextFileDataSource::loadData()
 {
 	for (int nFile = 0; nFile < NUMBER_OF_FILES; nFile++)
@@ -139,7 +118,7 @@ void TextFileDataSource::ConstructAndAddCustomer(string line)
 		// create customer
 		Customer* c = new Customer 
 		(
-			TypeConverter(lineSplit[USER_ID]),
+			TypeConv(lineSplit[USER_ID]),
 			lineSplit[PASSWORD],
 			lineSplit[NAME],
 			lineSplit[ADDRESS],
@@ -150,7 +129,7 @@ void TextFileDataSource::ConstructAndAddCustomer(string line)
 		vector<string>::iterator vit;
 		for (vit = accountIds.begin(); vit != accountIds.end(); ++vit)
 		{
-			c->addAccount(TypeConverter(*vit));
+			c->addAccount(TypeConv(*vit));
 		}
 
 		_users.add(c->getUserId(), c);
@@ -179,9 +158,9 @@ void TextFileDataSource::ConstructAndAddBankClerk(string line)
 	{
 		BankClerk* bc = new BankClerk
 		(
-			TypeConverter(lineSplit[USER_ID]),
+			TypeConv(lineSplit[USER_ID]),
 			lineSplit[PASSWORD],
-			TypeConverter(lineSplit[EXTRA_MEMBER])
+			TypeConv(lineSplit[EXTRA_MEMBER])
 		);
 
 		_users.add(bc->getUserId(), bc);
@@ -201,6 +180,7 @@ void TextFileDataSource::ConstructAndAddSavingsAccount(string line)
 		ACCOUNT_NAME,
 		INTEREST_RATE,
 		BALANCE,
+		TRANSACTION_IDS,
 		NUM_FIELDS
 	};
 
@@ -208,16 +188,24 @@ void TextFileDataSource::ConstructAndAddSavingsAccount(string line)
 
 	if (lineSplit.size() == NUM_FIELDS)
 	{
-	SavingsAccount* sa = new SavingsAccount
-	(
-		TypeConverter(lineSplit[ACCOUNT_ID]),
-		TypeConverter(lineSplit[CUSTOMER_ID]),
-		lineSplit[ACCOUNT_NAME],
-		TypeConverter(lineSplit[INTEREST_RATE]),
-		TypeConverter(lineSplit[BALANCE])
-	);
+		vector<string> transIds = StringUtils::splitString(lineSplit[TRANSACTION_IDS], ';');
+	
+		SavingsAccount* sa = new SavingsAccount
+		(
+			TypeConv(lineSplit[ACCOUNT_ID]),
+			TypeConv(lineSplit[CUSTOMER_ID]),
+			lineSplit[ACCOUNT_NAME],
+			TypeConv(lineSplit[INTEREST_RATE]),
+			TypeConv(lineSplit[BALANCE])
+		);
 
-	_accounts.add(sa->getAccountId(), sa);
+		vector<string>::iterator vit;
+		for (vit = transIds.begin(); vit != transIds.end(); ++vit)
+		{
+			sa->addTransaction(TypeConv(*vit));
+		}
+
+		_accounts.add(sa->getAccountId(), sa);
 	}
 	else
 	{
@@ -235,7 +223,7 @@ void TextFileDataSource::ConstructAndAddCreditCardAccount(string line)
 		ACCOUNT_NAME,
 		INTEREST_RATE,
 		BALANCE,
-		LIMIT,
+		TRANSACTION_IDS,
 		NUM_FIELDS
 	};
 
@@ -243,17 +231,24 @@ void TextFileDataSource::ConstructAndAddCreditCardAccount(string line)
 
 	if (lineSplit.size() == NUM_FIELDS)
 	{
-		CreditCardAccount* ca = new CreditCardAccount
+		vector<string> transIds = StringUtils::splitString(lineSplit[TRANSACTION_IDS], ';');
+	
+		SavingsAccount* sa = new SavingsAccount
 		(
-			TypeConverter(lineSplit[ACCOUNT_ID]),
-			TypeConverter(lineSplit[CUSTOMER_ID]),
+			TypeConv(lineSplit[ACCOUNT_ID]),
+			TypeConv(lineSplit[CUSTOMER_ID]),
 			lineSplit[ACCOUNT_NAME],
-			TypeConverter(lineSplit[INTEREST_RATE]),
-			TypeConverter(lineSplit[BALANCE]),
-			TypeConverter(lineSplit[LIMIT])
+			TypeConv(lineSplit[INTEREST_RATE]),
+			TypeConv(lineSplit[BALANCE])
 		);
 
-		_accounts.add(ca->getAccountId(), ca);
+		vector<string>::iterator vit;
+		for (vit = transIds.begin(); vit != transIds.end(); ++vit)
+		{
+			sa->addTransaction(TypeConv(*vit));
+		}
+
+		_accounts.add(sa->getAccountId(), sa);
 	}
 	else
 	{
@@ -273,6 +268,7 @@ void TextFileDataSource::ConstructAndAddHomeLoanAccount(string line)
 		PROPERTY_ADDRESS,
 		REPAYMENT_OPTION,
 		MIN_REPAYMENT,
+		TRANSACTION_IDS,
 		NUM_FIELDS
 	};
 
@@ -281,20 +277,28 @@ void TextFileDataSource::ConstructAndAddHomeLoanAccount(string line)
 	if (lineSplit.size() == NUM_FIELDS)
 	{
 		// TODO Brad & Jeff: Dangerous....
-		int nOption = TypeConverter(lineSplit[REPAYMENT_OPTION]);
+		int nOption = TypeConv(lineSplit[REPAYMENT_OPTION]);
 		HomeLoanAccount::RepaymentOption option = static_cast<HomeLoanAccount::RepaymentOption>(nOption);
+
+		vector<string> transIds = StringUtils::splitString(lineSplit[TRANSACTION_IDS], ';');
 
 		HomeLoanAccount* hla = new HomeLoanAccount
 		(
-			TypeConverter(lineSplit[ACCOUNT_ID]),
-			TypeConverter(lineSplit[CUSTOMER_ID]),
+			TypeConv(lineSplit[ACCOUNT_ID]),
+			TypeConv(lineSplit[CUSTOMER_ID]),
 			lineSplit[ACCOUNT_NAME],
-			TypeConverter(lineSplit[INTEREST_RATE]),
-			TypeConverter(lineSplit[BALANCE]),
+			TypeConv(lineSplit[INTEREST_RATE]),
+			TypeConv(lineSplit[BALANCE]),
 			lineSplit[PROPERTY_ADDRESS],
 			option,
-			TypeConverter(lineSplit[MIN_REPAYMENT])
+			TypeConv(lineSplit[MIN_REPAYMENT])
 		);
+
+		vector<string>::iterator vit;
+		for (vit = transIds.begin(); vit != transIds.end(); ++vit)
+		{
+			hla->addTransaction(TypeConv(*vit));
+		}
 
 		_accounts.add(hla->getAccountId(), hla);
 	}
@@ -324,11 +328,11 @@ void TextFileDataSource::ConstructAndAddWithdrawalTransaction(string line)
 
 		Withdrawal* w = new Withdrawal
 		(
-			TypeConverter(lineSplit[ID]),
-			TypeConverter(lineSplit[AMOUNT]),
-			TypeConverter(lineSplit[CUSTOMER_ID]),
+			TypeConv(lineSplit[ID]),
+			TypeConv(lineSplit[AMOUNT]),
+			TypeConv(lineSplit[CUSTOMER_ID]),
 			dt,
-			TypeConverter(lineSplit[ACCOUNT_ID])
+			TypeConv(lineSplit[ACCOUNT_ID])
 		);
 
 		_transactions.add(w->getId(), w);
@@ -360,11 +364,11 @@ void TextFileDataSource::ConstructAndAddDepositTransaction(string line)
 
 		Deposit* d = new Deposit
 		(
-			TypeConverter(lineSplit[ID]),
-			TypeConverter(lineSplit[AMOUNT]),
-			TypeConverter(lineSplit[CUSTOMER_ID]),
+			TypeConv(lineSplit[ID]),
+			TypeConv(lineSplit[AMOUNT]),
+			TypeConv(lineSplit[CUSTOMER_ID]),
 			dt,
-			TypeConverter(lineSplit[ACCOUNT_ID])
+			TypeConv(lineSplit[ACCOUNT_ID])
 		);
 
 		_transactions.add(d->getId(), d);
@@ -397,12 +401,12 @@ void TextFileDataSource::ConstructAndAddTransferTransaction(string line)
 
 		Transfer* t = new Transfer
 		(
-			TypeConverter(lineSplit[ID]),
-			TypeConverter(lineSplit[AMOUNT]),
-			TypeConverter(lineSplit[CUSTOMER_ID]),
+			TypeConv(lineSplit[ID]),
+			TypeConv(lineSplit[AMOUNT]),
+			TypeConv(lineSplit[CUSTOMER_ID]),
 			dt,
-			TypeConverter(lineSplit[TO_ACCOUNT_ID]),
-			TypeConverter(lineSplit[FROM_ACCOUNT_ID])
+			TypeConv(lineSplit[TO_ACCOUNT_ID]),
+			TypeConv(lineSplit[FROM_ACCOUNT_ID])
 		);
 
 		_transactions.add(t->getId(), t);

@@ -23,6 +23,7 @@
 #include "Transfer.h"
 #include "IdMap.h"
 #include "TextFileDataSource.h"
+#include "TransactionServices.h"
 #include "Date.h"
 #include "Utils.h"
 #include "UserServices.h"

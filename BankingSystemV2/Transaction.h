@@ -4,6 +4,7 @@
 
 #include <string>
 #include "stdafx.h"
+#include <sstream>
 #include "Date.h"
 
 class Transaction
@@ -26,6 +27,18 @@ public:
 
 	virtual void execute() = 0;
 	virtual void rollback() = 0;
+	virtual std::string getSummary()
+	{
+		stringstream ss;
+		ss << _id << "     ";
+		ss << _date.getDateString() << "      ";
+		ss << _transactionType << "      ";
+		ss << _amount << "     ";
+
+		std::string str;
+		getline(ss, str);
+		return str;
+	}
 
 	// ----------------------------------------------------------------------------------------- // 
 	// getters
@@ -46,6 +59,7 @@ protected:
 	double _amount;
 	int _customerId;
 	Date _date;
+	std::string _transactionType;
 
 	// ----------------------------------------------------------------------------------------- // 
 

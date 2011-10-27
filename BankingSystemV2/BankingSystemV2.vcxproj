@@ -127,6 +127,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TextFileDataSource.cpp" />
+    <ClCompile Include="TransactionServices.cpp" />
     <ClCompile Include="Transfer.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="UserServices.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="TextFileDataSource.h" />
     <ClInclude Include="Transaction.h" />
     <ClInclude Include="TransactionExceptions.hpp" />
+    <ClInclude Include="TransactionServices.h" />
     <ClInclude Include="Transfer.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="UserServices.h" />
@@ -215,6 +217,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CTransactions.resx">
       <DependentUpon>CTransactions.h</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Customer_Form.resx">
       <DependentUpon>Customer_Form.h</DependentUpon>

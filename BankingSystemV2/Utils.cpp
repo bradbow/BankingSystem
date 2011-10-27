@@ -39,24 +39,24 @@ vector<string> StringUtils::splitString(string str, char delimeter)
 }
 
 // --------------------------------------------------------------------------------------------- //
-// TypeConverter
+// TypeConv
 
-TypeConverter::operator int()
+TypeConv::operator int()
 {
 	return atoi(m_strData.c_str());
 }
 
-TypeConverter::operator double()
+TypeConv::operator double()
 {
 	return atof(m_strData.c_str());
 }
 
-TypeConverter::operator bool()
+TypeConv::operator bool()
 {
 	return isVariantOfTrue();
 }
 
-bool TypeConverter::isVariantOfTrue()
+bool TypeConv::isVariantOfTrue()
 {
 	return 
 		(
@@ -74,7 +74,7 @@ bool TypeConverter::isVariantOfTrue()
 		);
 }
 
-//TypeConverter::operator std::string()
+//TypeConv::operator std::string()
 //{
 //	return itoa(m_nData);
 //}
