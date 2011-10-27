@@ -36,7 +36,8 @@ namespace BankingSystemV2 {
 			}
 		}
 	private: System::Windows::Forms::DataGridView^  dataGridView_Transactions;
-	private: System::Windows::Forms::Button^  button_PrintTransactions;
+	private: System::Windows::Forms::Label^  lblTransactions;
+
 	protected: 
 
 
@@ -54,37 +55,40 @@ namespace BankingSystemV2 {
 		void InitializeComponent(void)
 		{
 			this->dataGridView_Transactions = (gcnew System::Windows::Forms::DataGridView());
-			this->button_PrintTransactions = (gcnew System::Windows::Forms::Button());
+			this->lblTransactions = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->dataGridView_Transactions))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// dataGridView_Transactions
 			// 
 			this->dataGridView_Transactions->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView_Transactions->Location = System::Drawing::Point(3, 0);
+			this->dataGridView_Transactions->Location = System::Drawing::Point(0, 45);
 			this->dataGridView_Transactions->Name = L"dataGridView_Transactions";
-			this->dataGridView_Transactions->Size = System::Drawing::Size(557, 115);
+			this->dataGridView_Transactions->Size = System::Drawing::Size(570, 115);
 			this->dataGridView_Transactions->TabIndex = 0;
 			// 
-			// button_PrintTransactions
+			// lblTransactions
 			// 
-			this->button_PrintTransactions->Location = System::Drawing::Point(455, 121);
-			this->button_PrintTransactions->Name = L"button_PrintTransactions";
-			this->button_PrintTransactions->Size = System::Drawing::Size(105, 23);
-			this->button_PrintTransactions->TabIndex = 1;
-			this->button_PrintTransactions->Text = L"Print Transactions";
-			this->button_PrintTransactions->UseVisualStyleBackColor = true;
+			this->lblTransactions->AutoSize = true;
+			this->lblTransactions->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(0)));
+			this->lblTransactions->Location = System::Drawing::Point(3, 12);
+			this->lblTransactions->Name = L"lblTransactions";
+			this->lblTransactions->Size = System::Drawing::Size(145, 20);
+			this->lblTransactions->TabIndex = 1;
+			this->lblTransactions->Text = L"Transaction History";
 			// 
 			// CTransactions
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->Controls->Add(this->button_PrintTransactions);
+			this->Controls->Add(this->lblTransactions);
 			this->Controls->Add(this->dataGridView_Transactions);
 			this->Name = L"CTransactions";
-			this->Size = System::Drawing::Size(570, 159);
+			this->Size = System::Drawing::Size(570, 160);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->dataGridView_Transactions))->EndInit();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion

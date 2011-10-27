@@ -418,7 +418,7 @@ void TextFileDataSource::persistCustomers()
 {
 	
 	std::ofstream outputFile;
-	std::string fileName = "Customers2.txt";
+	std::string fileName = "Customers.txt";
 	outputFile.open(fileName.c_str());
 
 	map<int, User*>::iterator mit;

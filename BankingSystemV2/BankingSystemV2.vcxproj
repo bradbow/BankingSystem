@@ -105,6 +105,8 @@
     <ClCompile Include="BankClerk_Form.cpp" />
     <ClCompile Include="BankingSystemV2.cpp" />
     <ClCompile Include="CCreditView.cpp" />
+    <ClCompile Include="CCustomerAccounts.cpp" />
+    <ClCompile Include="CCustomerDetails.cpp" />
     <ClCompile Include="CDeposit.cpp" />
     <ClCompile Include="CHomeLoanView.cpp" />
     <ClCompile Include="CPasswordChange.cpp" />
@@ -141,6 +143,12 @@
     </ClInclude>
     <ClInclude Include="BaseException.hpp" />
     <ClInclude Include="CCreditView.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="CCustomerAccounts.h">
+      <FileType>CppControl</FileType>
+    </ClInclude>
+    <ClInclude Include="CCustomerDetails.h">
       <FileType>CppControl</FileType>
     </ClInclude>
     <ClInclude Include="CDeposit.h">
@@ -198,6 +206,15 @@
   <ItemGroup>
     <EmbeddedResource Include="BankClerk_Form.resx">
       <DependentUpon>BankClerk_Form.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CCustomerAccounts.resx">
+      <DependentUpon>CCustomerAccounts.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CCustomerDetails.resx">
+      <DependentUpon>CCustomerDetails.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CTransactions.resx">
+      <DependentUpon>CTransactions.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Customer_Form.resx">
       <DependentUpon>Customer_Form.h</DependentUpon>
