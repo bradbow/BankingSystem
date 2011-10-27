@@ -418,29 +418,6 @@ void TextFileDataSource::persistCustomers()
 		count++;
 	}
 
-	// this works
-	//vector<std::string> vecstrs(2);
-	//vecstrs[0] = "the first string";
-	//vecstrs[1] = ", the second string";
-	//vector<std::string>::iterator vit;
-	//for (vit = vecstrs.begin(); vit != vecstrs.end(); vit++)
-	//{
-	//	outputFile << *(vit) << endl;
-	//}
-
-	// this works
-	/*std::map<int, std::string> m;
-	m[0] = "first string";
-	m[1] = "second string";
-	m[2] = "third string";
-
-	std::map<int, std::string>::iterator mit;
-	for (mit = m.begin(); mit != m.end(); mit++)
-	{
-		outputFile << mit->second << endl;
-	}*/
-	
-	int hold = 1;
 	outputFile.close();
 
 }

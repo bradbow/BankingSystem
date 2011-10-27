@@ -58,8 +58,10 @@ void ApplicationController::launchLoginForm()
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false); 
 
-	// Create the main window and run it
-	Application::Run(gcnew LoginForm(this));
+	// Run application, initially showing login form
+	LoginForm^ lif = gcnew LoginForm(this);
+	lif->ShowDialog();
+	Application::Run();
 }
 
 void ApplicationController::launchAppropriateUserForm(User* u)
@@ -68,7 +70,7 @@ void ApplicationController::launchAppropriateUserForm(User* u)
 	if (c) 
 	{
 		Customer_Form^ cu = gcnew Customer_Form(this);
-		cu->ShowDialog();
+		cu->Show();
 	}
 
 	/*BankClerk* bc = dynamic_cast<BankClerk*>(u);
