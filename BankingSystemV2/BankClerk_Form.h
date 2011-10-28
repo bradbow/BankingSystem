@@ -240,6 +240,7 @@ namespace BankingSystemV2 {
 			this->button_SetRates->TabIndex = 7;
 			this->button_SetRates->Text = L"Set Rates";
 			this->button_SetRates->UseVisualStyleBackColor = true;
+			this->button_SetRates->Click += gcnew System::EventHandler(this, &BankClerk_Form::button_SetRates_Click);
 			// 
 			// textBox_HomeLoanRate
 			// 
@@ -999,7 +1000,14 @@ namespace BankingSystemV2 {
 
 				 MessageBox::Show(this, "Home Loan Account successfully created!");
 			 }
-	};
+	private: System::Void button_SetRates_Click(System::Object^  sender, System::EventArgs^  e) {
+
+				 double savingsR = double::Parse(this->textBox_SavingsRate->Text);
+				double creditR = double::Parse(this->textBox_CreditRate->Text);
+				double HomeLoanR = double::Parse(this->textBox_HomeLoanRate->Text);
+
+			 }
+};
 
 
 };
