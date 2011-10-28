@@ -868,27 +868,27 @@ namespace BankingSystemV2 {
 			 }
 
 
-	private: System::Void createSavingsAccToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-				 //this->panel1->Visible = true;
-				 //this->panel1->BringToFront();
-			 }
-	private: System::Void createCreditAccToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-				 //this->Create_Credit_Acc_Panel->Visible = true;
-				 //this->Create_Credit_Acc_Panel->BringToFront();
-			 }
+	//private: System::Void createSavingsAccToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	//			 //this->panel1->Visible = true;
+	//			 //this->panel1->BringToFront();
+	//		 }
+	//private: System::Void createCreditAccToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	//			 //this->Create_Credit_Acc_Panel->Visible = true;
+	//			 //this->Create_Credit_Acc_Panel->BringToFront();
+	//		 }
 
-	private: System::Void createAccountToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	//private: System::Void createAccountToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 
-				 //this->tabControl1->BringToFront()
+	//			 //this->tabControl1->BringToFront()
 
 
-			 }
-	private: System::Void cReditToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	//		 }
+	//private: System::Void cReditToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 
-				 //this->tabControl1->BringToFront();
-				 //tabControl1->SelectedIndex = 0;
+	//			 //this->tabControl1->BringToFront();
+	//			 //tabControl1->SelectedIndex = 0;
 
-			 }
+	//		 }
 
 
 	private: System::Void customerToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -928,9 +928,16 @@ namespace BankingSystemV2 {
 			 // deletes the selected account
 	private: System::Void button_AccountCancel_Click(System::Object^  sender, System::EventArgs^  e) {
 
-
 				 int index = this->listBox_AccountSelection->SelectedIndex;
+
+				 if(index < 0){
+				 
+				 	MessageBox::Show(this, "Please select an account to delete!");
+					 return;
+				 }
 				 std::string line = DotNetUtils::SystemStringToStdString(this->listBox_AccountSelection->Items[index]->ToString());
+
+
 				 vector<std::string> split = StringUtils::splitString(line, ' ');
 				 int accId = TypeConv(split[0]);
 				 _as->closeAccount(accId);
