@@ -5,6 +5,10 @@
 
 #include "stdafx.h"
 #include <sstream>
+#include <list>
+#include <set>
+#include <vector>
+
 
 using std::stringstream;
 
@@ -41,7 +45,7 @@ void AccountServices::makeSavingsAccount
 	
 	int accountId = getNextAccountId();
 	SavingsAccount sa (accountId, customerId, accountName, interestRate);
-	_ds->addAccount(&sa);
+	AccountServices::_ds->addAccount(&sa);
 
 }
 
@@ -66,13 +70,8 @@ void AccountServices::makeCreditCardAccount
 			overdraftLimit
 		);
 
-	_ds->addAccount(&cca);
+	AccountServices::_ds->addAccount(&cca);
 
-}
-
-Account* AccountServices::getAccount(int accId)
-{
-	return _ds->getAccount(accId);
 }
 
 std::string AccountServices::repaymentOptionToString(HomeLoanAccount::RepaymentOption option)
@@ -125,14 +124,15 @@ std::string AccountServices::repaymentOptionToString(HomeLoanAccount::RepaymentO
 //
 //}
 //
-////// precondition: valid accountID passed in
-////// postcondition: Account matching accountID returned
-////Account *getAccount(int accountID){
-////
-////	Account *account = new Account(accountID, "accountName", 0.0, 0.0);
-////	return account;
-////}
-//
+
+////precondition: valid accountID passed in
+////postcondition: Account matching accountID returned
+Account *AccountServices::getAccount(int accountID){
+	
+	Account *account = AccountServices::_ds->getAccount(accountID);
+	return account;
+}
+
 //// precondition: valid transaction passed in
 //// postcondition: changes made to accounts contained within
 //// transaction
@@ -140,15 +140,13 @@ std::string AccountServices::repaymentOptionToString(HomeLoanAccount::RepaymentO
 //
 //// precondition: valid customerID passed in
 //// postcondition: list of accounts matching customerID returned
-//list<Account*> AccountServices::getCustomerAccounts(int customerID){
-//
-//	Customer customer(customerID, "password", "name", "address", "phoneNumber");
-//	//Customer customer = (Customer*)(getUser(userID));
-//	set<int> accountNumbers = customer.getAccounts();
-//	list<Account*> accounts;
-//	// retrieve the matching account for each of the the accountNumbers and add to accounts
-//	return accounts;
-//}
-
-
+list<Account*> AccountServices::getCustomerAccounts(set<int> customerAccountIDs){
+	
+	list<Account*> accounts;
+	set<int>::iterator it;
+	for(it = customerAccountIDs.begin();it != customerAccountIDs.end(); it++){	
+		accounts.push_back(getAccount(*it));
+	}
+	return accounts;
+}
 

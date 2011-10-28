@@ -12,6 +12,8 @@
 #include "HomeLoanAccount.hpp"
 #include <vector>
 #include <string>
+#include <list>
+#include <set>
 
 using namespace std;
 
@@ -68,6 +70,8 @@ public:
 	// precondition: valid accountID passed in
 	// postcondition: Account matching accountID returned
 	static Account *getAccount(int accountID);
+
+	list<Account*> getCustomerAccounts(set<int> customerAccountIDs);
 
 	// return a string representation of the repayment option
 	static std::string repaymentOptionToString(HomeLoanAccount::RepaymentOption option);

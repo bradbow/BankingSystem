@@ -2,6 +2,13 @@
 
 #include "CPasswordChange.h"
 #include "ApplicationController.h"
+#include "Utils.h"
+#include <string>
+#include "Customer.h"
+#include "AccountServices.h"
+#include "UserServices.h"
+#include <list>
+#include "Account.h"
 
 namespace BankingSystemV2 {
 
@@ -21,6 +28,10 @@ namespace BankingSystemV2 {
 		BankClerk_Form(ApplicationController* ac) : _ac(ac)
 		{
 			InitializeComponent();
+			_as = AccountServices::instance();
+			_us = UserServices::instance();
+
+
 		}
 
 	protected:
@@ -41,7 +52,7 @@ namespace BankingSystemV2 {
 	private: System::Windows::Forms::Panel^  panel_AdjustInteresttRate;
 	private: System::Windows::Forms::Panel^  panel_CustomerAcc;
 	private: System::Windows::Forms::SplitContainer^  splitContainer1;
-	private: System::Windows::Forms::Label^  label_Password_;
+	private: System::Windows::Forms::Label^  label_Password;
 	private: System::Windows::Forms::TextBox^  textBox_Password;
 	private: System::Windows::Forms::Button^  button_ResetPassword;
 	private: System::Windows::Forms::Button^  button_CustomerSearch;
@@ -100,6 +111,9 @@ namespace BankingSystemV2 {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
+		Customer* _customer;
+		AccountServices *_as;
+		UserServices *_us;
 		ApplicationController* _ac;
 		System::ComponentModel::Container ^components;
 
@@ -125,7 +139,7 @@ namespace BankingSystemV2 {
 			this->tabControl = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage_Customer = (gcnew System::Windows::Forms::TabPage());
 			this->splitContainer1 = (gcnew System::Windows::Forms::SplitContainer());
-			this->label_Password_ = (gcnew System::Windows::Forms::Label());
+			this->label_Password = (gcnew System::Windows::Forms::Label());
 			this->textBox_Password = (gcnew System::Windows::Forms::TextBox());
 			this->button_ResetPassword = (gcnew System::Windows::Forms::Button());
 			this->button_CustomerSearch = (gcnew System::Windows::Forms::Button());
@@ -325,7 +339,7 @@ namespace BankingSystemV2 {
 			// splitContainer1.Panel1
 			// 
 			this->splitContainer1->Panel1->BackColor = System::Drawing::SystemColors::Control;
-			this->splitContainer1->Panel1->Controls->Add(this->label_Password_);
+			this->splitContainer1->Panel1->Controls->Add(this->label_Password);
 			this->splitContainer1->Panel1->Controls->Add(this->textBox_Password);
 			this->splitContainer1->Panel1->Controls->Add(this->button_ResetPassword);
 			this->splitContainer1->Panel1->Controls->Add(this->button_CustomerSearch);
@@ -339,14 +353,14 @@ namespace BankingSystemV2 {
 			this->splitContainer1->SplitterDistance = 206;
 			this->splitContainer1->TabIndex = 0;
 			// 
-			// label_Password_
+			// label_Password
 			// 
-			this->label_Password_->AutoSize = true;
-			this->label_Password_->Location = System::Drawing::Point(14, 248);
-			this->label_Password_->Name = L"label_Password_";
-			this->label_Password_->Size = System::Drawing::Size(81, 13);
-			this->label_Password_->TabIndex = 5;
-			this->label_Password_->Text = L"New Password:";
+			this->label_Password->AutoSize = true;
+			this->label_Password->Location = System::Drawing::Point(14, 248);
+			this->label_Password->Name = L"label_Password";
+			this->label_Password->Size = System::Drawing::Size(81, 13);
+			this->label_Password->TabIndex = 5;
+			this->label_Password->Text = L"New Password:";
 			// 
 			// textBox_Password
 			// 
@@ -779,6 +793,48 @@ namespace BankingSystemV2 {
 		}
 #pragma endregion
 
+		//--------------------------------------------------------------------------------------------//
+		//helper functions
+
+
+		// hides all of the panels
+	private: System::Void hideAllPanels(){
+
+				 this->panel_AdjustInteresttRate->Visible = false;
+				 this->panel_CustomerAcc->Visible = false;			 
+			 }
+
+			 // loads a customers details to the details panel
+	private: System::Void loadCustomerDetails(){
+
+				 this->textBox_Name->Text = DotNetUtils::StdStringToSystemString(_customer->getName());
+				 this->textBox_Phone->Text = DotNetUtils::StdStringToSystemString(_customer->getPhoneNumber());
+				 this->textBox_Address->Text = DotNetUtils::StdStringToSystemString(_customer->getAddress());
+			 }
+			 // loads a customers acccount list to the accounts list box
+	private: System::Void loadCustomerAccounts(){
+
+				 //list<Account*> customerAccounts = _as->getCustomerAccounts(_customer->getAccounts());
+				 //list<Account>::iterator it;
+				 //for (it = customerAccounts.begin(); it != customerAccounts.end(); it++){
+					//listBox_AccountSelection->Items->Add(
+					//	*it.getAccountId();
+					//	)
+				 //}
+
+				std::string str; System::String^ temp;
+				set<int> accountIds = _customer->getAccounts();
+				set<int>::iterator sit;
+				for (sit = accountIds.begin(); sit != accountIds.end(); sit++)
+				{
+					//Account* ap = _as->getAccount(*sit);
+					//str = ap->getSummary();
+					//temp = gcnew String(str.c_str());
+					//this->listBox_AccountSelection->Items->Add(temp);
+				}
+			 }
+
+
 	private: System::Void createSavingsAccToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 				 //this->panel1->Visible = true;
 				 //this->panel1->BringToFront();
@@ -808,7 +864,30 @@ namespace BankingSystemV2 {
 				 this->panel_CustomerAcc->BringToFront();
 			 }
 
+
+
 	private: System::Void button_CustomerSearch_Click(System::Object^  sender, System::EventArgs^  e) {
+
+				 //hideAllPanels();
+				 //this->CustomerAccPanel
+
+				 // check for empty values
+				 if (this->textBox_CustomerId->Text == "" || this->textBox_CustomerId->Text == "")
+				 {
+					 this->textBox_CustomerId->Text = DotNetUtils::StdStringToSystemString("Enter ID");
+					 return;
+				 }
+
+				 int requestedCustomerId = int::Parse(textBox_CustomerId->Text);
+				 _customer = dynamic_cast<Customer*>(_us->getUser(requestedCustomerId));
+
+				 if(!_customer){
+					 this->textBox_CustomerId->Text = DotNetUtils::StdStringToSystemString("Invalid ID");
+				 }
+				 else{
+					 loadCustomerDetails();
+					 loadCustomerAccounts();
+				 }
 
 
 			 }
