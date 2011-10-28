@@ -214,6 +214,7 @@ namespace BankingSystemV2 {
 			this->ToolStripMenuItem_logOut->Name = L"ToolStripMenuItem_logOut";
 			this->ToolStripMenuItem_logOut->Size = System::Drawing::Size(62, 20);
 			this->ToolStripMenuItem_logOut->Text = L"Log Out";
+			this->ToolStripMenuItem_logOut->Click += gcnew System::EventHandler(this, &BankClerk_Form::ToolStripMenuItem_logOut_Click);
 			// 
 			// panel_AdjustInteresttRate
 			// 
@@ -377,6 +378,7 @@ namespace BankingSystemV2 {
 			this->button_ResetPassword->TabIndex = 3;
 			this->button_ResetPassword->Text = L"Reset Password";
 			this->button_ResetPassword->UseVisualStyleBackColor = true;
+			this->button_ResetPassword->Click += gcnew System::EventHandler(this, &BankClerk_Form::button_ResetPassword_Click);
 			// 
 			// button_CustomerSearch
 			// 
@@ -445,6 +447,7 @@ namespace BankingSystemV2 {
 			this->button_UpdateDetail->TabIndex = 12;
 			this->button_UpdateDetail->Text = L"Update Details";
 			this->button_UpdateDetail->UseVisualStyleBackColor = true;
+			this->button_UpdateDetail->Click += gcnew System::EventHandler(this, &BankClerk_Form::button_UpdateDetail_Click);
 			// 
 			// button_AccountCancel
 			// 
@@ -454,6 +457,7 @@ namespace BankingSystemV2 {
 			this->button_AccountCancel->TabIndex = 11;
 			this->button_AccountCancel->Text = L"Cancel Account";
 			this->button_AccountCancel->UseVisualStyleBackColor = true;
+			this->button_AccountCancel->Click += gcnew System::EventHandler(this, &BankClerk_Form::button_AccountCancel_Click);
 			// 
 			// label_Accounts
 			// 
@@ -541,6 +545,7 @@ namespace BankingSystemV2 {
 			this->button_CreateAccount->TabIndex = 2;
 			this->button_CreateAccount->Text = L"Create Account";
 			this->button_CreateAccount->UseVisualStyleBackColor = true;
+			this->button_CreateAccount->Click += gcnew System::EventHandler(this, &BankClerk_Form::button_CreateAccount_Click);
 			// 
 			// label_CSAccountName
 			// 
@@ -580,6 +585,7 @@ namespace BankingSystemV2 {
 			this->button_CCCreateAccount->TabIndex = 4;
 			this->button_CCCreateAccount->Text = L"Create Account";
 			this->button_CCCreateAccount->UseVisualStyleBackColor = true;
+			this->button_CCCreateAccount->Click += gcnew System::EventHandler(this, &BankClerk_Form::button_CCCreateAccount_Click);
 			// 
 			// label_CCOverdraft
 			// 
@@ -641,6 +647,7 @@ namespace BankingSystemV2 {
 			this->button_CHLCreateAccount->TabIndex = 10;
 			this->button_CHLCreateAccount->Text = L"Create Account";
 			this->button_CHLCreateAccount->UseVisualStyleBackColor = true;
+			this->button_CHLCreateAccount->Click += gcnew System::EventHandler(this, &BankClerk_Form::button_CHLCreateAccount_Click);
 			// 
 			// label_MinRepayment
 			// 
@@ -807,31 +814,56 @@ namespace BankingSystemV2 {
 			 // loads a customers details to the details panel
 	private: System::Void loadCustomerDetails(){
 
+				 clearCustomerDetails();
+				 this->textBox_Phone->Clear();
+				 this->textBox_Address->Clear();
 				 this->textBox_Name->Text = DotNetUtils::StdStringToSystemString(_customer->getName());
 				 this->textBox_Phone->Text = DotNetUtils::StdStringToSystemString(_customer->getPhoneNumber());
 				 this->textBox_Address->Text = DotNetUtils::StdStringToSystemString(_customer->getAddress());
 			 }
+
+			 // clears away customer details
+	private: System::Void clearCustomerDetails(){
+
+				 this->textBox_Name->Clear();
+				 this->textBox_Phone->Clear();
+				 this->textBox_Address->Clear();
+			 }
+
 			 // loads a customers acccount list to the accounts list box
 	private: System::Void loadCustomerAccounts(){
+
+				 listBox_AccountSelection->Items->Clear();
 
 				 //list<Account*> customerAccounts = _as->getCustomerAccounts(_customer->getAccounts());
 				 //list<Account>::iterator it;
 				 //for (it = customerAccounts.begin(); it != customerAccounts.end(); it++){
-					//listBox_AccountSelection->Items->Add(
-					//	*it.getAccountId();
-					//	)
+				 //listBox_AccountSelection->Items->Add(
+				 //	*it.getAccountId();
+				 //	)
 				 //}
 
-				std::string str; System::String^ temp;
-				set<int> accountIds = _customer->getAccounts();
-				set<int>::iterator sit;
-				for (sit = accountIds.begin(); sit != accountIds.end(); sit++)
-				{
-					//Account* ap = _as->getAccount(*sit);
-					//str = ap->getSummary();
-					//temp = gcnew String(str.c_str());
-					//this->listBox_AccountSelection->Items->Add(temp);
-				}
+				 std::string str; System::String^ temp;
+				 set<int> accountIds = _customer->getAccounts();
+
+				 if(accountIds.empty()){return;}
+
+				 set<int>::iterator sit;
+				 for (sit = accountIds.begin(); sit != accountIds.end(); sit++)
+				 {
+					 //Account* ap = _as->getAccount(*sit);
+					 //str = ap->getSummary();
+					 //temp = gcnew String(str.c_str());
+					 //this->listBox_AccountSelection->Items->Add(temp);
+				 }
+			 }
+
+
+			 // logout event
+	private: System::Void ToolStripMenuItem_logOut_Click(System::Object^  sender, System::EventArgs^  e) {
+
+				 this->Hide();
+				 _ac->launchLoginForm();
 			 }
 
 
@@ -890,6 +922,82 @@ namespace BankingSystemV2 {
 				 }
 
 
+			 }
+
+			 // deletes the selected account
+	private: System::Void button_AccountCancel_Click(System::Object^  sender, System::EventArgs^  e) {
+
+
+				 int index = this->listBox_AccountSelection->SelectedIndex;
+				 std::string line = DotNetUtils::SystemStringToStdString(this->listBox_AccountSelection->Items[index]->ToString());
+				 vector<std::string> split = StringUtils::splitString(line, ' ');
+				 int accId = TypeConv(split[0]);
+				 _as->closeAccount(accId);
+				 MessageBox::Show(this, "Account " + accId + " successfully deleted!");
+
+			 }
+
+			 // updates a customers personal details
+	private: System::Void button_UpdateDetail_Click(System::Object^  sender, System::EventArgs^  e) {
+
+				 string details [3];
+
+				 if(
+					 this->textBox_Name->Text == "" || 
+					 this->textBox_Phone->Text == "" ||
+					 this->textBox_Address->Text == ""){}
+				 else
+				 {
+					 details[0] = DotNetUtils::SystemStringToStdString(this->textBox_Name->Text);
+					 details[1] = DotNetUtils::SystemStringToStdString(this->textBox_Phone->Text);
+					 details[2] = DotNetUtils::SystemStringToStdString(this->textBox_Address->Text);
+					 _us->updateCustomerDetails(_customer->getUserId(), details);
+					 MessageBox::Show(this, "Details successfully updated!");
+				 }
+				 loadCustomerDetails();
+			 }
+	private: System::Void button_ResetPassword_Click(System::Object^  sender, System::EventArgs^  e) {
+
+				 this->textBox_Password->Text = DotNetUtils::StdStringToSystemString(
+					 _us->resetPassword(_customer->getUserId()));
+
+			 }
+	private: System::Void button_CreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {
+
+				 string desiredAccountName = 
+					 DotNetUtils::SystemStringToStdString(this->textBox_CSAccountName->Text);
+				 _as->makeSavingsAccount(desiredAccountName, _customer->getUserId(), .06, 0);
+				 MessageBox::Show(this, "Savings Account successfully created!");
+
+			 }
+	private: System::Void button_CCCreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {
+
+				 string desiredAccountName = 
+					 DotNetUtils::SystemStringToStdString(this->textBox_CCAccountName->Text);
+				 double desiredODLimit =
+					 double::Parse(this->textBox_CCOverdraft->Text);
+				 _as->makeCreditCardAccount(desiredAccountName, _customer->getUserId(), .06, 0, desiredODLimit);
+				 MessageBox::Show(this, "Credit Card Account successfully created!");
+
+			 }
+	private: System::Void button_CHLCreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {
+
+
+				 string desiredAccountName = 
+					 DotNetUtils::SystemStringToStdString(this->textBox_CHLAccountName->Text);
+				 string propertyAddress =
+					 DotNetUtils::SystemStringToStdString(this->textBox_CHLAccountName->Text);
+				 int repaymentOption = listBox_RepaymentOption->SelectedIndex;
+				 _as->makeHomeLoanAccount(
+					 desiredAccountName, 
+					 _customer->getUserId(), 
+					 .06, 
+					 0, 
+					 propertyAddress, 
+					 (HomeLoanAccount::RepaymentOption)repaymentOption, 
+					 0);
+
+				 MessageBox::Show(this, "Home Loan Account successfully created!");
 			 }
 	};
 

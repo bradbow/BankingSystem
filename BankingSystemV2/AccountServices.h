@@ -72,6 +72,7 @@ public:
 	static Account *getAccount(int accountID);
 
 	list<Account*> getCustomerAccounts(set<int> customerAccountIDs);
+	vector<Account*> getCustomerAccountsV(set<int> customerAccountIDs);
 
 	// return a string representation of the repayment option
 	static std::string repaymentOptionToString(HomeLoanAccount::RepaymentOption option);

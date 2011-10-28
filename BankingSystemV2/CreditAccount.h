@@ -14,7 +14,7 @@ public:
 
 	CreditAccount
 	(	
-		int accountId, int customerId, string accountName,
+		int accountId, string accountName,
 		double interestRate, double balance = 0
 	);
 

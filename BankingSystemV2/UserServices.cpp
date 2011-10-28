@@ -59,17 +59,17 @@ bool UserServices::validateUser(int userID, string password){
 // postcondition: exchanges old password for new one
 void UserServices::changePassword(int userID, string password){
 
-	User *validate = getUser(userID);
-	validate->_password = password;
+	User *update = getUser(userID);
+	update->_password = password;
 }
 
 // precondition: valid userId passed in
 // postconditon: password reset to new password which is then returned
 string UserServices::resetPassword(int userID){
 
-	User *validate = getUser(userID);
-	validate->_password = generatePassword();
-	return validate->_password;
+	User *update = getUser(userID);
+	update->_password = generatePassword();
+	return update->_password;
 }
 
 // precondition: none
@@ -91,12 +91,10 @@ bool UserServices::deleteUser(int userID){
 // postcondition: old details are exchanged for new
 void UserServices::updateCustomerDetails(int userID, string details[]){
 
-	//TODO: exchange for application data user retrieve function;
-	Customer update(userID, "password", "name", "address", "phoneNumber");
-	//Customer update = (Customer*)(getUser(userID));
-	update.setName(details[0]);
-	update.setAddress(details[1]);
-	update.setPhoneNumber(details[2]);
+	Customer *update = dynamic_cast<Customer*>(_ds->getUser(userID));
+	update->setName(details[0]);
+	update->setAddress(details[1]);
+	update->setPhoneNumber(details[2]);
 }
 
 // precondition: valid userID passed in
