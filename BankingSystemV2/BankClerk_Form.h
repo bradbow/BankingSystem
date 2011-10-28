@@ -957,12 +957,16 @@ namespace BankingSystemV2 {
 				 }
 				 loadCustomerDetails();
 			 }
+
+			 // resets the selected customers password
 	private: System::Void button_ResetPassword_Click(System::Object^  sender, System::EventArgs^  e) {
 
 				 this->textBox_Password->Text = DotNetUtils::StdStringToSystemString(
 					 _us->resetPassword(_customer->getUserId()));
 
 			 }
+
+			 // creates a savings account in selected customers name
 	private: System::Void button_CreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {
 
 				 string desiredAccountName = 
@@ -971,6 +975,8 @@ namespace BankingSystemV2 {
 				 MessageBox::Show(this, "Savings Account successfully created!");
 
 			 }
+
+			 // creates a credit account in selected customers name
 	private: System::Void button_CCCreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {
 
 				 string desiredAccountName = 
@@ -981,6 +987,8 @@ namespace BankingSystemV2 {
 				 MessageBox::Show(this, "Credit Card Account successfully created!");
 
 			 }
+
+			 // creates a home loan account in selected customers name
 	private: System::Void button_CHLCreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {
 
 
@@ -1000,6 +1008,8 @@ namespace BankingSystemV2 {
 
 				 MessageBox::Show(this, "Home Loan Account successfully created!");
 			 }
+
+			 // sets interest rates provided by the bank
 	private: System::Void button_SetRates_Click(System::Object^  sender, System::EventArgs^  e) {
 
 				 double savingsR = double::Parse(this->textBox_SavingsRate->Text);
