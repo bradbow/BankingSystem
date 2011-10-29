@@ -43,15 +43,7 @@ TextFileDataSource::TextFileDataSource()
 	m_pfnsLoad[WITHDRAWALS] = &TextFileDataSource::ConstructAndAddWithdrawalTransaction;
 	m_pfnsLoad[DEPOSITS] = &TextFileDataSource::ConstructAndAddDepositTransaction;
 	m_pfnsLoad[TRANSFERS] = &TextFileDataSource::ConstructAndAddTransferTransaction;
-
-	m_pfnsPersist[CUSTOMERS] = &TextFileDataSource::persistCustomers;
-	m_pfnsPersist[BANK_CLERKS] = &TextFileDataSource::persistBankClerks;
-	m_pfnsPersist[SAVINGS_ACCOUNTS] = &TextFileDataSource::persistSavingsAccounts;
-	m_pfnsPersist[CREDIT_CARD_ACCOUNTS] = &TextFileDataSource::persistCredidCardAccounts;
-	m_pfnsPersist[HOME_LOAN_ACCOUNTS] = &TextFileDataSource::persistHomeLoanAccounts;
-	m_pfnsPersist[WITHDRAWALS] = &TextFileDataSource::persistWithdrawals;
-	m_pfnsPersist[DEPOSITS] = &TextFileDataSource::persistDeposits;
-	m_pfnsPersist[TRANSFERS] = &TextFileDataSource::persistTransfers;
+	m_pfnsLoad[RATES] = &TextFileDataSource::SetRates;
 
 	IdMap<int, User*> _users;
 	IdMap<int, Account*> _accounts;
@@ -91,7 +83,7 @@ void TextFileDataSource::loadData()
 
 void TextFileDataSource::persistData()
 {
-	//persistCustomers();
+	persistUsers();
 }
 
 // --------------------------------------------------------------------------------------------- //
@@ -380,7 +372,27 @@ void TextFileDataSource::ConstructAndAddTransferTransaction(string line)
 
 }
 
-void TextFileDataSource::persistCustomers()
+void TextFileDataSource::SetRates(string line)
+{
+	enum
+	{
+		SAVINGS_RATE,
+		CREDIT_CARD_RATE,
+		HOME_LOAN_RATE,
+		NUM_FIELDS
+	};
+	
+	vector<string> lineSplit = StringUtils::splitString(line, ',');
+	if (lineSplit.size() == NUM_FIELDS)
+	{
+		_savingsRate = TypeConv(lineSplit[SAVINGS_RATE]);
+		_creditCardRate = TypeConv(lineSplit[CREDIT_CARD_RATE]);
+		_homeLoanRate = TypeConv(lineSplit[HOME_LOAN_RATE]);
+	}
+
+}
+
+void TextFileDataSource::persistUsers()
 {
 	
 	std::ofstream outputFile;
@@ -409,40 +421,7 @@ void TextFileDataSource::persistCustomers()
 
 }
 
-void TextFileDataSource::persistBankClerks()
-{
 
-}
-
-void TextFileDataSource::persistSavingsAccounts()
-{
-
-}
-
-void TextFileDataSource::persistCredidCardAccounts()
-{
-
-}
-
-void TextFileDataSource::persistHomeLoanAccounts()
-{
-
-}
-
-void TextFileDataSource::persistWithdrawals()
-{
-
-}
-
-void TextFileDataSource::persistDeposits()
-{
-
-}
-
-void TextFileDataSource::persistTransfers()
-{
-
-}
 
 // --------------------------------------------------------------------------------------------- //
 
