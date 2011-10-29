@@ -24,6 +24,7 @@ public:
 	void add(I id, D elem);
 	void remove(I id);
 	D get(I id);
+	bool has(I id);
 
 	// ----------------------------------------------------------------------------------------- //
 	// iterators
@@ -67,6 +68,13 @@ void IdMap<I, D>::remove(I id)
 		_idMap.erase(mit);
 	}
 
+}
+
+template <class I, class D>
+bool IdMap<I, D>::has(I id)
+{
+	map<I, D>::iterator mit = _idMap.find(id);
+	return (mit != _idMap.end());
 }
 
 template <class I, class D>

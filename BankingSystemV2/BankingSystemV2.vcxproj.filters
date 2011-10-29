@@ -225,6 +225,9 @@
     <ClCompile Include="PhraseGenerator.cpp">
       <Filter>Data Structures\Source</Filter>
     </ClCompile>
+    <ClCompile Include="SingleAccountTransactionForm.cpp">
+      <Filter>Forms\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h">
@@ -352,6 +355,9 @@
     </ClInclude>
     <ClInclude Include="PhraseGenerator.h">
       <Filter>Data Structures\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleAccountTransactionForm.h">
+      <Filter>Forms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

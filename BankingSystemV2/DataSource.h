@@ -26,7 +26,7 @@ public:
 	// virtural destructor to account for different requirements in derived classes
 	virtual ~DataSource(void){};
 
-	// member functions: these are the functionalities all valid data sources must provide
+	// persistence fucntions
 	virtual void persistData() = 0;
 	virtual void loadData() = 0;
 
@@ -34,6 +34,11 @@ public:
 	virtual User* getUser(int userId) = 0;
 	virtual Account* getAccount(int accountId) = 0;
 	virtual Transaction* getTransaction(int transactionId) = 0;
+
+	// testing for existence of application objects
+	virtual bool userExists(int userId) = 0;
+	virtual bool accountExists(int accId) = 0;
+	virtual bool transactionExists(int transId) = 0;
 
 	// methods to add application objects
 	virtual void addUser(User* user) = 0;
@@ -45,15 +50,15 @@ public:
 	virtual void removeAccount(int accountId) = 0;
 	virtual void removeTransaction(int transactionId) = 0;
 
-	// methods for retrieving interest rates
-	virtual double getSavingsInterestRate() = 0;
-	virtual double getCreditCardInterestRate() = 0;
-	virtual double getHomeLoanInterestRate() = 0;
-
 	// relational queries
 	virtual list<Account*> getAccountsForUser(int userId) = 0;
 	virtual list<Transaction*> getTransactionsForAccount(int accId) = 0;
 
+	// methods for retrieving interest rates
+	virtual double getSavingsInterestRate() = 0;
+	virtual double getCreditCardInterestRate() = 0;
+	virtual double getHomeLoanInterestRate() = 0;
+	
 	// methods for setting global interest rates
 	virtual void setSavingsInterestRate(double value) = 0;
 	virtual void setCreditCardInterestRate(double value) = 0;

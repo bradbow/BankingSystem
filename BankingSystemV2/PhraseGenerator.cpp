@@ -28,6 +28,7 @@ int PhraseGenerator::getDigitPhrase(int numDigits, int startDigit)
 	while (digits < numDigits)
 	{
 		ss << getRandomDigit();
+		digits++;
 	}
 
 	ss >> id;
@@ -43,6 +44,7 @@ int PhraseGenerator::getDigitPhrase(int numDigits)
 	while (digits < numDigits)
 	{
 		ss << getRandomDigit();
+		digits++;
 	}
 
 	ss >> id;
@@ -58,6 +60,7 @@ std::string PhraseGenerator::getAlphNumericPhrase(int numChars)
 	while (chars < numChars)
 	{
 		ss << getRandomChar();
+		chars++;
 	}
 
 	getline(ss, str);
