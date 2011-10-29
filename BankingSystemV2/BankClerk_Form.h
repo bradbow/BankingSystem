@@ -100,7 +100,8 @@ namespace BankingSystemV2 {
 	private: System::Windows::Forms::TextBox^  textBox_SavingsRate;
 	private: System::Windows::Forms::ToolStripMenuItem^  ToolStripMenuItem_logOut;
 	private: BankingSystemV2::CPasswordChange^  passwordChange1;
-	private: System::Windows::Forms::TabControl^  tabControl;
+	private: System::Windows::Forms::TabControl^  tabControl_MainMenu;
+
 	private: System::Windows::Forms::TabPage^  tabPage_Customer;
 	private: System::Windows::Forms::TabPage^  tabPage_SetInterest;
 	private: System::Windows::Forms::TabPage^  tabPage_Admin;
@@ -147,7 +148,7 @@ namespace BankingSystemV2 {
 				 this->label_SavingsRate = (gcnew System::Windows::Forms::Label());
 				 this->textBox_SavingsRate = (gcnew System::Windows::Forms::TextBox());
 				 this->panel_CustomerAcc = (gcnew System::Windows::Forms::Panel());
-				 this->tabControl = (gcnew System::Windows::Forms::TabControl());
+				 this->tabControl_MainMenu = (gcnew System::Windows::Forms::TabControl());
 				 this->tabPage_Customer = (gcnew System::Windows::Forms::TabPage());
 				 this->splitContainer1 = (gcnew System::Windows::Forms::SplitContainer());
 				 this->label_Password = (gcnew System::Windows::Forms::Label());
@@ -208,7 +209,7 @@ namespace BankingSystemV2 {
 				 this->menuStrip1->SuspendLayout();
 				 this->panel_AdjustInteresttRate->SuspendLayout();
 				 this->panel_CustomerAcc->SuspendLayout();
-				 this->tabControl->SuspendLayout();
+				 this->tabControl_MainMenu->SuspendLayout();
 				 this->tabPage_Customer->SuspendLayout();
 				 (cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->splitContainer1))->BeginInit();
 				 this->splitContainer1->Panel1->SuspendLayout();
@@ -326,23 +327,24 @@ namespace BankingSystemV2 {
 				 // 
 				 // panel_CustomerAcc
 				 // 
-				 this->panel_CustomerAcc->Controls->Add(this->tabControl);
+				 this->panel_CustomerAcc->Controls->Add(this->tabControl_MainMenu);
 				 this->panel_CustomerAcc->Location = System::Drawing::Point(0, 24);
 				 this->panel_CustomerAcc->Name = L"panel_CustomerAcc";
 				 this->panel_CustomerAcc->Size = System::Drawing::Size(634, 379);
 				 this->panel_CustomerAcc->TabIndex = 3;
 				 // 
-				 // tabControl
+				 // tabControl_MainMenu
 				 // 
-				 this->tabControl->Controls->Add(this->tabPage_Customer);
-				 this->tabControl->Controls->Add(this->tabPage_SetInterest);
-				 this->tabControl->Controls->Add(this->tabPage_Admin);
-				 this->tabControl->Dock = System::Windows::Forms::DockStyle::Fill;
-				 this->tabControl->Location = System::Drawing::Point(0, 0);
-				 this->tabControl->Name = L"tabControl";
-				 this->tabControl->SelectedIndex = 0;
-				 this->tabControl->Size = System::Drawing::Size(634, 379);
-				 this->tabControl->TabIndex = 1;
+				 this->tabControl_MainMenu->Controls->Add(this->tabPage_Customer);
+				 this->tabControl_MainMenu->Controls->Add(this->tabPage_SetInterest);
+				 this->tabControl_MainMenu->Controls->Add(this->tabPage_Admin);
+				 this->tabControl_MainMenu->Dock = System::Windows::Forms::DockStyle::Fill;
+				 this->tabControl_MainMenu->Location = System::Drawing::Point(0, 0);
+				 this->tabControl_MainMenu->Name = L"tabControl_MainMenu";
+				 this->tabControl_MainMenu->SelectedIndex = 0;
+				 this->tabControl_MainMenu->Size = System::Drawing::Size(634, 379);
+				 this->tabControl_MainMenu->TabIndex = 1;
+				 this->tabControl_MainMenu->SelectedIndexChanged += gcnew System::EventHandler(this, &BankClerk_Form::tabControl_MainMenu_SelectIndexChanged);
 				 // 
 				 // tabPage_Customer
 				 // 
@@ -910,7 +912,7 @@ namespace BankingSystemV2 {
 				 this->panel_AdjustInteresttRate->ResumeLayout(false);
 				 this->panel_AdjustInteresttRate->PerformLayout();
 				 this->panel_CustomerAcc->ResumeLayout(false);
-				 this->tabControl->ResumeLayout(false);
+				 this->tabControl_MainMenu->ResumeLayout(false);
 				 this->tabPage_Customer->ResumeLayout(false);
 				 this->splitContainer1->Panel1->ResumeLayout(false);
 				 this->splitContainer1->Panel1->PerformLayout();
@@ -948,9 +950,7 @@ namespace BankingSystemV2 {
 			 // loads a customers details to the details panel
 	private: System::Void loadCustomerDetails(){
 
-				 if(_customer == NULL){
-					 return;
-				 }
+				 if(_customer == NULL){return;}
 
 				 clearCustomerDetails();
 				 this->textBox_Phone->Clear();
@@ -971,9 +971,7 @@ namespace BankingSystemV2 {
 			 // loads a customers acccount list to the accounts list box
 	private: System::Void loadCustomerAccounts(){
 
-				 if(_customer == NULL){
-					 return;
-				 }
+				 if(_customer == NULL){return;}
 
 
 				 listBox_AccountSelection->Items->Clear();
@@ -983,11 +981,13 @@ namespace BankingSystemV2 {
 				 list<Account*>::iterator it;
 				 for (it = customerAccounts.begin(); it != customerAccounts.end(); it++){
 
-					 listBox_AccountSelection->Items->Add((*it)->getAccountId());
+					 listBox_AccountSelection->Items->Add((*it)->getAccountId() + "\t" + (*it)->getBalance());
 				 }
 			 }
 
 	private: System::Void clearCreateSavingsPanel(){
+
+
 
 				 this->textBox_CSAccountName->Clear();
 				 this->textBox_SavingInterestRate->Clear();
@@ -995,6 +995,8 @@ namespace BankingSystemV2 {
 			 }
 
 	private: System::Void loadCreateSavingsPanel(){
+
+				 if(_customer == NULL){return;}
 
 				 clearCreateSavingsPanel();
 				 this->textBox_CSAccountName->Text = DotNetUtils::StdStringToSystemString(_customer->getName());
@@ -1017,6 +1019,8 @@ namespace BankingSystemV2 {
 
 	private: System::Void loadCreateCreditPanel(){
 
+				 if(_customer == NULL){return;}
+				 
 				 clearCreateCreditPanel();
 				 this->textBox_CCAccountName->Text = DotNetUtils::StdStringToSystemString(_customer->getName());
 				 this->textBox_CreditInterestRate->Text = _as->getCreditCardInterestRate().ToString();
@@ -1040,6 +1044,8 @@ namespace BankingSystemV2 {
 
 	private: System::Void loadCreateHomeLoanPanel(){
 
+				 				 if(_customer == NULL){return;}
+
 				 clearCreateHomeLoanPanel();
 				 this->textBox_CHLAccountName->Text = DotNetUtils::StdStringToSystemString(_customer->getName());
 				 this->textBox_HomeLoanInterest->Text = _as->getHomeLoanInterestRate().ToString();
@@ -1056,6 +1062,8 @@ namespace BankingSystemV2 {
 
 			 private: System::Void loadRatesPanel(){
 
+						  				 if(_customer == NULL){return;}
+				
 				 clearRatesPanel();
 				 this->textBox_SavingsRate->Text = _as->getSavingsInterestRate().ToString();
 				 this->textBox_CreditRate->Text = _as->getCreditCardInterestRate().ToString();
@@ -1170,6 +1178,10 @@ namespace BankingSystemV2 {
 			 // resets the selected customers password
 	private: System::Void button_ResetPassword_Click(System::Object^  sender, System::EventArgs^  e) {
 
+				 if(_customer == NULL){
+					return;
+				 }
+				 
 				 this->textBox_Password->Text = DotNetUtils::StdStringToSystemString(
 					 _us->resetPassword(_customer->getUserId()));
 
@@ -1222,8 +1234,8 @@ namespace BankingSystemV2 {
 			 // sets interest rates provided by the bank
 	private: System::Void button_SetRates_Click(System::Object^  sender, System::EventArgs^  e) {
 
-				 enum{SAVINGS_RATE, CREDIT_CARD_RATE, HOME_LOAN_RATE};
-				 vector<double> rates;
+				 enum{SAVINGS_RATE, CREDIT_CARD_RATE, HOME_LOAN_RATE, NUM_RATES};
+				 vector<double> rates(NUM_RATES);
 				 rates[SAVINGS_RATE] = double::Parse(this->textBox_SavingsRate->Text);
 				 rates[CREDIT_CARD_RATE] = double::Parse(this->textBox_CreditRate->Text);
 				 rates[HOME_LOAN_RATE] = double::Parse(this->textBox_HomeLoanRate->Text);
@@ -1240,6 +1252,7 @@ namespace BankingSystemV2 {
 				 {
 				 case DETAILS:
 					 loadCustomerDetails();
+					 loadCustomerAccounts();
 					 break;
 				 case SAVINGS:
 					 loadCreateSavingsPanel();
@@ -1253,10 +1266,11 @@ namespace BankingSystemV2 {
 				 }
 			 }
 
-	private: System::Void tabControl_SelectIndexChanged(System::Object^  sender, System::EventArgs^  e){
+	private: System::Void tabControl_MainMenu_SelectIndexChanged(System::Object^  sender, System::EventArgs^  e){
 
 				 enum{CUSTOMER, RATES, ADMIN};
-				 int index = this->tabControl->SelectedIndex;
+				 int index = this->tabControl_MainMenu->SelectedIndex;
+				 this->tabControl_BCCustomer->SelectedIndex = CUSTOMER;
 
 				 switch(index)
 				 {

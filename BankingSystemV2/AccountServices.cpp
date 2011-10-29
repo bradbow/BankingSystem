@@ -67,7 +67,7 @@ int AccountServices::makeCreditCardAccount
 {
 
 	int accountId = getNextCreditCardAccountId();
-	CreditCardAccount cca
+	CreditCardAccount *cca = new CreditCardAccount
 		(	
 			accountId,
 			customerId,
@@ -77,7 +77,7 @@ int AccountServices::makeCreditCardAccount
 			overdraftLimit
 		);
 
-	AccountServices::_ds->addAccount(&cca);
+	AccountServices::_ds->addAccount(cca);
 	return accountId;
 
 }
@@ -111,7 +111,8 @@ int AccountServices::makeHomeLoanAccount (string accountName, int customerId,
 
 	int accountId = getNextHomeLoanAccountId();
 									   
-								HomeLoanAccount hla(
+								HomeLoanAccount *hla = new HomeLoanAccount
+									(
 									accountId,
 									customerId,
 									accountName,
@@ -121,7 +122,7 @@ int AccountServices::makeHomeLoanAccount (string accountName, int customerId,
 								option,
 								minimumRepayment);
 
-								AccountServices::_ds->addAccount(&hla);
+								AccountServices::_ds->addAccount(hla);
 								return accountId;
 }
 //
