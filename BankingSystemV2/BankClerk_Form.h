@@ -208,7 +208,6 @@ namespace BankingSystemV2 {
 			this->menuStrip1->Size = System::Drawing::Size(634, 24);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
-			this->menuStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &BankClerk_Form::menuStrip1_ItemClicked);
 			// 
 			// ToolStripMenuItem_logOut
 			// 
@@ -841,7 +840,7 @@ namespace BankingSystemV2 {
 
 				 list<Account*>::iterator it;
 				 for (it = customerAccounts.begin(); it != customerAccounts.end(); it++){
-				 
+
 					 listBox_AccountSelection->Items->Add((*it)->getAccountId());
 				 }
 			 }
@@ -855,27 +854,27 @@ namespace BankingSystemV2 {
 			 }
 
 
-	//private: System::Void createSavingsAccToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	//			 //this->panel1->Visible = true;
-	//			 //this->panel1->BringToFront();
-	//		 }
-	//private: System::Void createCreditAccToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	//			 //this->Create_Credit_Acc_Panel->Visible = true;
-	//			 //this->Create_Credit_Acc_Panel->BringToFront();
-	//		 }
+			 //private: System::Void createSavingsAccToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+			 //			 //this->panel1->Visible = true;
+			 //			 //this->panel1->BringToFront();
+			 //		 }
+			 //private: System::Void createCreditAccToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+			 //			 //this->Create_Credit_Acc_Panel->Visible = true;
+			 //			 //this->Create_Credit_Acc_Panel->BringToFront();
+			 //		 }
 
-	//private: System::Void createAccountToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+			 //private: System::Void createAccountToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 
-	//			 //this->tabControl1->BringToFront()
+			 //			 //this->tabControl1->BringToFront()
 
 
-	//		 }
-	//private: System::Void cReditToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+			 //		 }
+			 //private: System::Void cReditToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 
-	//			 //this->tabControl1->BringToFront();
-	//			 //tabControl1->SelectedIndex = 0;
+			 //			 //this->tabControl1->BringToFront();
+			 //			 //tabControl1->SelectedIndex = 0;
 
-	//		 }
+			 //		 }
 
 
 	private: System::Void customerToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -918,8 +917,8 @@ namespace BankingSystemV2 {
 				 int index = this->listBox_AccountSelection->SelectedIndex;
 
 				 if(index < 0){
-				 
-				 	MessageBox::Show(this, "Please select an account to delete!");
+
+					 MessageBox::Show(this, "Please select an account to delete!");
 					 return;
 				 }
 				 std::string line = DotNetUtils::SystemStringToStdString(this->listBox_AccountSelection->Items[index]->ToString());
@@ -965,7 +964,11 @@ namespace BankingSystemV2 {
 
 				 string desiredAccountName = 
 					 DotNetUtils::SystemStringToStdString(this->textBox_CSAccountName->Text);
-				 _as->makeSavingsAccount(desiredAccountName, _customer->getUserId(), .06, 0);
+				 _as->makeSavingsAccount(
+					 desiredAccountName, 
+					 _customer->getUserId(), 
+					 _as->getSavingsInterestRate(), 
+					 0);
 				 MessageBox::Show(this, "Savings Account successfully created!");
 
 			 }
@@ -977,7 +980,11 @@ namespace BankingSystemV2 {
 					 DotNetUtils::SystemStringToStdString(this->textBox_CCAccountName->Text);
 				 double desiredODLimit =
 					 double::Parse(this->textBox_CCOverdraft->Text);
-				 _as->makeCreditCardAccount(desiredAccountName, _customer->getUserId(), .06, 0, desiredODLimit);
+				 _as->makeCreditCardAccount(desiredAccountName,
+					 _customer->getUserId(),
+					 _as->getCreditCardInterestRate(), 
+					 0,
+					 desiredODLimit);
 				 MessageBox::Show(this, "Credit Card Account successfully created!");
 
 			 }
@@ -994,7 +1001,7 @@ namespace BankingSystemV2 {
 				 _as->makeHomeLoanAccount(
 					 desiredAccountName, 
 					 _customer->getUserId(), 
-					 .06, 
+					 _as->getHomeLoanInterestRate(), 
 					 0, 
 					 propertyAddress, 
 					 (HomeLoanAccount::RepaymentOption)repaymentOption, 
@@ -1006,14 +1013,14 @@ namespace BankingSystemV2 {
 			 // sets interest rates provided by the bank
 	private: System::Void button_SetRates_Click(System::Object^  sender, System::EventArgs^  e) {
 
-				 double savingsR = double::Parse(this->textBox_SavingsRate->Text);
-				double creditR = double::Parse(this->textBox_CreditRate->Text);
-				double HomeLoanR = double::Parse(this->textBox_HomeLoanRate->Text);
-
+				 enum{SAVINGS_RATE, CREDIT_CARD_RATE, HOME_LOAN_RATE};
+				 vector<double> rates;
+				 rates[SAVINGS_RATE] = double::Parse(this->textBox_SavingsRate->Text);
+				 rates[CREDIT_CARD_RATE] = double::Parse(this->textBox_CreditRate->Text);
+				 rates[HOME_LOAN_RATE] = double::Parse(this->textBox_HomeLoanRate->Text);
+				 _as->setRates(rates);
 			 }
-private: System::Void menuStrip1_ItemClicked(System::Object^  sender, System::Windows::Forms::ToolStripItemClickedEventArgs^  e) {
-		 }
-};
+	};
 
 
 };

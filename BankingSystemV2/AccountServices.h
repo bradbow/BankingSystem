@@ -80,6 +80,12 @@ public:
 
 	void setDataSource(DataSource* ds){_ds = ds;}
 
+	double getSavingsInterestRate(){ return _ds->getSavingsInterestRate();}
+	double getCreditCardInterestRate(){ return _ds->getCreditCardInterestRate();}
+	double getHomeLoanInterestRate(){ return _ds->getHomeLoanInterestRate();}
+
+	void AccountServices::setRates(vector<double> rates);
+
 	// -------------------------------------------------------------------------------------------- //
 
 private:

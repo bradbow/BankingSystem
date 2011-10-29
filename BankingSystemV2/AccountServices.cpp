@@ -160,6 +160,18 @@ list<Account*> AccountServices::getCustomerAccounts(int customerId){
 }
 
 
+// sets the rates for bank accounts
+void AccountServices::setRates(vector<double> rates){
+	
+	enum{SAVINGS_RATE, CREDIT_CARD_RATE, HOME_LOAN_RATE};
+	
+	_ds->setSavingsInterestRate(rates[SAVINGS_RATE]);
+	_ds->setCreditCardInterestRate(rates[CREDIT_CARD_RATE]);
+	_ds->setHomeLoanInterestRate(rates[HOME_LOAN_RATE]);
+
+}
+
+
 
 
 
