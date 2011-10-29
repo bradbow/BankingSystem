@@ -17,6 +17,8 @@
 
 using namespace std;
 
+const double DEFAULT_BALANCE = 0.00;
+
 class AccountServices
 {
 public:
@@ -41,7 +43,7 @@ public:
 	int makeSavingsAccount 
 	(
 		string accountName, int customerId,
-        double interestRate, double balance
+        double interestRate, double balance = 0.00
 	);
 
 	// precondition: valid parameters passed in
@@ -84,8 +86,9 @@ public:
 	double getCreditCardInterestRate(){ return _ds->getCreditCardInterestRate();}
 	double getHomeLoanInterestRate(){ return _ds->getHomeLoanInterestRate();}
 
-	void AccountServices::setRates(vector<double> rates);
-
+	void setRates(vector<double> rates);
+	
+	double getDefaultBalance(){return DEFAULT_BALANCE;}
 	// -------------------------------------------------------------------------------------------- //
 
 private:

@@ -8,7 +8,6 @@
 #include "CreateSavingsAccountForm.h"
 #include <string>
 #include <sstream>
-#include <cliext\map>
 
 namespace BankingSystemV2 {
 
@@ -240,7 +239,8 @@ private:
 	System::Void createNewAccount(System::Object^  sender, System::EventArgs^  e) 
 	{
 		CreateSavingsAccountForm^ f = gcnew CreateSavingsAccountForm(_customer);
-		f->ShowDialog();
+		f->ShowDialog(this);
+		updateAccountsPanel();
 	}
 
 	// account changed event
@@ -294,6 +294,11 @@ private:
 
 	// ----------------------------------------------------------------------------------------- //
 	// Helper / Utiliy methods
+
+	void updateAccountsPanel()
+	{
+		MessageBox::Show(this, "finished");
+	}
 
 	void loadDetailsPane(Account* account)
 	{
@@ -391,6 +396,7 @@ private:
 		this->pnlCustomerAccounts->lblRepayment->Visible = true;
 		this->pnlCustomerAccounts->txtMinRepayment->Visible = true;
 	}
+
 
 };
 }

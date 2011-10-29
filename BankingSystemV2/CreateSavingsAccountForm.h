@@ -16,11 +16,14 @@ namespace BankingSystemV2 {
 	/// </summary>
 	public ref class CreateSavingsAccountForm : public System::Windows::Forms::Form
 	{
+	
+	
 	public:
 		CreateSavingsAccountForm(Customer* customer)
 		{
 			InitializeComponent();
 			_customer = customer;
+			_as = AccountServices::instance();
 		}
 
 	protected:
@@ -41,9 +44,6 @@ namespace BankingSystemV2 {
 	private: System::Windows::Forms::TextBox^  txtAccountName;
 	private: System::Windows::Forms::TextBox^  txtInterestRate;
 	private: System::Windows::Forms::TextBox^  txtBalance;
-
-
-
 	private: System::Windows::Forms::Button^  bnCreate;
 
 	private:
@@ -52,6 +52,7 @@ namespace BankingSystemV2 {
 		/// </summary>
 		System::ComponentModel::Container ^components;
 		Customer* _customer;
+		AccountServices* _as;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -143,6 +144,7 @@ namespace BankingSystemV2 {
 			this->Controls->Add(this->lblAccountName);
 			this->Name = L"CreateSavingsAccountForm";
 			this->Text = L"New Savings Account";
+			this->Load += gcnew System::EventHandler(this, &CreateSavingsAccountForm::CreateSavingsAccountForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -152,11 +154,30 @@ namespace BankingSystemV2 {
 		// ------------------------------------------------------------------------------------------- //
 		// event handlers
 
+		// form load, initialise fields
+		System::Void CreateSavingsAccountForm_Load(System::Object^  sender, System::EventArgs^  e) 
+		{
+			this->txtAccountName->Text = DotNetUtils::StdStringToSystemString(_customer->getName());
+			this->txtInterestRate->Text = _as->getSavingsInterestRate().ToString();
+			this->txtBalance->Text = _as->getDefaultBalance().ToString();
+		}
+
+		// create account event
 		System::Void bnCreate_Click(System::Object^  sender, System::EventArgs^  e) 
 		{
-			AccountServices* as = AccountServices::instance();
 			std::string accountName = DotNetUtils::SystemStringToStdString(this->txtAccountName->Text);
-			int accId = as->makeAccount(accountName
+			
+			int accId = _as->makeSavingsAccount
+								(
+									accountName,
+									_customer->getUserId(),
+									_as->getSavingsInterestRate()
+								);
+
+			MessageBox::Show(this, accId.ToString() + " created");
+			this->Close();
 		}
+
+	
 };
 }

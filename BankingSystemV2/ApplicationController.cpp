@@ -19,6 +19,7 @@ ApplicationController* ApplicationController::getInstance()
 	return _ac;
 }
 
+
 // --------------------------------------------------------------------------------------------- //
 // Data and services setting
 
