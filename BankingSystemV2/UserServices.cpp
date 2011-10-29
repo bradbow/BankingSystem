@@ -91,10 +91,13 @@ bool UserServices::deleteUser(int userID){
 // postcondition: old details are exchanged for new
 void UserServices::updateCustomerDetails(int userID, string details[]){
 
+	enum {NAME, ADDRESS, PHONE};
+	
 	Customer *update = dynamic_cast<Customer*>(_ds->getUser(userID));
-	update->setName(details[0]);
-	update->setPhoneNumber(details[1]);
-	update->setAddress(details[2]);
+	update->setName(details[NAME]);
+	update->setAddress(details[ADDRESS]);
+	update->setPhoneNumber(details[PHONE]);
+
 }
 
 // precondition: valid userID passed in
