@@ -93,8 +93,8 @@ void UserServices::updateCustomerDetails(int userID, string details[]){
 
 	Customer *update = dynamic_cast<Customer*>(_ds->getUser(userID));
 	update->setName(details[0]);
-	update->setAddress(details[1]);
-	update->setPhoneNumber(details[2]);
+	update->setPhoneNumber(details[1]);
+	update->setAddress(details[2]);
 }
 
 // precondition: valid userID passed in
