@@ -1,1 +1,0 @@
-static const char DATE_DELIMITER = '-';

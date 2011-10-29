@@ -362,11 +362,11 @@
     <ClInclude Include="SingleAccountTransactionForm.h">
       <Filter>Forms</Filter>
     </ClInclude>
-    <ClInclude Include="Delimiters.h">
-      <Filter>Persistence\Header</Filter>
-    </ClInclude>
     <ClInclude Include="MultipleAccountTransactionForm.h">
       <Filter>Forms</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalSettings.h">
+      <Filter>Persistence\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -397,6 +397,9 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="SingleAccountTransactionForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultipleAccountTransactionForm.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>
