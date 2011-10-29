@@ -60,10 +60,10 @@ public:
 	{
 		std::string str;
 		std::stringstream ss;
-		ss << setfill(' ') << setw(15) << left << _accountId;
-		ss << setw(25) << _accountTypeName;
-		ss << setw(40) << _accountName;
-		ss << setw(10) << right << fixed << setprecision(2) << "$ " << _balance;
+		ss << setfill(' ') << left << setw(15) << _accountId;
+		ss << setw(25) << left << "\t" << _accountTypeName;
+		ss << setw(40) << left << "\t" << _accountName;
+		ss << setw(10) << right << "\t" << fixed << setprecision(2) << "$ " << _balance;
 		getline(ss, str);
 		return str;
 	}
