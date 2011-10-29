@@ -2,6 +2,11 @@
 #include "PhraseGenerator.h"
 
 PhraseGenerator* PhraseGenerator::_pg = NULL;
+const int MAX_DIGIT = 9;
+const int UPPER_CASE_LB = 65;
+const int UPPER_CASE_UB = 90;
+const int LOWER_CASE_LB = 97;
+const int LOWER_CASE_UB = 122;
 
 // ----------------------------------------------------------------------------------------- //
 // instance retrieval
@@ -59,8 +64,18 @@ std::string PhraseGenerator::getAlphNumericPhrase(int numChars)
 	int chars = 0;
 	while (chars < numChars)
 	{
-		ss << getRandomChar();
-		chars++;
+		int upperOrLowerInt = rand() % MAX_DIGIT + 1;
+		char ch;
+		if (upperOrLowerInt % 2 == 0)
+		{
+			ss << getRandomChar();
+			chars++;
+		}
+		else 
+		{
+			ss << getRandomDigit();
+			chars++;
+		}
 	}
 
 	getline(ss, str);
@@ -92,11 +107,14 @@ char PhraseGenerator::getRandomChar()
 	char ch;
 	if (upperOrLowerInt % 2 == 0)
 	{
-		ch = (char)(rand() % UPPER_CASE_LB + UPPER_CASE_UB);
+		ch = (char)((rand() % (UPPER_CASE_UB - UPPER_CASE_LB)) + UPPER_CASE_LB);
+		
+		int i = UPPER_CASE_UB;
 	}
 	else 
 	{
-		ch = (char)(rand() % LOWER_CASE_LB + LOWER_CASE_UB);
+		ch = (char)((rand() % (LOWER_CASE_UB - LOWER_CASE_LB)) + LOWER_CASE_LB);
+		int i = LOWER_CASE_UB;
 	}
 
 	return ch;
