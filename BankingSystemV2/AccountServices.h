@@ -12,6 +12,8 @@
 #include "HomeLoanAccount.hpp"
 #include <vector>
 #include <string>
+#include <list>
+#include <set>
 
 using namespace std;
 
@@ -36,7 +38,7 @@ public:
 
 	// precondition: valid parameters passed in
 	// postcondition: a savings account is created and returned
-	void makeSavingsAccount 
+	int makeSavingsAccount 
 	(
 		string accountName, int customerId,
         double interestRate, double balance
@@ -44,7 +46,7 @@ public:
 
 	// precondition: valid parameters passed in
 	// postcondition: a credit account is created and returned
-	void makeCreditCardAccount 
+	int makeCreditCardAccount 
 	(
 		string accountName, int customerId,
         double interestRate, double balance,
@@ -53,7 +55,7 @@ public:
 
 	// precondition: valid parameters passed in
 	// postcondition: a home loan account is created and returned
-	void makeHomeLoanAccount 
+	int makeHomeLoanAccount 
 	(
 		string accountName, int customerId,
         double interestRate, double balance,
@@ -67,7 +69,11 @@ public:
 
 	// precondition: valid accountID passed in
 	// postcondition: Account matching accountID returned
-	static Account *getAccount(int accountID);
+	static Account *getAccount(int customerId);
+	
+	// precondition: valid customerId
+	// postcondition: returns a list of accounts
+	list<Account*> getCustomerAccounts(int customerId);
 
 	// return a string representation of the repayment option
 	static std::string repaymentOptionToString(HomeLoanAccount::RepaymentOption option);

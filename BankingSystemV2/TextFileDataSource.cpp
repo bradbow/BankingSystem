@@ -162,7 +162,7 @@ void TextFileDataSource::ConstructAndAddSavingsAccount(string line)
 	enum
 	{
 		ACCOUNT_ID,
-		CUSTOMER_ID,
+		//CUSTOMER_ID,
 		ACCOUNT_NAME,
 		INTEREST_RATE,
 		BALANCE,
@@ -177,7 +177,7 @@ void TextFileDataSource::ConstructAndAddSavingsAccount(string line)
 		SavingsAccount* sa = new SavingsAccount
 		(
 			TypeConv(lineSplit[ACCOUNT_ID]),
-			TypeConv(lineSplit[CUSTOMER_ID]),
+			//TypeConv(lineSplit[CUSTOMER_ID]),
 			lineSplit[ACCOUNT_NAME],
 			TypeConv(lineSplit[INTEREST_RATE]),
 			TypeConv(lineSplit[BALANCE])
@@ -197,7 +197,7 @@ void TextFileDataSource::ConstructAndAddCreditCardAccount(string line)
 	enum
 	{
 		ACCOUNT_ID,
-		CUSTOMER_ID,
+		//CUSTOMER_ID,
 		ACCOUNT_NAME,
 		INTEREST_RATE,
 		BALANCE,
@@ -213,7 +213,7 @@ void TextFileDataSource::ConstructAndAddCreditCardAccount(string line)
 		CreditCardAccount* cca = new CreditCardAccount
 		(
 			TypeConv(lineSplit[ACCOUNT_ID]),
-			TypeConv(lineSplit[CUSTOMER_ID]),
+			//TypeConv(lineSplit[CUSTOMER_ID]),
 			lineSplit[ACCOUNT_NAME],
 			TypeConv(lineSplit[INTEREST_RATE]),
 			TypeConv(lineSplit[BALANCE]),
@@ -233,7 +233,7 @@ void TextFileDataSource::ConstructAndAddHomeLoanAccount(string line)
 	enum
 	{
 		ACCOUNT_ID,
-		CUSTOMER_ID,
+		//CUSTOMER_ID,
 		ACCOUNT_NAME,
 		INTEREST_RATE,
 		BALANCE,
@@ -254,7 +254,7 @@ void TextFileDataSource::ConstructAndAddHomeLoanAccount(string line)
 		HomeLoanAccount* hla = new HomeLoanAccount
 		(
 			TypeConv(lineSplit[ACCOUNT_ID]),
-			TypeConv(lineSplit[CUSTOMER_ID]),
+			//TypeConv(lineSplit[CUSTOMER_ID]),
 			lineSplit[ACCOUNT_NAME],
 			TypeConv(lineSplit[INTEREST_RATE]),
 			TypeConv(lineSplit[BALANCE]),

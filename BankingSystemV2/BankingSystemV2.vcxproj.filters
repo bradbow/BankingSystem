@@ -36,9 +36,6 @@
     <Filter Include="Persistence\Header">
       <UniqueIdentifier>{e2db7ae5-32c3-4c1a-804f-89da02c20e37}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Persistence\Source">
-      <UniqueIdentifier>{1895b90a-e696-4070-bb7d-4d95de867375}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Transactions">
       <UniqueIdentifier>{9c49a851-bb4c-4cb3-ae7f-0a446a0ffcc7}</UniqueIdentifier>
     </Filter>
@@ -87,6 +84,9 @@
     </Filter>
     <Filter Include="Forms\Source">
       <UniqueIdentifier>{4288ddfe-bf32-4ae6-a587-7e5b4a2171b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Persistence\Source">
+      <UniqueIdentifier>{1895b90a-e696-4070-bb7d-4d95de867375}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

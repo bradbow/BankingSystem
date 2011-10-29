@@ -5,12 +5,12 @@
 
 DebitAccount::DebitAccount
 (
-	int accountId, int customerId, string accountName,
+	int accountId, string accountName,
 	double interestRate, double balance
 ) : 
 Account
 (
-	accountId, customerId, accountName, 
+	accountId, accountName, 
 	interestRate, balance
 ) {}
  
