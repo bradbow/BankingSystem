@@ -118,9 +118,6 @@
     <None Include="WithdrawalTransactions.txt">
       <Filter>Persistence\Data Files</Filter>
     </None>
-    <None Include="Rates.txt">
-      <Filter>Persistence\Data Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CreditAccount.cpp">

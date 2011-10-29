@@ -91,7 +91,6 @@
     <None Include="Customers.txt" />
     <None Include="DepositTransactions.txt" />
     <None Include="HomeLoanAccounts.txt" />
-    <None Include="Rates.txt" />
     <None Include="ReadMe.txt" />
     <None Include="SavingsAccounts.txt" />
     <None Include="TransferTransactions.txt" />
