@@ -55,6 +55,10 @@ public:
 	virtual void removeUser(int userId){_users.remove(userId);}
 	virtual void removeAccount(int accountId){_accounts.remove(accountId);}
 	virtual void removeTransaction(int transactionId){_transactions.remove(transactionId);}
+
+	// relational queries
+	virtual list<Account*> getAccountsForUser(int userId){list<Account*> dummy; return dummy;}
+	virtual list<Transaction*> getTransactionsForAccount(int accId){list<Transaction*> dummy; return dummy;}
 	
 	// methods for retreiving interest rates
 	virtual double getSavingsInterestRate(){return _savingsRate;}
