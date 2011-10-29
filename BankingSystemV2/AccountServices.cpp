@@ -114,6 +114,7 @@ int AccountServices::makeHomeLoanAccount (string accountName, int customerId,
 								minimumRepayment);
 
 								AccountServices::_ds->addAccount(&hla);
+								return accountId;
 }
 //
 // precondition: valid accountID with a zero balance is passed in
@@ -134,9 +135,11 @@ void AccountServices::closeAccount(int accountID){
 
 ////precondition: valid accountID passed in
 ////postcondition: Account matching accountID returned
-Account *AccountServices::getAccount(int customerID){
+Account *AccountServices::getAccount(int customerId){
 	
-	Account *account = _ds->getAccount(accountID);
+	// TODO Jeff: Invalid CustomerID Exception handling
+	
+	Account *account = _ds->getAccount(customerId);
 	return account;
 }
 
@@ -147,30 +150,14 @@ Account *AccountServices::getAccount(int customerID){
 //
 //// precondition: valid customerID passed in
 //// postcondition: list of accounts matching customerID returned
-list<Account*> AccountServices::getCustomerAccounts(int customerID){
+list<Account*> AccountServices::getCustomerAccounts(int customerId){
 	
-	list<Account*> allAccounts = ;
-	set<Account*>::iterator it;
+	// TODO Jeff: Invalid CustomerID Exception handling
 	
-	for(it = _ds::_accounts.begin(); it != _ds::_accounts.begin(); i++)
-	{
-		if(*it->)
-	
-	}
-	
-	for(it = customerAccountIDs.begin();it != customerAccountIDs.end(); it++){	
-		accounts.push_back(getAccount(*it));
-	}
+	list<Account*> accounts;
+	//accounts = _ds;
 	return accounts;
 }
 
-vector<Account*> AccountServices::getCustomerAccountsV(int customerID){
-	
-	vector<Account*> accounts;
-	set<int>::iterator it;
-	for(it = customerAccountIDs.begin();it != customerAccountIDs.end(); it++){	
-		accounts.push_back(getAccount(*it));
-	}
-	return accounts;
-}
+
 

@@ -208,6 +208,7 @@ namespace BankingSystemV2 {
 			this->menuStrip1->Size = System::Drawing::Size(634, 24);
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
+			this->menuStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &BankClerk_Form::menuStrip1_ItemClicked);
 			// 
 			// ToolStripMenuItem_logOut
 			// 
@@ -836,27 +837,12 @@ namespace BankingSystemV2 {
 
 				 listBox_AccountSelection->Items->Clear();
 
-				 //list<Account*> customerAccounts = _as->getCustomerAccounts(_customer->getAccounts());
-				 //list<Account>::iterator it;
-				 //for (it = customerAccounts.begin(); it != customerAccounts.end(); it++){
-				 //listBox_AccountSelection->Items->Add(
-				 //	*it.getAccountId();
-				 //	)
-				 //}
+				 list<Account*> customerAccounts = _as->getCustomerAccounts(_customer->getUserId());
 
-				 std::string str; System::String^ temp;
-				 set<int> accountIds = _customer->getAccounts();
-
-				 if(accountIds.empty()){return;}
-
-				 set<int>::iterator sit;
-				 for (sit = accountIds.begin(); sit != accountIds.end(); sit++)
-				 {
-					 Account* ap = _as->getAccount(*sit);
-					 if (!ap) continue;
-					 str = ap->getSummary();
-					 temp = gcnew String(str.c_str());
-					 this->listBox_AccountSelection->Items->Add(temp);
+				 list<Account*>::iterator it;
+				 for (it = customerAccounts.begin(); it != customerAccounts.end(); it++){
+				 
+					 listBox_AccountSelection->Items->Add((*it)->getAccountId());
 				 }
 			 }
 
@@ -1025,6 +1011,8 @@ namespace BankingSystemV2 {
 				double HomeLoanR = double::Parse(this->textBox_HomeLoanRate->Text);
 
 			 }
+private: System::Void menuStrip1_ItemClicked(System::Object^  sender, System::Windows::Forms::ToolStripItemClickedEventArgs^  e) {
+		 }
 };
 
 
