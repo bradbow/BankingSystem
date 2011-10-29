@@ -218,7 +218,8 @@ namespace BankingSystemV2 {
 			System::Void btnAction_Click(System::Object^  sender, System::EventArgs^  e) 
 			{
 				double amount = double::Parse(this->txtAmount->Text);
-				
+				bool success = true;
+
 				try
 				{
 				
@@ -255,7 +256,10 @@ namespace BankingSystemV2 {
 				catch (TransactionException e)
 				{
 					MessageBox::Show(this, DotNetUtils::StdStringToSystemString(e.getMessage()));
+					success = false;
 				}
+
+				if (success){this->Close();}
 			}
 
 #pragma endregion

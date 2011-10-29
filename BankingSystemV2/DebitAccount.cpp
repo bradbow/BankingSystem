@@ -25,7 +25,7 @@ void DebitAccount::applyInterest()
 void DebitAccount::deposit(double amount)
 {
 	
-	if (amount < 0) throw NegativeAmountException();
+	if (amount < 0) throw NegativeAmountException("Cannot deposit a negative amount");
 	setBalance(getBalance() + amount);
 
 }
@@ -33,8 +33,8 @@ void DebitAccount::deposit(double amount)
 void DebitAccount::withdraw(double amount)
 {
 
-	if (amount < 0) throw NegativeAmountException();
-	if (getBalance() - amount < 0) throw InsufficientFundsException();
+	if (amount < 0) throw NegativeAmountException("Cannot withdraw a negative amount");
+	if (getBalance() - amount < 0) throw InsufficientFundsException("Insuffiecient funds");
 	setBalance(getBalance() - amount);
 
 }
