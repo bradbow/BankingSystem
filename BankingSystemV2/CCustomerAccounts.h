@@ -78,12 +78,6 @@ namespace BankingSystemV2 {
 			this->grbxSummary = (gcnew System::Windows::Forms::GroupBox());
 			this->lbSummary = (gcnew System::Windows::Forms::ListBox());
 			this->grbxDetails = (gcnew System::Windows::Forms::GroupBox());
-			this->grbxTransactions = (gcnew System::Windows::Forms::GroupBox());
-			this->btnTransfer = (gcnew System::Windows::Forms::Button());
-			this->btnWithdraw = (gcnew System::Windows::Forms::Button());
-			this->btnDeposit = (gcnew System::Windows::Forms::Button());
-			this->lbTransactionHistory = (gcnew System::Windows::Forms::ListBox());
-			this->btnNewAccount = (gcnew System::Windows::Forms::Button());
 			this->txtMinRepayment = (gcnew System::Windows::Forms::TextBox());
 			this->txtPaymentOption = (gcnew System::Windows::Forms::TextBox());
 			this->txtAddress = (gcnew System::Windows::Forms::TextBox());
@@ -100,6 +94,12 @@ namespace BankingSystemV2 {
 			this->lblInterestRate = (gcnew System::Windows::Forms::Label());
 			this->lblAccountName = (gcnew System::Windows::Forms::Label());
 			this->lblAccountID = (gcnew System::Windows::Forms::Label());
+			this->grbxTransactions = (gcnew System::Windows::Forms::GroupBox());
+			this->btnTransfer = (gcnew System::Windows::Forms::Button());
+			this->btnWithdraw = (gcnew System::Windows::Forms::Button());
+			this->btnDeposit = (gcnew System::Windows::Forms::Button());
+			this->lbTransactionHistory = (gcnew System::Windows::Forms::ListBox());
+			this->btnNewAccount = (gcnew System::Windows::Forms::Button());
 			this->grbxSummary->SuspendLayout();
 			this->grbxDetails->SuspendLayout();
 			this->grbxTransactions->SuspendLayout();
@@ -147,6 +147,142 @@ namespace BankingSystemV2 {
 			this->grbxDetails->TabIndex = 1;
 			this->grbxDetails->TabStop = false;
 			this->grbxDetails->Text = L"Details";
+			// 
+			// txtMinRepayment
+			// 
+			this->txtMinRepayment->Enabled = false;
+			this->txtMinRepayment->Location = System::Drawing::Point(347, 99);
+			this->txtMinRepayment->Name = L"txtMinRepayment";
+			this->txtMinRepayment->Size = System::Drawing::Size(100, 20);
+			this->txtMinRepayment->TabIndex = 32;
+			// 
+			// txtPaymentOption
+			// 
+			this->txtPaymentOption->Enabled = false;
+			this->txtPaymentOption->Location = System::Drawing::Point(347, 61);
+			this->txtPaymentOption->Name = L"txtPaymentOption";
+			this->txtPaymentOption->Size = System::Drawing::Size(199, 20);
+			this->txtPaymentOption->TabIndex = 31;
+			// 
+			// txtAddress
+			// 
+			this->txtAddress->Enabled = false;
+			this->txtAddress->Location = System::Drawing::Point(347, 23);
+			this->txtAddress->Name = L"txtAddress";
+			this->txtAddress->Size = System::Drawing::Size(199, 20);
+			this->txtAddress->TabIndex = 30;
+			// 
+			// lblRepayment
+			// 
+			this->lblRepayment->AutoSize = true;
+			this->lblRepayment->Location = System::Drawing::Point(270, 102);
+			this->lblRepayment->Name = L"lblRepayment";
+			this->lblRepayment->Size = System::Drawing::Size(61, 13);
+			this->lblRepayment->TabIndex = 29;
+			this->lblRepayment->Text = L"Repayment";
+			// 
+			// lblOption
+			// 
+			this->lblOption->AutoSize = true;
+			this->lblOption->Location = System::Drawing::Point(249, 65);
+			this->lblOption->Name = L"lblOption";
+			this->lblOption->Size = System::Drawing::Size(82, 13);
+			this->lblOption->TabIndex = 28;
+			this->lblOption->Text = L"Payment Option";
+			// 
+			// lblAddress
+			// 
+			this->lblAddress->AutoSize = true;
+			this->lblAddress->Location = System::Drawing::Point(286, 26);
+			this->lblAddress->Name = L"lblAddress";
+			this->lblAddress->Size = System::Drawing::Size(45, 13);
+			this->lblAddress->TabIndex = 27;
+			this->lblAddress->Text = L"Address";
+			// 
+			// txtOverdraftLimit
+			// 
+			this->txtOverdraftLimit->Enabled = false;
+			this->txtOverdraftLimit->Location = System::Drawing::Point(93, 175);
+			this->txtOverdraftLimit->Name = L"txtOverdraftLimit";
+			this->txtOverdraftLimit->Size = System::Drawing::Size(101, 20);
+			this->txtOverdraftLimit->TabIndex = 26;
+			// 
+			// txtBalance
+			// 
+			this->txtBalance->Enabled = false;
+			this->txtBalance->Location = System::Drawing::Point(93, 137);
+			this->txtBalance->Name = L"txtBalance";
+			this->txtBalance->Size = System::Drawing::Size(101, 20);
+			this->txtBalance->TabIndex = 25;
+			// 
+			// txtInterestRate
+			// 
+			this->txtInterestRate->Enabled = false;
+			this->txtInterestRate->Location = System::Drawing::Point(93, 99);
+			this->txtInterestRate->Name = L"txtInterestRate";
+			this->txtInterestRate->Size = System::Drawing::Size(68, 20);
+			this->txtInterestRate->TabIndex = 24;
+			// 
+			// txtAccountName
+			// 
+			this->txtAccountName->Enabled = false;
+			this->txtAccountName->Location = System::Drawing::Point(93, 62);
+			this->txtAccountName->Name = L"txtAccountName";
+			this->txtAccountName->Size = System::Drawing::Size(150, 20);
+			this->txtAccountName->TabIndex = 23;
+			// 
+			// txtAccountId
+			// 
+			this->txtAccountId->Enabled = false;
+			this->txtAccountId->Location = System::Drawing::Point(93, 23);
+			this->txtAccountId->Name = L"txtAccountId";
+			this->txtAccountId->Size = System::Drawing::Size(150, 20);
+			this->txtAccountId->TabIndex = 22;
+			// 
+			// lblOverdraftLimit
+			// 
+			this->lblOverdraftLimit->AutoSize = true;
+			this->lblOverdraftLimit->Location = System::Drawing::Point(12, 178);
+			this->lblOverdraftLimit->Name = L"lblOverdraftLimit";
+			this->lblOverdraftLimit->Size = System::Drawing::Size(75, 13);
+			this->lblOverdraftLimit->TabIndex = 21;
+			this->lblOverdraftLimit->Text = L"Overdraft Limit";
+			// 
+			// lblBalance
+			// 
+			this->lblBalance->AutoSize = true;
+			this->lblBalance->Location = System::Drawing::Point(41, 140);
+			this->lblBalance->Name = L"lblBalance";
+			this->lblBalance->Size = System::Drawing::Size(46, 13);
+			this->lblBalance->TabIndex = 20;
+			this->lblBalance->Text = L"Balance";
+			// 
+			// lblInterestRate
+			// 
+			this->lblInterestRate->AutoSize = true;
+			this->lblInterestRate->Location = System::Drawing::Point(13, 102);
+			this->lblInterestRate->Name = L"lblInterestRate";
+			this->lblInterestRate->Size = System::Drawing::Size(74, 13);
+			this->lblInterestRate->TabIndex = 19;
+			this->lblInterestRate->Text = L"Intereset Rate";
+			// 
+			// lblAccountName
+			// 
+			this->lblAccountName->AutoSize = true;
+			this->lblAccountName->Location = System::Drawing::Point(9, 64);
+			this->lblAccountName->Name = L"lblAccountName";
+			this->lblAccountName->Size = System::Drawing::Size(78, 13);
+			this->lblAccountName->TabIndex = 18;
+			this->lblAccountName->Text = L"Account Name";
+			// 
+			// lblAccountID
+			// 
+			this->lblAccountID->AutoSize = true;
+			this->lblAccountID->Location = System::Drawing::Point(26, 26);
+			this->lblAccountID->Name = L"lblAccountID";
+			this->lblAccountID->Size = System::Drawing::Size(61, 13);
+			this->lblAccountID->TabIndex = 17;
+			this->lblAccountID->Text = L"Account ID";
 			// 
 			// grbxTransactions
 			// 
@@ -204,134 +340,6 @@ namespace BankingSystemV2 {
 			this->btnNewAccount->TabIndex = 3;
 			this->btnNewAccount->Text = L"Open New Account ...";
 			this->btnNewAccount->UseVisualStyleBackColor = true;
-			// 
-			// txtMinRepayment
-			// 
-			this->txtMinRepayment->Location = System::Drawing::Point(347, 99);
-			this->txtMinRepayment->Name = L"txtMinRepayment";
-			this->txtMinRepayment->Size = System::Drawing::Size(100, 20);
-			this->txtMinRepayment->TabIndex = 32;
-			// 
-			// txtPaymentOption
-			// 
-			this->txtPaymentOption->Location = System::Drawing::Point(347, 61);
-			this->txtPaymentOption->Name = L"txtPaymentOption";
-			this->txtPaymentOption->Size = System::Drawing::Size(199, 20);
-			this->txtPaymentOption->TabIndex = 31;
-			// 
-			// txtAddress
-			// 
-			this->txtAddress->Location = System::Drawing::Point(347, 23);
-			this->txtAddress->Name = L"txtAddress";
-			this->txtAddress->Size = System::Drawing::Size(199, 20);
-			this->txtAddress->TabIndex = 30;
-			// 
-			// lblRepayment
-			// 
-			this->lblRepayment->AutoSize = true;
-			this->lblRepayment->Location = System::Drawing::Point(270, 102);
-			this->lblRepayment->Name = L"lblRepayment";
-			this->lblRepayment->Size = System::Drawing::Size(61, 13);
-			this->lblRepayment->TabIndex = 29;
-			this->lblRepayment->Text = L"Repayment";
-			// 
-			// lblOption
-			// 
-			this->lblOption->AutoSize = true;
-			this->lblOption->Location = System::Drawing::Point(249, 65);
-			this->lblOption->Name = L"lblOption";
-			this->lblOption->Size = System::Drawing::Size(82, 13);
-			this->lblOption->TabIndex = 28;
-			this->lblOption->Text = L"Payment Option";
-			// 
-			// lblAddress
-			// 
-			this->lblAddress->AutoSize = true;
-			this->lblAddress->Location = System::Drawing::Point(286, 26);
-			this->lblAddress->Name = L"lblAddress";
-			this->lblAddress->Size = System::Drawing::Size(45, 13);
-			this->lblAddress->TabIndex = 27;
-			this->lblAddress->Text = L"Address";
-			// 
-			// txtOverdraftLimit
-			// 
-			this->txtOverdraftLimit->Location = System::Drawing::Point(93, 175);
-			this->txtOverdraftLimit->Name = L"txtOverdraftLimit";
-			this->txtOverdraftLimit->Size = System::Drawing::Size(101, 20);
-			this->txtOverdraftLimit->TabIndex = 26;
-			// 
-			// txtBalance
-			// 
-			this->txtBalance->Location = System::Drawing::Point(93, 137);
-			this->txtBalance->Name = L"txtBalance";
-			this->txtBalance->Size = System::Drawing::Size(101, 20);
-			this->txtBalance->TabIndex = 25;
-			// 
-			// txtInterestRate
-			// 
-			this->txtInterestRate->Location = System::Drawing::Point(93, 99);
-			this->txtInterestRate->Name = L"txtInterestRate";
-			this->txtInterestRate->Size = System::Drawing::Size(68, 20);
-			this->txtInterestRate->TabIndex = 24;
-			// 
-			// txtAccountName
-			// 
-			this->txtAccountName->Location = System::Drawing::Point(93, 62);
-			this->txtAccountName->Name = L"txtAccountName";
-			this->txtAccountName->Size = System::Drawing::Size(150, 20);
-			this->txtAccountName->TabIndex = 23;
-			// 
-			// txtAccountId
-			// 
-			this->txtAccountId->Location = System::Drawing::Point(93, 23);
-			this->txtAccountId->Name = L"txtAccountId";
-			this->txtAccountId->Size = System::Drawing::Size(150, 20);
-			this->txtAccountId->TabIndex = 22;
-			// 
-			// lblOverdraftLimit
-			// 
-			this->lblOverdraftLimit->AutoSize = true;
-			this->lblOverdraftLimit->Location = System::Drawing::Point(12, 178);
-			this->lblOverdraftLimit->Name = L"lblOverdraftLimit";
-			this->lblOverdraftLimit->Size = System::Drawing::Size(75, 13);
-			this->lblOverdraftLimit->TabIndex = 21;
-			this->lblOverdraftLimit->Text = L"Overdraft Limit";
-			// 
-			// lblBalance
-			// 
-			this->lblBalance->AutoSize = true;
-			this->lblBalance->Location = System::Drawing::Point(41, 140);
-			this->lblBalance->Name = L"lblBalance";
-			this->lblBalance->Size = System::Drawing::Size(46, 13);
-			this->lblBalance->TabIndex = 20;
-			this->lblBalance->Text = L"Balance";
-			// 
-			// lblInterestRate
-			// 
-			this->lblInterestRate->AutoSize = true;
-			this->lblInterestRate->Location = System::Drawing::Point(13, 102);
-			this->lblInterestRate->Name = L"lblInterestRate";
-			this->lblInterestRate->Size = System::Drawing::Size(74, 13);
-			this->lblInterestRate->TabIndex = 19;
-			this->lblInterestRate->Text = L"Intereset Rate";
-			// 
-			// lblAccountName
-			// 
-			this->lblAccountName->AutoSize = true;
-			this->lblAccountName->Location = System::Drawing::Point(9, 64);
-			this->lblAccountName->Name = L"lblAccountName";
-			this->lblAccountName->Size = System::Drawing::Size(78, 13);
-			this->lblAccountName->TabIndex = 18;
-			this->lblAccountName->Text = L"Account Name";
-			// 
-			// lblAccountID
-			// 
-			this->lblAccountID->AutoSize = true;
-			this->lblAccountID->Location = System::Drawing::Point(26, 26);
-			this->lblAccountID->Name = L"lblAccountID";
-			this->lblAccountID->Size = System::Drawing::Size(61, 13);
-			this->lblAccountID->TabIndex = 17;
-			this->lblAccountID->Text = L"Account ID";
 			// 
 			// CCustomerAccounts
 			// 

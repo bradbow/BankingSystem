@@ -24,15 +24,9 @@ public:
 	// ----------------------------------------------------------------------------------------- // 
 	// behaviours
 
-	virtual void execute();
-	virtual void rollback();
+	virtual void execute() throw (TransactionException);
+	virtual void rollback() throw (TransactionException);
 	virtual std::string toString();
-	
-	// ----------------------------------------------------------------------------------------- // 
-	// getters
-
-	Deposit* getDeposit(){return _deposit;}
-	Withdrawal* getWithdrawal(){return _withdrawal;}
 
 	// ----------------------------------------------------------------------------------------- // 
 
@@ -41,6 +35,8 @@ private:
 	// ----------------------------------------------------------------------------------------- // 
 	// data members
 
+	int _toAccId;
+	int _fromAccId;
 	Deposit* _deposit;
 	Withdrawal* _withdrawal;
 

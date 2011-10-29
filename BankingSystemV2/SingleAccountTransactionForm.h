@@ -3,6 +3,8 @@
 #include "HomeLoanAccount.hpp"
 #include "CreditCardAccount.hpp"
 #include "SavingsAccount.hpp"
+#include "Utils.h"
+#include "TransactionServices.h"
 
 namespace BankingSystemV2 {
 
@@ -20,8 +22,8 @@ namespace BankingSystemV2 {
 	{
 
 
-		static const int WITHDRAWAL = 0;
-		static const int DEPOSIT = 1;
+	public: static const int WITHDRAWAL = 0;
+	public: static const int DEPOSIT = 1;
 
 	public:
 		SingleAccountTransactionForm(Account* account, int type)
@@ -29,6 +31,7 @@ namespace BankingSystemV2 {
 			InitializeComponent();
 			_account = account;
 			_type = type;
+			 _ts = TransactionServices::instance();
 
 			if (_type == WITHDRAWAL)
 			{
@@ -60,6 +63,7 @@ namespace BankingSystemV2 {
 
 		Account* _account;
 		int _type;
+		TransactionServices* _ts;
 
 	private: System::Windows::Forms::Label^  lblAmount;
 	private: System::Windows::Forms::TextBox^  txtAmount;
@@ -199,7 +203,7 @@ namespace BankingSystemV2 {
 			this->Controls->Add(this->txtAmount);
 			this->Controls->Add(this->lblAmount);
 			this->Name = L"SingleAccountTransactionForm";
-			this->Text = L"SingleAccountTransactionForm";
+			this->Text = L"Transaction Portal";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -215,14 +219,42 @@ namespace BankingSystemV2 {
 			{
 				double amount = double::Parse(this->txtAmount->Text);
 				
-				if (_type == WITHDRAWAL)
+				try
 				{
-					DebitAccount* dap = dynamic_cast<DebitAccount*>(_account);
-					dap->withdraw(amount);
+				
+					if (_type == WITHDRAWAL)
+					{
+						
+						DebitAccount* dap = dynamic_cast<DebitAccount*>(_account);
+						Withdrawal* w = new Withdrawal
+							(
+								_ts->getNextTransactionId(),
+								amount,
+								_ts->getCurrentDate(DATE_DELIMITER),
+								_account->getAccountId()
+							);
+
+						w->execute();
+
+					}
+					else if (_type == DEPOSIT)
+					{
+						Deposit* d = new Deposit
+							(
+								_ts->getNextTransactionId(),
+								amount,
+								_ts->getCurrentDate(DATE_DELIMITER),
+								_account->getAccountId()
+							);
+
+						d->execute();
+
+					}
+
 				}
-				else if (_type == DEPOSIT)
+				catch (TransactionException e)
 				{
-					_account->deposit(amount);
+					MessageBox::Show(this, DotNetUtils::StdStringToSystemString(e.getMessage()));
 				}
 			}
 

@@ -14,6 +14,7 @@ public:
 
 	BaseException(void){}
 	BaseException(std::string msg){_msg = msg;}
+	std::string getMessage(){return _msg;}
 
 	// ----------------------------------------------------------------------------------------- // 
 
