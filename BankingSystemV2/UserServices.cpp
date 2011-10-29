@@ -94,6 +94,7 @@ void UserServices::updateCustomerDetails(int userID, string details[]){
 	enum {NAME, ADDRESS, PHONE};
 	
 	Customer *update = dynamic_cast<Customer*>(_ds->getUser(userID));
+
 	update->setName(details[NAME]);
 	update->setAddress(details[ADDRESS]);
 	update->setPhoneNumber(details[PHONE]);
