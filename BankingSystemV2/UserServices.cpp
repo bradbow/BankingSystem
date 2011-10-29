@@ -5,6 +5,7 @@
 
 
 #include "stdafx.h"
+#include "PhraseGenerator.h"
 
 UserServices* UserServices::_userServicesInstance = NULL;
 DataSource* UserServices::_ds = NULL;
@@ -110,32 +111,7 @@ User *UserServices::getUser(int userID){
 // returns a random alphanumerical password string
 string UserServices::generatePassword(void){
 
-	enum asciiType{NUMERAL, LOWER_CASE, UPPER_CASE};
-	enum asciiBounds{LOWER_BOUND, UPPER_BOUND};
-	int asciiBounds[UPPER_CASE][UPPER_BOUND];
-	asciiBounds[NUMERAL][LOWER_BOUND] = 48;
-	asciiBounds[NUMERAL][UPPER_BOUND] = 57;
-	asciiBounds[LOWER_CASE][LOWER_BOUND] = 65;
-	asciiBounds[LOWER_CASE][UPPER_BOUND] = 90;
-	asciiBounds[UPPER_CASE][LOWER_BOUND] = 97;
-	asciiBounds[UPPER_CASE][UPPER_BOUND] = 122;
-	
-	srand ( time(NULL) );
-	int asciiType;
-	string str;
-
-	for (int i = 0; i < PASSWORD_LENGTH; i++)
-	{
-		// generate random ascii type (numeral, lower case, upper case)
-		asciiType = rand() % UPPER_CASE;
-		// subtract lower from upper boundary to give range
-		int range = asciiBounds[asciiType][UPPER_BOUND] 
-		- asciiBounds[asciiType][LOWER_BOUND];
-		// create random number within range starting at lower boundary
-		// then cast to matching ascii character
-		str += (char)rand() % range + asciiBounds[asciiType][LOWER_BOUND];
-	}
-	return str;
+	return PhraseGenerator::instance()->getAlphNumericPhrase(PASSWORD_LENGTH);
 }
 
 

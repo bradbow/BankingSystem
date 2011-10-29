@@ -30,8 +30,6 @@ namespace BankingSystemV2 {
 			InitializeComponent();
 			_as = AccountServices::instance();
 			_us = UserServices::instance();
-
-
 		}
 
 	protected:

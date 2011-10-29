@@ -156,8 +156,7 @@ list<Account*> AccountServices::getCustomerAccounts(int customerId){
 	
 	// TODO Jeff: Invalid CustomerID Exception handling
 	
-	list<Account*> accounts;
-	//accounts = _ds;
+	list<Account*> accounts = _ds->getAccountsForUser(customerId) ;
 	return accounts;
 }
 
