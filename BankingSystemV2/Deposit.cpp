@@ -8,6 +8,7 @@ Deposit::Deposit
 ) : Transaction(id, amount, dt)
 {
 	_transactionType = "Deposit";
+	_accountId = accountId;
 }
 
 // ----------------------------------------------------------------------------------------- // 

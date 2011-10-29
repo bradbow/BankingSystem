@@ -3,6 +3,7 @@
 // forward declaration to avoid circular ref.
 class Transaction;
 class DataSource;
+#include <list>
 
 class TransactionServices
 {
@@ -24,6 +25,8 @@ public:
 	static void setDataSource(DataSource* ds){_ds = ds;}
 
 	static int getNextTransactionId();
+
+	static list<Transaction*> getTransactionsForAccount(int accId);
 
 	static void deposit(int accId, double amount) throw (TransactionException);
 	static void withdraw(int accId, double amount) throw (TransactionException);

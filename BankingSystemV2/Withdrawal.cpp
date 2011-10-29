@@ -9,6 +9,7 @@ Withdrawal::Withdrawal
 ) : Transaction(id, amount, dt)
 {
 	_transactionType = "Withdrawal";
+	_accountId = accountId;
 }
 
 // ----------------------------------------------------------------------------------------- // 
