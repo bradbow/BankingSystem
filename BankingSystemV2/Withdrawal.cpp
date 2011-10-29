@@ -24,3 +24,15 @@ void Withdrawal::rollback()
 {
 	_ts->revert(this);
 }
+
+std::string Withdrawal::toString()
+{
+	std::string str;
+	stringstream ss;
+	ss << _id << ",";
+	ss << _amount << ",";
+	ss << _date.getDateString() << ",";
+	ss << _accountId;
+	getline(ss, str);
+	return str;
+}

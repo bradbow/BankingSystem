@@ -7,7 +7,7 @@
 #include "User.h"
 #include "Account.h"
 #include "Transaction.h"
-#include <vector>
+#include <list>
 
 class DataSource
 {
@@ -49,6 +49,10 @@ public:
 	virtual double getSavingsInterestRate() = 0;
 	virtual double getCreditCardInterestRate() = 0;
 	virtual double getHomeLoanInterestRate() = 0;
+
+	// relational queries
+	virtual list<Account*> getAccountsForUser(int userId) = 0;
+	virtual list<Transaction*> getTransactionsForAccount(int accId) = 0;
 
 	// methods for setting global interest rates
 	virtual void setSavingsInterestRate(double value) = 0;

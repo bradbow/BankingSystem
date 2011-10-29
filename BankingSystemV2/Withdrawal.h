@@ -20,6 +20,7 @@ public:
 	// behaviours
 	virtual void execute();
 	virtual void rollback();
+	virtual std::string toString();
 
 	// ----------------------------------------------------------------------------------------- // 
 	// getters
