@@ -36,7 +36,7 @@ AccountServices *AccountServices::instance(void){
 
 // precondition: valid parameters passed in
 // postcondition: a savings account is created and returned
-void AccountServices::makeSavingsAccount 
+int AccountServices::makeSavingsAccount 
 (
 	string accountName, int customerId,
 	double interestRate, double balance
@@ -46,12 +46,13 @@ void AccountServices::makeSavingsAccount
 	int accountId = getNextAccountId();
 	SavingsAccount sa (accountId, accountName, interestRate);
 	AccountServices::_ds->addAccount(&sa);
+	return accountId;
 
 }
 
 // precondition: valid parameters passed in 
 // postcondition: a credit account is created and returned
-void AccountServices::makeCreditCardAccount 
+int AccountServices::makeCreditCardAccount 
 (
     string accountName, int customerId,
     double interestRate, double balance,
@@ -70,6 +71,7 @@ void AccountServices::makeCreditCardAccount
 		);
 
 	AccountServices::_ds->addAccount(&cca);
+	return accountId;
 
 }
 
@@ -94,7 +96,7 @@ std::string AccountServices::repaymentOptionToString(HomeLoanAccount::RepaymentO
 
 //// precondition: valid parameters passed in
 //// postcondition: a home loan account is created and returned
-void AccountServices::makeHomeLoanAccount (string accountName, int customerId, 
+int AccountServices::makeHomeLoanAccount (string accountName, int customerId, 
                                    double interestRate, double balance,
                                    string propertyAddress, 
                                    HomeLoanAccount::RepaymentOption option, 
@@ -132,7 +134,7 @@ void AccountServices::closeAccount(int accountID){
 
 ////precondition: valid accountID passed in
 ////postcondition: Account matching accountID returned
-Account *AccountServices::getAccount(int accountID){
+Account *AccountServices::getAccount(int customerID){
 	
 	Account *account = _ds->getAccount(accountID);
 	return account;
@@ -145,17 +147,24 @@ Account *AccountServices::getAccount(int accountID){
 //
 //// precondition: valid customerID passed in
 //// postcondition: list of accounts matching customerID returned
-list<Account*> AccountServices::getCustomerAccounts(set<int> customerAccountIDs){
+list<Account*> AccountServices::getCustomerAccounts(int customerID){
 	
-	list<Account*> accounts;
-	set<int>::iterator it;
+	list<Account*> allAccounts = ;
+	set<Account*>::iterator it;
+	
+	for(it = _ds::_accounts.begin(); it != _ds::_accounts.begin(); i++)
+	{
+		if(*it->)
+	
+	}
+	
 	for(it = customerAccountIDs.begin();it != customerAccountIDs.end(); it++){	
 		accounts.push_back(getAccount(*it));
 	}
 	return accounts;
 }
 
-vector<Account*> AccountServices::getCustomerAccountsV(set<int> customerAccountIDs){
+vector<Account*> AccountServices::getCustomerAccountsV(int customerID){
 	
 	vector<Account*> accounts;
 	set<int>::iterator it;

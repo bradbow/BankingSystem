@@ -38,7 +38,7 @@ public:
 
 	// precondition: valid parameters passed in
 	// postcondition: a savings account is created and returned
-	void makeSavingsAccount 
+	int makeSavingsAccount 
 	(
 		string accountName, int customerId,
         double interestRate, double balance
@@ -46,7 +46,7 @@ public:
 
 	// precondition: valid parameters passed in
 	// postcondition: a credit account is created and returned
-	void makeCreditCardAccount 
+	int makeCreditCardAccount 
 	(
 		string accountName, int customerId,
         double interestRate, double balance,
@@ -55,7 +55,7 @@ public:
 
 	// precondition: valid parameters passed in
 	// postcondition: a home loan account is created and returned
-	void makeHomeLoanAccount 
+	int makeHomeLoanAccount 
 	(
 		string accountName, int customerId,
         double interestRate, double balance,
