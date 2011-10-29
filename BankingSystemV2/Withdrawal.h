@@ -14,7 +14,7 @@ public:
 	// ----------------------------------------------------------------------------------------- // 
 	// constructors / destructors
 
-	Withdrawal(int id, double amount, int customerId, Date dt, int accountId);
+	Withdrawal(int id, double amount, Date dt, int accountId);
 
 	// ----------------------------------------------------------------------------------------- // 
 	// behaviours
@@ -24,7 +24,8 @@ public:
 	// ----------------------------------------------------------------------------------------- // 
 	// getters
 
-	DebitAccount* getAccount(){return _account;}
+	double getPreTransactionBalance(){return _preTransactionBalance;}
+	int getAccountId(){return _accountId;}
 
 	// ----------------------------------------------------------------------------------------- // 
 
@@ -33,7 +34,7 @@ private:
 	// ----------------------------------------------------------------------------------------- // 
 	// data members
 
-	DebitAccount* _account;
+	int _accountId;
 	double _preTransactionBalance;
 
 	// ----------------------------------------------------------------------------------------- // 

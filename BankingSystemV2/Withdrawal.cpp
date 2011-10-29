@@ -5,13 +5,10 @@
 
 Withdrawal::Withdrawal
 (
-	int id, double amount, int customerId, 
-	Date dt, int accountId
-) : Transaction(id, amount, customerId, dt)
+	int id, double amount, Date dt, int accountId
+) : Transaction(id, amount, dt)
 {
-	_transactionType = "Deposit";
-	//_preTransactionBalance = _account->getBalance();
-
+	_transactionType = "Withdrawal";
 }
 
 // ----------------------------------------------------------------------------------------- // 
@@ -19,10 +16,11 @@ Withdrawal::Withdrawal
 
 void Withdrawal::execute()
 {
-	//_account->withdraw(_amount);
+	_preTransactionBalance = _ts->getPreTransactionBalance(_accountId);
+	_ts->deposit(_accountId, _amount);
 }
 
 void Withdrawal::rollback()
 {
-	//_account->setBalance(_preTransactionBalance);
+	_ts->revert(this);
 }

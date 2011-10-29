@@ -16,7 +16,7 @@ public:
 	
 	Transfer
 	(
-		int id, double amount, int customerId, Date dt, 
+		int id, double amount, Date dt, 
 		int toAccId, int fromAccId
 	);
 
@@ -29,8 +29,8 @@ public:
 	// ----------------------------------------------------------------------------------------- // 
 	// getters
 
-	int getToAccountId(){return _toAccountId;}
-	int getFromAccountId(){return _fromAccountId;}
+	Deposit* getDeposit(){return _deposit;}
+	Withdrawal* getWithdrawal(){return _withdrawal;}
 
 	// ----------------------------------------------------------------------------------------- // 
 
@@ -39,10 +39,8 @@ private:
 	// ----------------------------------------------------------------------------------------- // 
 	// data members
 
-	int _fromAccountId;
-	int _toAccountId;
-	double _preFromAccountBalance;
-	double _preToAccountBalance;
+	Deposit* _deposit;
+	Withdrawal* _withdrawal;
 
 	// ----------------------------------------------------------------------------------------- // 
 	

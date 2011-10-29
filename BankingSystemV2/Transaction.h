@@ -6,6 +6,7 @@
 #include "stdafx.h"
 #include <sstream>
 #include "Date.h"
+#include "TransactionServices.h"
 
 class Transaction
 {
@@ -14,12 +15,12 @@ public:
 	// ----------------------------------------------------------------------------------------- // 
 	// Constructors / Destruction
 
-	Transaction (int id, double amount, int customerId, Date dt)
+	Transaction (int id, double amount, Date dt)
 	{
 		_id = id; 
 		_amount = amount; 
-		_customerId = customerId; 
 		_date = dt;
+		_ts = TransactionServices::instance();
 	}
 
 	// ----------------------------------------------------------------------------------------- // 
@@ -45,7 +46,6 @@ public:
 
 	int getId(){return _id;}
 	double getAmount(){return _amount;}
-	int getCustomerId(){return _customerId;}
 	Date getDate(){return _date;}
 
 	// ----------------------------------------------------------------------------------------- // 
@@ -57,9 +57,9 @@ protected:
 
 	int _id;
 	double _amount;
-	int _customerId;
 	Date _date;
 	std::string _transactionType;
+	TransactionServices* _ts;
 
 	// ----------------------------------------------------------------------------------------- // 
 
