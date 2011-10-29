@@ -126,9 +126,9 @@ namespace BankingSystemV2 {
 	private: System::Windows::Forms::Label^  label_CreditBalance;
 	private: System::Windows::Forms::Label^  label_HomeLoanBalance;
 	private: System::Windows::Forms::TextBox^  textBox_HomeLoanBalance;
-private: System::Windows::Forms::Label^  label_HomeLoanInterest;
-private: System::Windows::Forms::TextBox^  textBox_HomeLoanInterest;
-		 System::ComponentModel::Container ^components;
+	private: System::Windows::Forms::Label^  label_HomeLoanInterest;
+	private: System::Windows::Forms::TextBox^  textBox_HomeLoanInterest;
+			 System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 			 /// <summary>
@@ -189,6 +189,8 @@ private: System::Windows::Forms::TextBox^  textBox_HomeLoanInterest;
 				 this->label_CCAccountName = (gcnew System::Windows::Forms::Label());
 				 this->textBox_CCAccountName = (gcnew System::Windows::Forms::TextBox());
 				 this->tabPage_CreateHomeLoan = (gcnew System::Windows::Forms::TabPage());
+				 this->label_HomeLoanInterest = (gcnew System::Windows::Forms::Label());
+				 this->textBox_HomeLoanInterest = (gcnew System::Windows::Forms::TextBox());
 				 this->label_HomeLoanBalance = (gcnew System::Windows::Forms::Label());
 				 this->textBox_HomeLoanBalance = (gcnew System::Windows::Forms::TextBox());
 				 this->button_CHLCreateAccount = (gcnew System::Windows::Forms::Button());
@@ -205,8 +207,6 @@ private: System::Windows::Forms::TextBox^  textBox_HomeLoanInterest;
 				 this->tabPage_SetInterest = (gcnew System::Windows::Forms::TabPage());
 				 this->tabPage_Admin = (gcnew System::Windows::Forms::TabPage());
 				 this->passwordChange1 = (gcnew BankingSystemV2::CPasswordChange());
-				 this->textBox_HomeLoanInterest = (gcnew System::Windows::Forms::TextBox());
-				 this->label_HomeLoanInterest = (gcnew System::Windows::Forms::Label());
 				 this->menuStrip1->SuspendLayout();
 				 this->panel_AdjustInteresttRate->SuspendLayout();
 				 this->panel_CustomerAcc->SuspendLayout();
@@ -742,6 +742,22 @@ private: System::Windows::Forms::TextBox^  textBox_HomeLoanInterest;
 				 this->tabPage_CreateHomeLoan->TabIndex = 3;
 				 this->tabPage_CreateHomeLoan->Text = L"Create Home Loan";
 				 // 
+				 // label_HomeLoanInterest
+				 // 
+				 this->label_HomeLoanInterest->AutoSize = true;
+				 this->label_HomeLoanInterest->Location = System::Drawing::Point(40, 73);
+				 this->label_HomeLoanInterest->Name = L"label_HomeLoanInterest";
+				 this->label_HomeLoanInterest->Size = System::Drawing::Size(45, 13);
+				 this->label_HomeLoanInterest->TabIndex = 14;
+				 this->label_HomeLoanInterest->Text = L"Interest:";
+				 // 
+				 // textBox_HomeLoanInterest
+				 // 
+				 this->textBox_HomeLoanInterest->Location = System::Drawing::Point(87, 71);
+				 this->textBox_HomeLoanInterest->Name = L"textBox_HomeLoanInterest";
+				 this->textBox_HomeLoanInterest->Size = System::Drawing::Size(100, 20);
+				 this->textBox_HomeLoanInterest->TabIndex = 13;
+				 // 
 				 // label_HomeLoanBalance
 				 // 
 				 this->label_HomeLoanBalance->AutoSize = true;
@@ -879,22 +895,7 @@ private: System::Windows::Forms::TextBox^  textBox_HomeLoanInterest;
 				 this->passwordChange1->Name = L"passwordChange1";
 				 this->passwordChange1->Size = System::Drawing::Size(620, 347);
 				 this->passwordChange1->TabIndex = 4;
-				 // 
-				 // textBox_HomeLoanInterest
-				 // 
-				 this->textBox_HomeLoanInterest->Location = System::Drawing::Point(87, 71);
-				 this->textBox_HomeLoanInterest->Name = L"textBox_HomeLoanInterest";
-				 this->textBox_HomeLoanInterest->Size = System::Drawing::Size(100, 20);
-				 this->textBox_HomeLoanInterest->TabIndex = 13;
-				 // 
-				 // label_HomeLoanInterest
-				 // 
-				 this->label_HomeLoanInterest->AutoSize = true;
-				 this->label_HomeLoanInterest->Location = System::Drawing::Point(40, 73);
-				 this->label_HomeLoanInterest->Name = L"label_HomeLoanInterest";
-				 this->label_HomeLoanInterest->Size = System::Drawing::Size(45, 13);
-				 this->label_HomeLoanInterest->TabIndex = 14;
-				 this->label_HomeLoanInterest->Text = L"Interest:";
+				 this->passwordChange1->Load += gcnew System::EventHandler(this, &BankClerk_Form::passwordChange1_Load);
 				 // 
 				 // BankClerk_Form
 				 // 
@@ -949,6 +950,10 @@ private: System::Windows::Forms::TextBox^  textBox_HomeLoanInterest;
 			 // loads a customers details to the details panel
 	private: System::Void loadCustomerDetails(){
 
+				 if(_customer == NULL){
+					 return;
+				 }
+
 				 clearCustomerDetails();
 				 this->textBox_Phone->Clear();
 				 this->textBox_Address->Clear();
@@ -967,6 +972,11 @@ private: System::Windows::Forms::TextBox^  textBox_HomeLoanInterest;
 
 			 // loads a customers acccount list to the accounts list box
 	private: System::Void loadCustomerAccounts(){
+
+				 if(_customer == NULL){
+					 return;
+				 }
+
 
 				 listBox_AccountSelection->Items->Clear();
 
@@ -1009,7 +1019,7 @@ private: System::Windows::Forms::TextBox^  textBox_HomeLoanInterest;
 
 	private: System::Void loadCreateCreditPanel(){
 
-clearCreateCreditPanel();
+				 clearCreateCreditPanel();
 				 this->textBox_CCAccountName->Text = DotNetUtils::StdStringToSystemString(_customer->getName());
 				 this->textBox_CreditInterestRate->Text = _as->getCreditCardInterestRate().ToString();
 				 this->textBox_CCOverdraft->Text = ("0");
@@ -1019,24 +1029,40 @@ clearCreateCreditPanel();
 
 
 	private: System::Void clearCreateHomeLoanPanel(){
-			 
-			 this->textBox_CHLAccountName->Clear();
-			 this->textBox_PropertyAddress->Clear();
-			 this->textBox_HomeLoanInterest->Clear();
+
+				 this->textBox_CHLAccountName->Clear();
+				 this->textBox_PropertyAddress->Clear();
+				 this->textBox_HomeLoanInterest->Clear();
 				 this->textBox_CHLAmount->Clear();
 				 this->textBox_MinRepayment->Clear();
 				 this->listBox_RepaymentOption->SelectedIndex = 0;
 				 this->textBox_HomeLoanBalance->Clear();
-			 
+
 			 }
 
 	private: System::Void loadCreateHomeLoanPanel(){
 
 				 clearCreateHomeLoanPanel();
-			this->textBox_CHLAccountName->Text = DotNetUtils::StdStringToSystemString(_customer->getName());
-			this->textBox_HomeLoanInterest->Text = _as->getHomeLoanInterestRate().ToString();
+				 this->textBox_CHLAccountName->Text = DotNetUtils::StdStringToSystemString(_customer->getName());
+				 this->textBox_HomeLoanInterest->Text = _as->getHomeLoanInterestRate().ToString();
 				 this->textBox_HomeLoanBalance->Text = (_as->getDefaultBalance().ToString());
 				 this->textBox_HomeLoanBalance->Enabled = false;
+			 }
+
+			 private: System::Void clearRatesPanel(){
+
+				 this->textBox_SavingsRate->Clear();
+				 this->textBox_CreditRate->Clear();
+				 this->textBox_HomeLoanRate->Clear();
+			 }
+
+			 private: System::Void loadRatesPanel(){
+
+				 clearRatesPanel();
+				 this->textBox_SavingsRate->Text = _as->getSavingsInterestRate().ToString();
+				 this->textBox_CreditRate->Text = _as->getCreditCardInterestRate().ToString();
+				 this->textBox_HomeLoanRate->Text = _as->getHomeLoanInterestRate().ToString();
+
 			 }
 
 
@@ -1081,8 +1107,6 @@ clearCreateCreditPanel();
 
 	private: System::Void button_CustomerSearch_Click(System::Object^  sender, System::EventArgs^  e) {
 
-				 //hideAllPanels();
-				 //this->CustomerAccPanel
 
 				 // check for empty values
 				 if (this->textBox_CustomerId->Text == "" || this->textBox_CustomerId->Text == "")
@@ -1155,7 +1179,7 @@ clearCreateCreditPanel();
 
 			 // creates a savings account in selected customers name
 	private: System::Void button_CreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {	 
-				 
+
 				 int accountId = _as->makeSavingsAccount(
 					 DotNetUtils::SystemStringToStdString(this->textBox_CSAccountName->Text), 
 					 _customer->getUserId(), 
@@ -1168,7 +1192,7 @@ clearCreateCreditPanel();
 
 			 // creates a credit account in selected customers name
 	private: System::Void button_CCCreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {		 
-				 
+
 				 int accountId = _as->makeCreditCardAccount(
 					 DotNetUtils::SystemStringToStdString(this->textBox_CCAccountName->Text),
 					 _customer->getUserId(),
@@ -1182,8 +1206,8 @@ clearCreateCreditPanel();
 
 			 // creates a home loan account in selected customers name
 	private: System::Void button_CHLCreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {
-			 
-				 
+
+
 				 int accountId = _as->makeHomeLoanAccount(
 					 DotNetUtils::SystemStringToStdString(this->textBox_CHLAccountName->Text), 
 					 _customer->getUserId(), 
@@ -1207,30 +1231,57 @@ clearCreateCreditPanel();
 				 rates[HOME_LOAN_RATE] = double::Parse(this->textBox_HomeLoanRate->Text);
 				 _as->setRates(rates);
 			 }
-	private: 
 
-		// user changed tabs...
-		System::Void tabControl_BCCustomer_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+			 // user changed tabs...
+	private: System::Void tabControl_BCCustomer_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 
-			enum{DETAILS, SAVINGS, CREDIT, HOME_LOAN};
+				 enum{DETAILS, SAVINGS, CREDIT, HOME_LOAN};
 
-			int index = this->tabControl_BCCustomer->SelectedIndex;
-			switch (index)
-			{
-			case DETAILS:
-				loadCustomerDetails();
-				break;
-			case SAVINGS:
-				loadCreateSavingsPanel();
-				break;
-			case CREDIT:
-				loadCreateCreditPanel();
-				break;
-			case HOME_LOAN:
-				loadCreateHomeLoanPanel();
-				break;
-			}
-		}
+				 int index = this->tabControl_BCCustomer->SelectedIndex;
+				 switch (index)
+				 {
+				 case DETAILS:
+					 loadCustomerDetails();
+					 break;
+				 case SAVINGS:
+					 loadCreateSavingsPanel();
+					 break;
+				 case CREDIT:
+					 loadCreateCreditPanel();
+					 break;
+				 case HOME_LOAN:
+					 loadCreateHomeLoanPanel();
+					 break;
+				 }
+			 }
+
+	private: System::Void tabControl_SelectIndexChanged(System::Object^  sender, System::EventArgs^  e){
+
+				 enum{CUSTOMER, RATES, ADMIN};
+				 int index = this->tabControl->SelectedIndex;
+
+				 switch(index)
+				 {
+				 case CUSTOMER:
+					 loadCustomerDetails();
+					 loadCustomerAccounts();
+					 break;
+				 case RATES:
+					 loadRatesPanel();
+					 break;
+				 case ADMIN:
+
+					 break;
+				 }
+
+			 }
+
+
+	private: System::Void passwordChange1_Load(System::Object^  sender, System::EventArgs^  e) {
+
+
+
+			 }
 	};
 
 
