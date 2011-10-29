@@ -122,6 +122,7 @@
     <ClCompile Include="DebitAccount.cpp" />
     <ClCompile Include="Deposit.cpp" />
     <ClCompile Include="LoginForm.cpp" />
+    <ClCompile Include="PhraseGenerator.cpp" />
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -192,6 +193,7 @@
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="PhraseGenerator.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SavingsAccount.hpp" />
     <ClInclude Include="Session.h" />
