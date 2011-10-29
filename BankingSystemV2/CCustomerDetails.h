@@ -49,7 +49,8 @@ namespace BankingSystemV2 {
 	public: System::Windows::Forms::Label^  lblCustomerAddress;
 	public: System::Windows::Forms::Label^  lblCustomerName;
 	public: System::Windows::Forms::GroupBox^  grbxPassword;
-	public: System::Windows::Forms::Button^  btnChangePassword;
+	public: System::Windows::Forms::Button^  btnResetPassword;
+
 	public: System::Windows::Forms::Label^  lblConfirmPassword;
 	public: System::Windows::Forms::Label^  lblPassword;
 	public: System::Windows::Forms::TextBox^  txtPassword;
@@ -78,7 +79,7 @@ namespace BankingSystemV2 {
 			this->lblCustomerAddress = (gcnew System::Windows::Forms::Label());
 			this->lblCustomerName = (gcnew System::Windows::Forms::Label());
 			this->grbxPassword = (gcnew System::Windows::Forms::GroupBox());
-			this->btnChangePassword = (gcnew System::Windows::Forms::Button());
+			this->btnResetPassword = (gcnew System::Windows::Forms::Button());
 			this->lblConfirmPassword = (gcnew System::Windows::Forms::Label());
 			this->lblPassword = (gcnew System::Windows::Forms::Label());
 			this->txtConfirmPassword = (gcnew System::Windows::Forms::TextBox());
@@ -128,6 +129,7 @@ namespace BankingSystemV2 {
 			// 
 			// txtCustomerName
 			// 
+			this->txtCustomerName->Enabled = false;
 			this->txtCustomerName->Location = System::Drawing::Point(131, 27);
 			this->txtCustomerName->Name = L"txtCustomerName";
 			this->txtCustomerName->Size = System::Drawing::Size(297, 20);
@@ -162,7 +164,7 @@ namespace BankingSystemV2 {
 			// 
 			// grbxPassword
 			// 
-			this->grbxPassword->Controls->Add(this->btnChangePassword);
+			this->grbxPassword->Controls->Add(this->btnResetPassword);
 			this->grbxPassword->Controls->Add(this->lblConfirmPassword);
 			this->grbxPassword->Controls->Add(this->lblPassword);
 			this->grbxPassword->Controls->Add(this->txtConfirmPassword);
@@ -174,14 +176,14 @@ namespace BankingSystemV2 {
 			this->grbxPassword->TabStop = false;
 			this->grbxPassword->Text = L"Password";
 			// 
-			// btnChangePassword
+			// btnResetPassword
 			// 
-			this->btnChangePassword->Location = System::Drawing::Point(176, 111);
-			this->btnChangePassword->Name = L"btnChangePassword";
-			this->btnChangePassword->Size = System::Drawing::Size(103, 23);
-			this->btnChangePassword->TabIndex = 6;
-			this->btnChangePassword->Text = L"Change Password";
-			this->btnChangePassword->UseVisualStyleBackColor = true;
+			this->btnResetPassword->Location = System::Drawing::Point(176, 111);
+			this->btnResetPassword->Name = L"btnResetPassword";
+			this->btnResetPassword->Size = System::Drawing::Size(103, 23);
+			this->btnResetPassword->TabIndex = 6;
+			this->btnResetPassword->Text = L"Change Password";
+			this->btnResetPassword->UseVisualStyleBackColor = true;
 			// 
 			// lblConfirmPassword
 			// 
@@ -205,6 +207,7 @@ namespace BankingSystemV2 {
 			// 
 			this->txtConfirmPassword->Location = System::Drawing::Point(138, 74);
 			this->txtConfirmPassword->Name = L"txtConfirmPassword";
+			this->txtConfirmPassword->PasswordChar = '*';
 			this->txtConfirmPassword->Size = System::Drawing::Size(290, 20);
 			this->txtConfirmPassword->TabIndex = 5;
 			// 
@@ -212,6 +215,7 @@ namespace BankingSystemV2 {
 			// 
 			this->txtPassword->Location = System::Drawing::Point(138, 31);
 			this->txtPassword->Name = L"txtPassword";
+			this->txtPassword->PasswordChar = '*';
 			this->txtPassword->Size = System::Drawing::Size(290, 20);
 			this->txtPassword->TabIndex = 4;
 			// 

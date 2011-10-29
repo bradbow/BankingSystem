@@ -210,14 +210,17 @@
     <ClCompile Include="Customer_Form.cpp">
       <Filter>Forms\Source</Filter>
     </ClCompile>
-    <ClCompile Include="CCustomerAccounts.cpp">
-      <Filter>User Controls</Filter>
-    </ClCompile>
     <ClCompile Include="CCustomerDetails.cpp">
       <Filter>User Controls\Source</Filter>
     </ClCompile>
     <ClCompile Include="TransactionServices.cpp">
       <Filter>Transactions\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CCustomerAccounts.cpp">
+      <Filter>User Controls\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateSavingsAccountForm.cpp">
+      <Filter>Forms\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -340,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="TransactionServices.h">
       <Filter>Transactions\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CreateSavingsAccountForm.h">
+      <Filter>Forms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
