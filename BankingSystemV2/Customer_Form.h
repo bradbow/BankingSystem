@@ -259,6 +259,9 @@ private:
 		// load tranascations pane
 		loadTransactionPane(account);
 
+		// disable / enable transactions
+		disallowTransactions(account);
+
 	}
 
 	// reset password event
@@ -292,6 +295,22 @@ private:
 
 	// ----------------------------------------------------------------------------------------- //
 	// Helper / Utiliy methods
+
+	void disallowTransactions(Account* account)
+	{
+		DebitAccount* dap = dynamic_cast<DebitAccount*>(account);
+
+		if (dap)
+		{
+			this->pnlCustomerAccounts->btnWithdraw->Enabled = true;
+			this->pnlCustomerAccounts->btnDeposit->Enabled = true;
+			this->pnlCustomerAccounts->btnTransfer->Enabled = true;
+		} 
+		else
+		{
+			this->pnlCustomerAccounts->btnWithdraw->Enabled = false;
+		}
+	}
 
 	void loadAccounts()
 	{

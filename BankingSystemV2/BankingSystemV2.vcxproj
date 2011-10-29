@@ -124,6 +124,7 @@
     <ClCompile Include="LoginForm.cpp" />
     <ClCompile Include="PhraseGenerator.cpp" />
     <ClCompile Include="Session.cpp" />
+    <ClCompile Include="SingleAccountTransactionForm.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -197,6 +198,9 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="SavingsAccount.hpp" />
     <ClInclude Include="Session.h" />
+    <ClInclude Include="SingleAccountTransactionForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TextFileDataSource.h" />
     <ClInclude Include="Transaction.h" />
@@ -233,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SingleAccountTransactionForm.resx">
+      <DependentUpon>SingleAccountTransactionForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
