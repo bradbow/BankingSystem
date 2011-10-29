@@ -29,6 +29,7 @@ public:
 		WITHDRAWALS,
 		DEPOSITS,
 		TRANSFERS,
+		RATES,
 		NUMBER_OF_FILES
 	};
 
@@ -55,6 +56,16 @@ public:
 	virtual void removeAccount(int accountId){_accounts.remove(accountId);}
 	virtual void removeTransaction(int transactionId){_transactions.remove(transactionId);}
 	
+	// methods for retreiving interest rates
+	virtual double getSavingsInterestRate(){return _savingsRate;}
+	virtual double getCreditCardInterestRate(){return _creditCardRate;}
+	virtual double getHomeLoanInterestRate(){return _homeLoanRate;}
+
+	// methods for settting interest rates
+	virtual void setSavingsInterestRate(double value){_savingsRate = value;}
+	virtual void setCreditCardInterestRate(double value){_creditCardRate = value;}
+	virtual void setHomeLoanInterestRate(double value){_homeLoanRate = value;}
+
 protected:
 
 	// instance
@@ -65,6 +76,11 @@ protected:
 	static IdMap<int, Account*> _accounts;
 	static IdMap<int, Transaction*> _transactions;
 
+	// interest rates
+	double _savingsRate;
+	double _creditCardRate;
+	double _homeLoanRate;
+
 	// helper methods for loading data
 	void ConstructAndAddCustomer(string line);
 	void ConstructAndAddBankClerk(string line);
@@ -74,20 +90,16 @@ protected:
 	void ConstructAndAddWithdrawalTransaction(string line);
 	void ConstructAndAddDepositTransaction(string line);
 	void ConstructAndAddTransferTransaction(string line);
+	void SetRates(string line);
 
 	// helper methods for persisting data
-	void persistCustomers();
-	void persistBankClerks();
-	void persistSavingsAccounts();
-	void persistCredidCardAccounts();
-	void persistHomeLoanAccounts();
-	void persistWithdrawals();
-	void persistDeposits();
-	void persistTransfers();
+	void persistUsers();
+	void persistAccounts();
+	void persistTransactions();
+	void persistRates();
 
 	// function pointer arrrays
 	void (TextFileDataSource::*m_pfnsLoad[TextFileDataSource::NUMBER_OF_FILES])(string);
-	void (TextFileDataSource::*m_pfnsPersist[TextFileDataSource::NUMBER_OF_FILES])();
 
 private:
 

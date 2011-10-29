@@ -45,6 +45,16 @@ public:
 	virtual void removeAccount(int accountId) = 0;
 	virtual void removeTransaction(int transactionId) = 0;
 
+	// methods for retrieving interest rates
+	virtual double getSavingsInterestRate() = 0;
+	virtual double getCreditCardInterestRate() = 0;
+	virtual double getHomeLoanInterestRate() = 0;
+
+	// methods for setting global interest rates
+	virtual void setSavingsInterestRate(double value) = 0;
+	virtual void setCreditCardInterestRate(double value) = 0;
+	virtual void setHomeLoanInterestRate(double value) = 0;
+
 };
 
 #endif
