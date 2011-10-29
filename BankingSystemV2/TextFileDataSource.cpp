@@ -14,7 +14,7 @@ string fileNames [TextFileDataSource::NUMBER_OF_FILES] =
 	{
 		"Customers.txt", "BankClerks.txt", "SavingsAccounts.txt", "CreditAccounts.txt", 
 		"HomeLoanAccounts.txt", "WithdrawalTransactions.txt", "DepositTransactions.txt", 
-		"TransferTransactions.txt"
+		"TransferTransactions.txt", "Rates.txt"
 	};
 // --------------------------------------------------------------------------------------------- //
 // constructors / destructors / instance retrieval
@@ -84,6 +84,9 @@ void TextFileDataSource::loadData()
 void TextFileDataSource::persistData()
 {
 	persistUsers();
+	persistAccounts();
+	persistTransactions();
+	persistRates();
 }
 
 // --------------------------------------------------------------------------------------------- //
@@ -395,30 +398,147 @@ void TextFileDataSource::SetRates(string line)
 void TextFileDataSource::persistUsers()
 {
 	
-	std::ofstream outputFile;
-	std::string fileName = "Customers.txt";
-	outputFile.open(fileName.c_str());
+	std::ofstream customerFile;
+	std::ofstream bankClerkFile;
+	customerFile.open(fileNames[CUSTOMERS].c_str());
+	bankClerkFile.open(fileNames[BANK_CLERKS].c_str());
 
+	User* up; Customer* cp; BankClerk* bc;
+	
 	map<int, User*>::iterator mit;
-	map<int, User*> userMap = _users.getMap();
-	int count = 0;
-	Customer* cp;
-	User* up;
-	for (mit = userMap.begin(); mit != userMap.end(); mit++)
+	for (mit = _users.begin(); mit != _users.end(); mit++)
 	{
 		up = mit->second;
 		cp = dynamic_cast<Customer*>(up);
 		if (cp)
 		{
 			std::string str = cp->toString();
-			outputFile << str << endl;
+			customerFile << str << endl;
+			return;
 		}
 
-		count++;
+		bc = dynamic_cast<BankClerk*>(up);
+		if (bc)
+		{
+			std::string str = cp->toString();
+			bankClerkFile << str << endl;
+			return;
+		}
+
 	}
 
-	outputFile.close();
+	customerFile.close();
+	bankClerkFile.close();
 
+}
+
+void TextFileDataSource::persistAccounts()
+{
+
+	std::ofstream savingsFile;
+	std::ofstream creditFile;
+	std::ofstream homeLoanFile;
+	savingsFile.open(fileNames[SAVINGS_ACCOUNTS].c_str());
+	creditFile.open(fileNames[CREDIT_CARD_ACCOUNTS].c_str());
+	homeLoanFile.open(fileNames[HOME_LOAN_ACCOUNTS].c_str());
+
+	Account* ap; SavingsAccount* sp; CreditCardAccount* ccp; HomeLoanAccount* hlp;
+	
+	map<int, Account*>::iterator mit;
+	for (mit = _accounts.begin(); mit != _accounts.end(); mit++)
+	{
+		ap = mit->second;
+		sp = dynamic_cast<SavingsAccount*>(ap);
+		if (sp)
+		{
+			std::string str = sp->toString();
+			savingsFile << str << endl;
+			return;
+		}
+
+		ccp = dynamic_cast<CreditCardAccount*>(ap);
+		if (ccp)
+		{
+			std::string str = ccp->toString();
+			creditFile << str << endl;
+			return;
+		}
+
+		hlp = dynamic_cast<HomeLoanAccount*>(ap);
+		if (hlp)
+		{
+			std::string str = hlp->toString();
+			homeLoanFile << str << endl;
+			return;
+		}
+
+	}
+
+	savingsFile.close();
+	creditFile.close();
+	homeLoanFile.close();
+
+}
+
+void TextFileDataSource::persistTransactions()
+{
+
+	std::ofstream deposits;
+	std::ofstream withdrawalFile;
+	std::ofstream transfersFile;
+
+	deposits.open(fileNames[DEPOSITS].c_str());
+	withdrawalFile.open(fileNames[WITHDRAWALS].c_str());
+	transfersFile.open(fileNames[TRANSFERS].c_str());
+
+	Transaction* tp; Deposit* dp; Withdrawal* wp; Transfer* trp;
+
+	map<int, Transaction*>::iterator mit;
+	for (mit = _transactions.begin(); mit != _transactions.end(); mit++)
+	{
+		tp = mit->second;
+		dp = dynamic_cast<Deposit*>(tp);
+		if (dp)
+		{
+			std::string str = dp->toString();
+			deposits << str << endl;
+			return;
+		}
+
+		wp = dynamic_cast<Withdrawal*>(tp);
+		if (wp)
+		{
+			std::string str = wp->toString();
+			withdrawalFile << str << endl;
+			return;
+		}
+
+		trp = dynamic_cast<Transfer*>(tp);
+		if (trp)
+		{
+			std::string str = trp->toString();
+			transfersFile << str << endl;
+			return;
+		}
+
+	}
+
+	deposits.close();
+	withdrawalFile.close();
+	transfersFile.close();
+
+}
+
+void TextFileDataSource::persistRates()
+{
+	std::ofstream ratesFile;
+	ratesFile.open(fileNames[RATES].c_str());
+
+	ratesFile << _savingsRate << ",";
+	ratesFile << _creditCardRate << ",";
+	ratesFile << _homeLoanRate;
+
+	ratesFile.close();
 }
 
 

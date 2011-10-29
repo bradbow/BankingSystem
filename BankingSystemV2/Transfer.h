@@ -5,6 +5,7 @@
 
 #include "Transaction.h"
 #include <string>
+
 using namespace std;
 
 class Transfer : public Transaction
@@ -25,6 +26,7 @@ public:
 
 	virtual void execute();
 	virtual void rollback();
+	virtual std::string toString();
 	
 	// ----------------------------------------------------------------------------------------- // 
 	// getters

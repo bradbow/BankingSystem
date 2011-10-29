@@ -28,4 +28,16 @@ void Transfer::rollback()
 	_withdrawal->rollback();
 }
 
+std::string Transfer::toString()
+{
+	std::string str;
+	stringstream ss;
+	ss << _id << ",";
+	ss << _amount << ",";
+	ss << _withdrawal->getAccountId() << ",";
+	ss << _deposit->getAccountId();
+	getline(ss, str);
+	return str;
+}
+
 
