@@ -5,12 +5,12 @@
 
 CreditAccount::CreditAccount
 (
-	int accountId, string accountName,
+	int accountId, int customerId, string accountName,
 	double interestRate, double balance
 ) : 
 Account
 (
-	accountId, accountName, 
+	accountId, customerId, accountName, 
 	interestRate, balance
 ) {}
 

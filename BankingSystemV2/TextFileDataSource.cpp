@@ -83,6 +83,7 @@ void TextFileDataSource::loadData()
 
 void TextFileDataSource::persistData()
 {
+
 	//persistUsers();
 	//persistAccounts();
 	//persistTransactions();
@@ -162,7 +163,7 @@ void TextFileDataSource::ConstructAndAddSavingsAccount(string line)
 	enum
 	{
 		ACCOUNT_ID,
-		//CUSTOMER_ID,
+		CUSTOMER_ID,
 		ACCOUNT_NAME,
 		INTEREST_RATE,
 		BALANCE,
@@ -177,7 +178,7 @@ void TextFileDataSource::ConstructAndAddSavingsAccount(string line)
 		SavingsAccount* sa = new SavingsAccount
 		(
 			TypeConv(lineSplit[ACCOUNT_ID]),
-			//TypeConv(lineSplit[CUSTOMER_ID]),
+			TypeConv(lineSplit[CUSTOMER_ID]),
 			lineSplit[ACCOUNT_NAME],
 			TypeConv(lineSplit[INTEREST_RATE]),
 			TypeConv(lineSplit[BALANCE])
@@ -197,7 +198,7 @@ void TextFileDataSource::ConstructAndAddCreditCardAccount(string line)
 	enum
 	{
 		ACCOUNT_ID,
-		//CUSTOMER_ID,
+		CUSTOMER_ID,
 		ACCOUNT_NAME,
 		INTEREST_RATE,
 		BALANCE,
@@ -213,7 +214,7 @@ void TextFileDataSource::ConstructAndAddCreditCardAccount(string line)
 		CreditCardAccount* cca = new CreditCardAccount
 		(
 			TypeConv(lineSplit[ACCOUNT_ID]),
-			//TypeConv(lineSplit[CUSTOMER_ID]),
+			TypeConv(lineSplit[CUSTOMER_ID]),
 			lineSplit[ACCOUNT_NAME],
 			TypeConv(lineSplit[INTEREST_RATE]),
 			TypeConv(lineSplit[BALANCE]),
@@ -233,7 +234,7 @@ void TextFileDataSource::ConstructAndAddHomeLoanAccount(string line)
 	enum
 	{
 		ACCOUNT_ID,
-		//CUSTOMER_ID,
+		CUSTOMER_ID,
 		ACCOUNT_NAME,
 		INTEREST_RATE,
 		BALANCE,
@@ -254,7 +255,7 @@ void TextFileDataSource::ConstructAndAddHomeLoanAccount(string line)
 		HomeLoanAccount* hla = new HomeLoanAccount
 		(
 			TypeConv(lineSplit[ACCOUNT_ID]),
-			//TypeConv(lineSplit[CUSTOMER_ID]),
+			TypeConv(lineSplit[CUSTOMER_ID]),
 			lineSplit[ACCOUNT_NAME],
 			TypeConv(lineSplit[INTEREST_RATE]),
 			TypeConv(lineSplit[BALANCE]),
@@ -414,15 +415,13 @@ void TextFileDataSource::persistUsers()
 		{
 			std::string str = cp->toString();
 			customerFile << str << endl;
-			return;
 		}
 
 		bc = dynamic_cast<BankClerk*>(up);
 		if (bc)
 		{
-			std::string str = cp->toString();
+			std::string str = bc->toString();
 			bankClerkFile << str << endl;
-			return;
 		}
 
 	}
@@ -453,7 +452,6 @@ void TextFileDataSource::persistAccounts()
 		{
 			std::string str = sp->toString();
 			savingsFile << str << endl;
-			return;
 		}
 
 		ccp = dynamic_cast<CreditCardAccount*>(ap);
@@ -461,7 +459,6 @@ void TextFileDataSource::persistAccounts()
 		{
 			std::string str = ccp->toString();
 			creditFile << str << endl;
-			return;
 		}
 
 		hlp = dynamic_cast<HomeLoanAccount*>(ap);
@@ -469,7 +466,6 @@ void TextFileDataSource::persistAccounts()
 		{
 			std::string str = hlp->toString();
 			homeLoanFile << str << endl;
-			return;
 		}
 
 	}
@@ -502,7 +498,6 @@ void TextFileDataSource::persistTransactions()
 		{
 			std::string str = dp->toString();
 			deposits << str << endl;
-			return;
 		}
 
 		wp = dynamic_cast<Withdrawal*>(tp);
@@ -510,7 +505,6 @@ void TextFileDataSource::persistTransactions()
 		{
 			std::string str = wp->toString();
 			withdrawalFile << str << endl;
-			return;
 		}
 
 		trp = dynamic_cast<Transfer*>(tp);
@@ -518,7 +512,6 @@ void TextFileDataSource::persistTransactions()
 		{
 			std::string str = trp->toString();
 			transfersFile << str << endl;
-			return;
 		}
 
 	}

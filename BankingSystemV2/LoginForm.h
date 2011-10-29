@@ -106,6 +106,7 @@ namespace BankingSystemV2 {
 				static_cast<System::Byte>(0)));
 			this->txtPassword->Location = System::Drawing::Point(134, 60);
 			this->txtPassword->Name = L"txtPassword";
+			this->txtPassword->PasswordChar = '*';
 			this->txtPassword->Size = System::Drawing::Size(202, 26);
 			this->txtPassword->TabIndex = 1;
 			this->txtPassword->TextChanged += gcnew System::EventHandler(this, &LoginForm::txtPassword_TextChanged);

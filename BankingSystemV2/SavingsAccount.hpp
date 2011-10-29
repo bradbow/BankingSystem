@@ -17,11 +17,11 @@ public:
 	// constructors / destructors
 	SavingsAccount
 	(
-		int accountId, string accountName,
+		int accountId, int customerId, string accountName,
 		double interestRate, double balance = 0
 	) : DebitAccount
 	(
-		accountId, accountName,
+		accountId, customerId, accountName,
 		interestRate, balance = 0
 	)  
 	{
@@ -35,6 +35,7 @@ public:
 	{
 		stringstream ss;
 		ss << getAccountId() << ", ";
+		ss << getCustomerId() << ", ";
 		ss << getAccountName() << ", ";
 		ss << getInterestRate() << ", ";
 		ss << getBalance();

@@ -44,7 +44,7 @@ int AccountServices::makeSavingsAccount
 {
 	
 	int accountId = getNextAccountId();
-	SavingsAccount sa (accountId, accountName, interestRate);
+	SavingsAccount sa (accountId, customerId, accountName, interestRate);
 	AccountServices::_ds->addAccount(&sa);
 	return accountId;
 
@@ -64,6 +64,7 @@ int AccountServices::makeCreditCardAccount
 	CreditCardAccount cca
 		(	
 			accountId,
+			customerId,
 			accountName, 
 			interestRate, 
 			balance, 
@@ -106,6 +107,7 @@ int AccountServices::makeHomeLoanAccount (string accountName, int customerId,
 									   
 								HomeLoanAccount hla(
 									accountId,
+									customerId,
 									accountName,
 								interestRate,
 								balance,

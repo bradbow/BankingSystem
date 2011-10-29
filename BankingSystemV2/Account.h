@@ -24,7 +24,7 @@ public:
 	
 	Account
 	(
-		int accountId, string accountName,
+		int accountId, int customerId, string accountName,
 		double interestRate, double balance = 0
 	) : _accountId(accountId), 
 	    _accountName(accountName), _interestRate(interestRate),
@@ -39,6 +39,7 @@ public:
 	double getInterestRate(){return _interestRate;}
 	double getBalance(){return _balance;}
 	string getAccountTypeName(){return _accountTypeName;}
+	int getCustomerId(){return _customerId;}
 
 	// ----------------------------------------------------------------------------------------- // 
 	// setters
@@ -75,6 +76,7 @@ private:
 	// data members
 
 	int _accountId;
+	int _customerId;
 	string _accountName;
 	double _interestRate;
 	double _balance;

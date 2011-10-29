@@ -22,13 +22,13 @@ public:
 	// constructors / destructors
 	HomeLoanAccount
 	(
-		int accountId, string accountName,
+		int accountId, int customerId, string accountName,
 		double interestRate, double balance,
 		std::string address, RepaymentOption option, 
 		double minRepayment
 	) : CreditAccount
 	(
-		accountId, accountName, 
+		accountId, customerId, accountName, 
 		interestRate, balance
 	), _address(address), _option(option), _minRepayment(minRepayment)
 	{
@@ -55,6 +55,7 @@ public:
 	{
 		stringstream ss;
 		ss << getAccountId() << ", ";
+		ss << getCustomerId() << ", ";
 		ss << getAccountName() << ", ";
 		ss << getInterestRate() << ", ";
 		ss << getBalance() << ", ";

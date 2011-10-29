@@ -210,14 +210,20 @@
     <ClCompile Include="Customer_Form.cpp">
       <Filter>Forms\Source</Filter>
     </ClCompile>
-    <ClCompile Include="CCustomerAccounts.cpp">
-      <Filter>User Controls</Filter>
-    </ClCompile>
     <ClCompile Include="CCustomerDetails.cpp">
       <Filter>User Controls\Source</Filter>
     </ClCompile>
     <ClCompile Include="TransactionServices.cpp">
       <Filter>Transactions\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CCustomerAccounts.cpp">
+      <Filter>User Controls\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CreateSavingsAccountForm.cpp">
+      <Filter>Forms\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PhraseGenerator.cpp">
+      <Filter>Data Structures\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -341,6 +347,12 @@
     <ClInclude Include="TransactionServices.h">
       <Filter>Transactions\Header</Filter>
     </ClInclude>
+    <ClInclude Include="CreateSavingsAccountForm.h">
+      <Filter>Forms</Filter>
+    </ClInclude>
+    <ClInclude Include="PhraseGenerator.h">
+      <Filter>Persistence\Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
@@ -361,6 +373,12 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="CTransactions.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateSavingsAccountForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>
