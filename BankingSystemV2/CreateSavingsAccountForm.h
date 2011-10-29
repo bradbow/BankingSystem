@@ -154,9 +154,9 @@ namespace BankingSystemV2 {
 
 		System::Void bnCreate_Click(System::Object^  sender, System::EventArgs^  e) 
 		{
-			/*AccountServices* as = AccountServices::instance();
+			AccountServices* as = AccountServices::instance();
 			std::string accountName = DotNetUtils::SystemStringToStdString(this->txtAccountName->Text);
-			int accId = AccountServices::makeAccount(*/
+			int accId = as->makeAccount(accountName
 		}
 };
 }
