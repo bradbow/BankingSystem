@@ -91,7 +91,7 @@ void TextFileDataSource::loadData()
 
 void TextFileDataSource::persistData()
 {
-	persistUsers();
+	//persistCustomers();
 }
 
 // --------------------------------------------------------------------------------------------- //
@@ -123,11 +123,15 @@ void TextFileDataSource::ConstructAndAddCustomer(string line)
 			lineSplit[PHONE_NUMBER]
 		);
 
+		_users.add(c->getUserId(), c);
+
 	}
 	else 
 	{
 		// TODO exception for corrupt file
 	}
+
+	
 
 }
 
