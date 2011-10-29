@@ -8,7 +8,7 @@ public:
 
 	// ----------------------------------------------------------------------------------------- //
 	// instance retrieval / destruction
-	PhraseGenerator* instance();
+	static PhraseGenerator* instance();
 	~PhraseGenerator();
 
 	// ----------------------------------------------------------------------------------------- //

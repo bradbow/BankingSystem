@@ -57,13 +57,18 @@ public:
 	virtual void removeTransaction(int transactionId){_transactions.remove(transactionId);}
 
 	// relational queries
-	virtual list<Account*> getAccountsForUser(int userId){list<Account*> dummy; return dummy;}
-	virtual list<Transaction*> getTransactionsForAccount(int accId){list<Transaction*> dummy; return dummy;}
+	virtual list<Account*> getAccountsForUser(int userId);
+	virtual list<Transaction*> getTransactionsForAccount(int accId);
 	
 	// methods for retreiving interest rates
 	virtual double getSavingsInterestRate(){return _savingsRate;}
 	virtual double getCreditCardInterestRate(){return _creditCardRate;}
 	virtual double getHomeLoanInterestRate(){return _homeLoanRate;}
+
+	// testing for existence
+	virtual bool userExists(int userId){return _users.has(userId);}
+	virtual bool accountExists(int accId){return _accounts.has(accId);}
+	virtual bool transactionExists(int transId){return _transactions.has(transId);}
 
 	// methods for settting interest rates
 	virtual void setSavingsInterestRate(double value){_savingsRate = value;}

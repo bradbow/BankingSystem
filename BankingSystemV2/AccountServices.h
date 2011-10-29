@@ -10,6 +10,7 @@
 #include "DataSource.h"
 #include "CreditCardAccount.hpp"
 #include "HomeLoanAccount.hpp"
+#include "PhraseGenerator.h"
 #include <vector>
 #include <string>
 #include <list>
@@ -77,6 +78,11 @@ public:
 	// postcondition: returns a list of accounts
 	list<Account*> getCustomerAccounts(int customerId);
 
+	// methods to get next account ids;
+	int getNextSavingsAccountId();
+	int getNextCreditCardAccountId();
+	int getNextHomeLoanAccountId();
+
 	// return a string representation of the repayment option
 	static std::string repaymentOptionToString(HomeLoanAccount::RepaymentOption option);
 
@@ -93,12 +99,18 @@ public:
 
 private:
 
+	// -------------------------------------------------------------------------------------------- //
+	// constants
+	static const int ACCOUNT_ID_LENGTH = 9;
+	static const int SAVINGS_PREFIX = 1;
+	static const int CREDIT_CARD_PREFIX = 2;
+	static const int HOME_LOAN_PREFIX = 3;
+
 	static AccountServices* _accountServicesInstance;
 	static DataSource* _ds;
+	static PhraseGenerator* _pg;
 	
-	// precondition: none
-	// postcondition: creates instance of AccountServices
-	AccountServices(){}	
+	AccountServices();
 
 	// -------------------------------------------------------------------------------------------- //
 	// utility
