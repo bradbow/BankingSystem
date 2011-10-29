@@ -11,7 +11,7 @@ public:
 	// constructor
 	// precondition: valid bank clerk details passed in
 	// postcondition: bank clerk created
-	BankClerk(int userName, string password, int extraMember);
+	BankClerk(int userName, string password);
 	// destructor
 	// precondition: none
 	// postcondition: memory deallocated
@@ -21,7 +21,7 @@ public:
 
 private:
 	static const int NUM_FIELDS = 2;
-	int _extraMember;
+
 };
 #endif
 

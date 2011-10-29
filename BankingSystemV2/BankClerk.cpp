@@ -8,9 +8,8 @@
 // postcondition: bank clerk created
 BankClerk::BankClerk(
 	int userName, 
-	string password,
-	int extraMember) : 
-User(userName, password), _extraMember(extraMember){}
+	string password) : 
+User(userName, password){}
 
 // destructor
 // precondition: none

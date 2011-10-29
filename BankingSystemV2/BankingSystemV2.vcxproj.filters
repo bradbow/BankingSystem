@@ -118,7 +118,7 @@
     <None Include="WithdrawalTransactions.txt">
       <Filter>Persistence\Data Files</Filter>
     </None>
-    <None Include="Customers2.txt">
+    <None Include="Rates.txt">
       <Filter>Persistence\Data Files</Filter>
     </None>
   </ItemGroup>

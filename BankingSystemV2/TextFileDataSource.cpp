@@ -148,7 +148,6 @@ void TextFileDataSource::ConstructAndAddBankClerk(string line)
 	{
 		USER_ID,
 		PASSWORD,
-		EXTRA_MEMBER,
 		NUM_FIELDS
 	};
 
@@ -159,8 +158,7 @@ void TextFileDataSource::ConstructAndAddBankClerk(string line)
 		BankClerk* bc = new BankClerk
 		(
 			TypeConv(lineSplit[USER_ID]),
-			lineSplit[PASSWORD],
-			TypeConv(lineSplit[EXTRA_MEMBER])
+			lineSplit[PASSWORD]
 		);
 
 		_users.add(bc->getUserId(), bc);

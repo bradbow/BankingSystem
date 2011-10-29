@@ -51,7 +51,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>C:\Program Files\boost\boost_1_47;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\inb305\boost\boost_1_47;C:\Program Files\boost\boost_1_47;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>Pure</CompileAsManaged>
     </ClCompile>
     <Link>
@@ -89,9 +89,9 @@
     <None Include="BankClerks.txt" />
     <None Include="CreditAccounts.txt" />
     <None Include="Customers.txt" />
-    <None Include="Customers2.txt" />
     <None Include="DepositTransactions.txt" />
     <None Include="HomeLoanAccounts.txt" />
+    <None Include="Rates.txt" />
     <None Include="ReadMe.txt" />
     <None Include="SavingsAccounts.txt" />
     <None Include="TransferTransactions.txt" />

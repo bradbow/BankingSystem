@@ -852,10 +852,11 @@ namespace BankingSystemV2 {
 				 set<int>::iterator sit;
 				 for (sit = accountIds.begin(); sit != accountIds.end(); sit++)
 				 {
-					 //Account* ap = _as->getAccount(*sit);
-					 //str = ap->getSummary();
-					 //temp = gcnew String(str.c_str());
-					 //this->listBox_AccountSelection->Items->Add(temp);
+					 Account* ap = _as->getAccount(*sit);
+					 if (!ap) continue;
+					 str = ap->getSummary();
+					 temp = gcnew String(str.c_str());
+					 this->listBox_AccountSelection->Items->Add(temp);
 				 }
 			 }
 
