@@ -126,7 +126,9 @@ namespace BankingSystemV2 {
 	private: System::Windows::Forms::Label^  label_CreditBalance;
 	private: System::Windows::Forms::Label^  label_HomeLoanBalance;
 	private: System::Windows::Forms::TextBox^  textBox_HomeLoanBalance;
-			 System::ComponentModel::Container ^components;
+private: System::Windows::Forms::Label^  label_HomeLoanInterest;
+private: System::Windows::Forms::TextBox^  textBox_HomeLoanInterest;
+		 System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 			 /// <summary>
@@ -203,6 +205,8 @@ namespace BankingSystemV2 {
 				 this->tabPage_SetInterest = (gcnew System::Windows::Forms::TabPage());
 				 this->tabPage_Admin = (gcnew System::Windows::Forms::TabPage());
 				 this->passwordChange1 = (gcnew BankingSystemV2::CPasswordChange());
+				 this->textBox_HomeLoanInterest = (gcnew System::Windows::Forms::TextBox());
+				 this->label_HomeLoanInterest = (gcnew System::Windows::Forms::Label());
 				 this->menuStrip1->SuspendLayout();
 				 this->panel_AdjustInteresttRate->SuspendLayout();
 				 this->panel_CustomerAcc->SuspendLayout();
@@ -717,6 +721,8 @@ namespace BankingSystemV2 {
 				 // tabPage_CreateHomeLoan
 				 // 
 				 this->tabPage_CreateHomeLoan->BackColor = System::Drawing::SystemColors::Control;
+				 this->tabPage_CreateHomeLoan->Controls->Add(this->label_HomeLoanInterest);
+				 this->tabPage_CreateHomeLoan->Controls->Add(this->textBox_HomeLoanInterest);
 				 this->tabPage_CreateHomeLoan->Controls->Add(this->label_HomeLoanBalance);
 				 this->tabPage_CreateHomeLoan->Controls->Add(this->textBox_HomeLoanBalance);
 				 this->tabPage_CreateHomeLoan->Controls->Add(this->button_CHLCreateAccount);
@@ -739,7 +745,7 @@ namespace BankingSystemV2 {
 				 // label_HomeLoanBalance
 				 // 
 				 this->label_HomeLoanBalance->AutoSize = true;
-				 this->label_HomeLoanBalance->Location = System::Drawing::Point(35, 124);
+				 this->label_HomeLoanBalance->Location = System::Drawing::Point(35, 151);
 				 this->label_HomeLoanBalance->Name = L"label_HomeLoanBalance";
 				 this->label_HomeLoanBalance->Size = System::Drawing::Size(49, 13);
 				 this->label_HomeLoanBalance->TabIndex = 12;
@@ -747,14 +753,14 @@ namespace BankingSystemV2 {
 				 // 
 				 // textBox_HomeLoanBalance
 				 // 
-				 this->textBox_HomeLoanBalance->Location = System::Drawing::Point(87, 123);
+				 this->textBox_HomeLoanBalance->Location = System::Drawing::Point(87, 150);
 				 this->textBox_HomeLoanBalance->Name = L"textBox_HomeLoanBalance";
 				 this->textBox_HomeLoanBalance->Size = System::Drawing::Size(100, 20);
 				 this->textBox_HomeLoanBalance->TabIndex = 11;
 				 // 
 				 // button_CHLCreateAccount
 				 // 
-				 this->button_CHLCreateAccount->Location = System::Drawing::Point(199, 154);
+				 this->button_CHLCreateAccount->Location = System::Drawing::Point(199, 174);
 				 this->button_CHLCreateAccount->Name = L"button_CHLCreateAccount";
 				 this->button_CHLCreateAccount->Size = System::Drawing::Size(109, 23);
 				 this->button_CHLCreateAccount->TabIndex = 10;
@@ -765,7 +771,7 @@ namespace BankingSystemV2 {
 				 // label_MinRepayment
 				 // 
 				 this->label_MinRepayment->AutoSize = true;
-				 this->label_MinRepayment->Location = System::Drawing::Point(3, 100);
+				 this->label_MinRepayment->Location = System::Drawing::Point(3, 127);
 				 this->label_MinRepayment->Name = L"label_MinRepayment";
 				 this->label_MinRepayment->Size = System::Drawing::Size(84, 13);
 				 this->label_MinRepayment->TabIndex = 9;
@@ -773,7 +779,7 @@ namespace BankingSystemV2 {
 				 // 
 				 // textBox_MinRepayment
 				 // 
-				 this->textBox_MinRepayment->Location = System::Drawing::Point(87, 97);
+				 this->textBox_MinRepayment->Location = System::Drawing::Point(87, 124);
 				 this->textBox_MinRepayment->Name = L"textBox_MinRepayment";
 				 this->textBox_MinRepayment->Size = System::Drawing::Size(100, 20);
 				 this->textBox_MinRepayment->TabIndex = 8;
@@ -781,7 +787,7 @@ namespace BankingSystemV2 {
 				 // label_CHLAmount
 				 // 
 				 this->label_CHLAmount->AutoSize = true;
-				 this->label_CHLAmount->Location = System::Drawing::Point(11, 73);
+				 this->label_CHLAmount->Location = System::Drawing::Point(11, 100);
 				 this->label_CHLAmount->Name = L"label_CHLAmount";
 				 this->label_CHLAmount->Size = System::Drawing::Size(73, 13);
 				 this->label_CHLAmount->TabIndex = 7;
@@ -789,7 +795,7 @@ namespace BankingSystemV2 {
 				 // 
 				 // textBox_CHLAmount
 				 // 
-				 this->textBox_CHLAmount->Location = System::Drawing::Point(87, 71);
+				 this->textBox_CHLAmount->Location = System::Drawing::Point(87, 98);
 				 this->textBox_CHLAmount->Name = L"textBox_CHLAmount";
 				 this->textBox_CHLAmount->Size = System::Drawing::Size(100, 20);
 				 this->textBox_CHLAmount->TabIndex = 6;
@@ -797,7 +803,7 @@ namespace BankingSystemV2 {
 				 // label_RepaymentOption
 				 // 
 				 this->label_RepaymentOption->AutoSize = true;
-				 this->label_RepaymentOption->Location = System::Drawing::Point(209, 78);
+				 this->label_RepaymentOption->Location = System::Drawing::Point(209, 88);
 				 this->label_RepaymentOption->Name = L"label_RepaymentOption";
 				 this->label_RepaymentOption->Size = System::Drawing::Size(98, 13);
 				 this->label_RepaymentOption->TabIndex = 5;
@@ -807,7 +813,7 @@ namespace BankingSystemV2 {
 				 // 
 				 this->listBox_RepaymentOption->FormattingEnabled = true;
 				 this->listBox_RepaymentOption->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"Weekly", L"Fortnightly", L"Monthly"});
-				 this->listBox_RepaymentOption->Location = System::Drawing::Point(211, 100);
+				 this->listBox_RepaymentOption->Location = System::Drawing::Point(211, 110);
 				 this->listBox_RepaymentOption->Name = L"listBox_RepaymentOption";
 				 this->listBox_RepaymentOption->Size = System::Drawing::Size(95, 43);
 				 this->listBox_RepaymentOption->TabIndex = 4;
@@ -873,6 +879,22 @@ namespace BankingSystemV2 {
 				 this->passwordChange1->Name = L"passwordChange1";
 				 this->passwordChange1->Size = System::Drawing::Size(620, 347);
 				 this->passwordChange1->TabIndex = 4;
+				 // 
+				 // textBox_HomeLoanInterest
+				 // 
+				 this->textBox_HomeLoanInterest->Location = System::Drawing::Point(87, 71);
+				 this->textBox_HomeLoanInterest->Name = L"textBox_HomeLoanInterest";
+				 this->textBox_HomeLoanInterest->Size = System::Drawing::Size(100, 20);
+				 this->textBox_HomeLoanInterest->TabIndex = 13;
+				 // 
+				 // label_HomeLoanInterest
+				 // 
+				 this->label_HomeLoanInterest->AutoSize = true;
+				 this->label_HomeLoanInterest->Location = System::Drawing::Point(40, 73);
+				 this->label_HomeLoanInterest->Name = L"label_HomeLoanInterest";
+				 this->label_HomeLoanInterest->Size = System::Drawing::Size(45, 13);
+				 this->label_HomeLoanInterest->TabIndex = 14;
+				 this->label_HomeLoanInterest->Text = L"Interest:";
 				 // 
 				 // BankClerk_Form
 				 // 
@@ -968,9 +990,10 @@ namespace BankingSystemV2 {
 
 				 clearCreateSavingsPanel();
 				 this->textBox_CSAccountName->Text = DotNetUtils::StdStringToSystemString(_customer->getName());
-				 //this->textBox_SavingInterestRate->Text = (_as->getSavingsInterestRate());
-				 //this->textBox_SavingsBalance->Text = (_as->getDefaultBalance());
-				 //this-textBox_SavingsBalance->Enabled = false;
+				 this->textBox_SavingInterestRate->Text =
+					 _as->getSavingsInterestRate().ToString();
+				 this->textBox_SavingsBalance->Text = _as->getDefaultBalance().ToString();
+				 this->textBox_SavingsBalance->Enabled = false;
 			 }
 
 
@@ -988,9 +1011,9 @@ namespace BankingSystemV2 {
 
 clearCreateCreditPanel();
 				 this->textBox_CCAccountName->Text = DotNetUtils::StdStringToSystemString(_customer->getName());
-				 //this->textBox_CreditInterestRate->Text = (_as->getCreditCardInterestRate());;
+				 this->textBox_CreditInterestRate->Text = _as->getCreditCardInterestRate().ToString();
 				 this->textBox_CCOverdraft->Text = ("0");
-				 //this->textBox_CreditBalance->Text = (_as->getDefaultBalance());
+				 this->textBox_CreditBalance->Text = (_as->getDefaultBalance().ToString());
 				 this->textBox_CreditBalance->Enabled = false;
 			 }
 
@@ -999,6 +1022,7 @@ clearCreateCreditPanel();
 			 
 			 this->textBox_CHLAccountName->Clear();
 			 this->textBox_PropertyAddress->Clear();
+			 this->textBox_HomeLoanInterest->Clear();
 				 this->textBox_CHLAmount->Clear();
 				 this->textBox_MinRepayment->Clear();
 				 this->listBox_RepaymentOption->SelectedIndex = 0;
@@ -1010,7 +1034,9 @@ clearCreateCreditPanel();
 
 				 clearCreateHomeLoanPanel();
 			this->textBox_CHLAccountName->Text = DotNetUtils::StdStringToSystemString(_customer->getName());
-				 //this->textBox_HomeLoanBalance->Text = (_as->getDefaultBalance());
+			this->textBox_HomeLoanInterest->Text = _as->getHomeLoanInterestRate().ToString();
+				 this->textBox_HomeLoanBalance->Text = (_as->getDefaultBalance().ToString());
+				 this->textBox_HomeLoanBalance->Enabled = false;
 			 }
 
 
@@ -1128,54 +1154,47 @@ clearCreateCreditPanel();
 			 }
 
 			 // creates a savings account in selected customers name
-	private: System::Void button_CreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {
-
-				 string desiredAccountName = 
-					 DotNetUtils::SystemStringToStdString(this->textBox_CSAccountName->Text);
+	private: System::Void button_CreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {	 
+				 
 				 int accountId = _as->makeSavingsAccount(
-					 desiredAccountName, 
+					 DotNetUtils::SystemStringToStdString(this->textBox_CSAccountName->Text), 
 					 _customer->getUserId(), 
-					 _as->getSavingsInterestRate(), 
-					 0);
+					 double::Parse(this->textBox_SavingInterestRate->Text), 
+					 double::Parse(this->textBox_SavingsBalance->Text));
 				 MessageBox::Show(this, "Savings Account " + accountId + " successfully created!");
+				 clearCreateSavingsPanel();
 
 			 }
 
 			 // creates a credit account in selected customers name
-	private: System::Void button_CCCreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {
-
-				 string desiredAccountName = 
-					 DotNetUtils::SystemStringToStdString(this->textBox_CCAccountName->Text);
-				 double desiredODLimit =
-					 double::Parse(this->textBox_CCOverdraft->Text);
-				 int accountId = _as->makeCreditCardAccount(desiredAccountName,
+	private: System::Void button_CCCreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {		 
+				 
+				 int accountId = _as->makeCreditCardAccount(
+					 DotNetUtils::SystemStringToStdString(this->textBox_CCAccountName->Text),
 					 _customer->getUserId(),
-					 _as->getCreditCardInterestRate(), 
-					 0,
-					 desiredODLimit);
+					 double::Parse(this->textBox_CreditInterestRate->Text), 
+					 double::Parse(this->textBox_CreditBalance->Text),
+					 double::Parse(this->textBox_CCOverdraft->Text));
 				 MessageBox::Show(this, "Credit Card Account " + accountId + " successfully created!");
+				 clearCreateCreditPanel();
 
 			 }
 
 			 // creates a home loan account in selected customers name
 	private: System::Void button_CHLCreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {
-
-
-				 string desiredAccountName = 
-					 DotNetUtils::SystemStringToStdString(this->textBox_CHLAccountName->Text);
-				 string propertyAddress =
-					 DotNetUtils::SystemStringToStdString(this->textBox_CHLAccountName->Text);
-				 int repaymentOption = listBox_RepaymentOption->SelectedIndex;
+			 
+				 
 				 int accountId = _as->makeHomeLoanAccount(
-					 desiredAccountName, 
+					 DotNetUtils::SystemStringToStdString(this->textBox_CHLAccountName->Text), 
 					 _customer->getUserId(), 
-					 _as->getHomeLoanInterestRate(), 
-					 0, 
-					 propertyAddress, 
-					 (HomeLoanAccount::RepaymentOption)repaymentOption, 
-					 0);
+					 double::Parse(this->textBox_HomeLoanInterest->Text), 
+					 double::Parse(this->textBox_HomeLoanBalance->Text), 
+					 DotNetUtils::SystemStringToStdString(this->textBox_PropertyAddress->Text), 
+					 (HomeLoanAccount::RepaymentOption)this->listBox_RepaymentOption->SelectedIndex, 
+					 double::Parse(this->textBox_MinRepayment->Text));
 
 				 MessageBox::Show(this, "Home Loan Account " + accountId + " successfully created!");
+				 clearCreateHomeLoanPanel();
 			 }
 
 			 // sets interest rates provided by the bank
@@ -1195,8 +1214,7 @@ clearCreateCreditPanel();
 
 			enum{DETAILS, SAVINGS, CREDIT, HOME_LOAN};
 
-			int index = 1;
-			//int index = this->tabControl_BCCustomer->SelectedIndex;
+			int index = this->tabControl_BCCustomer->SelectedIndex;
 			switch (index)
 			{
 			case DETAILS:
