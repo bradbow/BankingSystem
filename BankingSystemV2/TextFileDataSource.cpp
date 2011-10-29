@@ -83,10 +83,11 @@ void TextFileDataSource::loadData()
 
 void TextFileDataSource::persistData()
 {
-	/*persistUsers();
-	persistAccounts();
-	persistTransactions();
-	persistRates();*/
+
+	//persistUsers();
+	//persistAccounts();
+	//persistTransactions();
+	//persistRates();
 }
 
 // --------------------------------------------------------------------------------------------- //
