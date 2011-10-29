@@ -1020,7 +1020,7 @@ namespace BankingSystemV2 {
 	private: System::Void loadCreateCreditPanel(){
 
 				 if(_customer == NULL){return;}
-				 
+
 				 clearCreateCreditPanel();
 				 this->textBox_CCAccountName->Text = DotNetUtils::StdStringToSystemString(_customer->getName());
 				 this->textBox_CreditInterestRate->Text = _as->getCreditCardInterestRate().ToString();
@@ -1044,7 +1044,7 @@ namespace BankingSystemV2 {
 
 	private: System::Void loadCreateHomeLoanPanel(){
 
-				 				 if(_customer == NULL){return;}
+				 if(_customer == NULL){return;}
 
 				 clearCreateHomeLoanPanel();
 				 this->textBox_CHLAccountName->Text = DotNetUtils::StdStringToSystemString(_customer->getName());
@@ -1053,17 +1053,17 @@ namespace BankingSystemV2 {
 				 this->textBox_HomeLoanBalance->Enabled = false;
 			 }
 
-			 private: System::Void clearRatesPanel(){
+	private: System::Void clearRatesPanel(){
 
 				 this->textBox_SavingsRate->Clear();
 				 this->textBox_CreditRate->Clear();
 				 this->textBox_HomeLoanRate->Clear();
 			 }
 
-			 private: System::Void loadRatesPanel(){
+	private: System::Void loadRatesPanel(){
 
-						  				 if(_customer == NULL){return;}
-				
+				 if(_customer == NULL){return;}
+
 				 clearRatesPanel();
 				 this->textBox_SavingsRate->Text = _as->getSavingsInterestRate().ToString();
 				 this->textBox_CreditRate->Text = _as->getCreditCardInterestRate().ToString();
@@ -1158,7 +1158,9 @@ namespace BankingSystemV2 {
 			 // updates a customers personal details
 	private: System::Void button_UpdateDetail_Click(System::Object^  sender, System::EventArgs^  e) {
 
-				 string details [3];
+				 enum{NAME, PHONE, ADDRESS, NUM_DETAILS};
+
+				 string details[NUM_DETAILS];
 
 				 if(
 					 this->textBox_Name->Text == "" || 
@@ -1166,9 +1168,9 @@ namespace BankingSystemV2 {
 					 this->textBox_Address->Text == ""){}
 				 else
 				 {
-					 details[0] = DotNetUtils::SystemStringToStdString(this->textBox_Name->Text);
-					 details[1] = DotNetUtils::SystemStringToStdString(this->textBox_Phone->Text);
-					 details[2] = DotNetUtils::SystemStringToStdString(this->textBox_Address->Text);
+					 details[NAME] = DotNetUtils::SystemStringToStdString(this->textBox_Name->Text);
+					 details[PHONE] = DotNetUtils::SystemStringToStdString(this->textBox_Phone->Text);
+					 details[NUM_DETAILS] = DotNetUtils::SystemStringToStdString(this->textBox_Address->Text);
 					 _us->updateCustomerDetails(_customer->getUserId(), details);
 					 MessageBox::Show(this, "Details successfully updated!");
 				 }
@@ -1179,9 +1181,9 @@ namespace BankingSystemV2 {
 	private: System::Void button_ResetPassword_Click(System::Object^  sender, System::EventArgs^  e) {
 
 				 if(_customer == NULL){
-					return;
+					 return;
 				 }
-				 
+
 				 this->textBox_Password->Text = DotNetUtils::StdStringToSystemString(
 					 _us->resetPassword(_customer->getUserId()));
 
@@ -1285,7 +1287,6 @@ namespace BankingSystemV2 {
 
 					 break;
 				 }
-
 			 }
 
 
