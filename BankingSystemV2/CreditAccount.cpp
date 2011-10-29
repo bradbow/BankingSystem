@@ -20,7 +20,7 @@ Account
 void CreditAccount::deposit(double amount)
 {
 	if (amount < 0) throw NegativeAmountException("Deposit amount must be positive");
-	if (getBalance() - amount < 0) throw PaymentMoreThanOwingException();
+	if (getBalance() - amount < 0) throw PaymentMoreThanOwingException("Cannot pay more than is owing");
 	setBalance(getBalance() - amount);
 }
 

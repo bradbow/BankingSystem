@@ -197,6 +197,7 @@ namespace BankingSystemV2 {
 					return;
 				}
 
+
 				// perform transfer
 				int fromIndex = this->lbFromAccount->SelectedIndex;
 				int toIndex = this->lbToAccount->SelectedIndex;
@@ -205,8 +206,16 @@ namespace BankingSystemV2 {
 				std::string toLine = DotNetUtils::SystemStringToStdString(this->lbToAccount->Items[toIndex]->ToString());
 
 				DebitAccount* dap = dynamic_cast<DebitAccount*>(getAccountFromSummary(fromLine));
-				Account* ap = getAccountFromSummary(fromLine);
+				Account* ap = getAccountFromSummary(toLine);
 
+				// if same disallow
+				if (dap->getAccountId() == ap->getAccountId())
+				{
+					MessageBox::Show(this, "Cannot transfer from an account to itself");
+					return;
+				}
+
+				bool success = true;
 				Transfer* tr = new Transfer
 									(
 										_ts->getNextTransactionId(),
@@ -223,7 +232,10 @@ namespace BankingSystemV2 {
 				catch (TransactionException e)
 				{
 					MessageBox::Show(this, DotNetUtils::StdStringToSystemString(e.getMessage()));
+					success = false;
 				}
+
+				if (success){this->Close();}
 				
 			}
 

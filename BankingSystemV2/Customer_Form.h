@@ -258,6 +258,13 @@ private:
 	{
 		// get account id
 		int index = this->pnlCustomerAccounts->lbSummary->SelectedIndex;
+
+		// disable if none seletec
+		if (index == -1)
+		{
+			disallowTransactions(NULL);
+		}
+
 		std::string line = DotNetUtils::SystemStringToStdString(this->pnlCustomerAccounts->lbSummary->Items[index]->ToString());
 		vector<std::string> split = StringUtils::splitString(line, ' ');
 		int accId = TypeConv(split[0]);
@@ -309,19 +316,27 @@ private:
 	System::Void launchDeposit(System::Object^  sender, System::EventArgs^  e) 
 	{
 		
+		if (_currentAccount == NULL)
+		{
+			MessageBox::Show(this, "Please select an account");
+			return;
+		}
 		SingleAccountTransactionForm^ f = gcnew SingleAccountTransactionForm(_currentAccount, SingleAccountTransactionForm::DEPOSIT);
 		f->ShowDialog();
-		loadTransactionPane(_currentAccount);
-		loadDetailsPane(_currentAccount);
+		reloadAccountsPanel();
 	}
 
 	System::Void launchWithdrawal(System::Object^  sender, System::EventArgs^  e) 
 	{
 		
+		if (_currentAccount == NULL)
+		{
+			MessageBox::Show(this, "Please select an account");
+			return;
+		}
 		SingleAccountTransactionForm^ f = gcnew SingleAccountTransactionForm(_currentAccount, SingleAccountTransactionForm::WITHDRAWAL);
 		f->ShowDialog();
-		loadTransactionPane(_currentAccount);
-		loadDetailsPane(_currentAccount);
+		reloadAccountsPanel();
 	}
 
 	System::Void launchTransfer(System::Object^  sender, System::EventArgs^  e) 
@@ -329,13 +344,19 @@ private:
 		
 		MultipleAccountTransactionForm^ f = gcnew MultipleAccountTransactionForm(_customer);
 		f->ShowDialog();
-		loadTransactionPane(_currentAccount);
-		loadDetailsPane(_currentAccount);
+		reloadAccountsPanel();
 	}
 
 	// ----------------------------------------------------------------------------------------- //
 	// Helper / Utiliy methods
 
+	void reloadAccountsPanel()
+	{
+		loadTransactionPane(_currentAccount);
+		loadDetailsPane(_currentAccount);
+		loadAccounts();
+	}
+	
 	void disallowTransactions(Account* account)
 	{
 		DebitAccount* dap = dynamic_cast<DebitAccount*>(account);

@@ -19,8 +19,8 @@ Transfer::Transfer
 void Transfer::execute()
 {
 	// create component transactions
-	_deposit = new Deposit(_ts->getNextTransactionId(), _amount, _date, _toAccId);
-	_withdrawal = new Withdrawal(_ts->getNextTransactionId(), _amount, _date, _fromAccId);
+	_deposit = new Deposit(_ts->getNextTransactionId(), _amount, _date, _fromAccId);
+	_withdrawal = new Withdrawal(_ts->getNextTransactionId(), _amount, _date, _toAccId);
 
 	// perform
 	_deposit->execute();
