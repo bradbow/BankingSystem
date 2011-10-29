@@ -6,6 +6,8 @@
 
 int main(array<System::String ^> ^args)
 {
+	// set random seed for phrase generation
+	srand(1);
 	
 	// set data source, this could be any derivative of the DataSource interface
 	TextFileDataSource* data = TextFileDataSource::getInstance();

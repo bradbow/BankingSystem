@@ -412,8 +412,7 @@ void TextFileDataSource::ConstructAndAddTransferTransaction(string line)
 			TypeConv(lineSplit[FROM_ACCOUNT_ID])
 		);
 
-		_transactions.add(t->getDeposit()->getId(), t->getDeposit());
-		_transactions.add(t->getWithdrawal()->getId(), t->getWithdrawal());
+		_transactions.add(t->getId(), t);
 	}
 	else
 	{

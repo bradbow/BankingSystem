@@ -1,17 +1,15 @@
 #include "StdAfx.h"
-#include "TransactionServices.h"
-#include "Transaction.h"
-#include "Withdrawal.h"
-#include "Deposit.h"
 
 DataSource* TransactionServices::_ds = NULL;
 TransactionServices* TransactionServices::_ts = NULL;
+PhraseGenerator* TransactionServices::_pg = NULL;
 
 // --------------------------------------------------------------------------------------------- //
 // construction / instance retrieval
 
 TransactionServices::TransactionServices(void)
 {
+	_pg = PhraseGenerator::instance();
 }
 
 TransactionServices* TransactionServices::instance()
@@ -63,8 +61,7 @@ void TransactionServices::revert(Transaction* t)
 
 int TransactionServices::getNextTransactionId()
 {
-	// TODO
-	return 2000;
+	return _pg->getDigitPhrase(ID_LENGTH);
 }
 
 void TransactionServices::deposit(int accId, double amount)
@@ -76,5 +73,25 @@ void TransactionServices::withdraw(int accId, double amount)
 {
 	DebitAccount* da = dynamic_cast<DebitAccount*>(_ds->getAccount(accId));
 	da->withdraw(amount);
+}
+
+void TransactionServices::saveTransaction(Transaction* t)
+{
+	_ds->addTransaction(t);
+}
+
+Date TransactionServices::getCurrentDate(char delim)
+{
+	time_t t = time(0);
+	std::string str;
+	struct tm * now = localtime( & t );
+	stringstream ss;
+	ss << (now->tm_mday) << delim;
+	ss << now->tm_mon + 1 << delim;
+	ss << now->tm_year + 1900 << delim;
+	getline(ss, str);
+
+	Date dt(str, delim);
+	return dt;
 }
 

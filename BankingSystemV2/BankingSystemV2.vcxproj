@@ -122,6 +122,7 @@
     <ClCompile Include="DebitAccount.cpp" />
     <ClCompile Include="Deposit.cpp" />
     <ClCompile Include="LoginForm.cpp" />
+    <ClCompile Include="MultipleAccountTransactionForm.cpp" />
     <ClCompile Include="PhraseGenerator.cpp" />
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="SingleAccountTransactionForm.cpp" />
@@ -188,10 +189,14 @@
     <ClInclude Include="DataSource.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="DebitAccount.h" />
+    <ClInclude Include="Delimiters.h" />
     <ClInclude Include="Deposit.h" />
     <ClInclude Include="HomeLoanAccount.hpp" />
     <ClInclude Include="IdMap.h" />
     <ClInclude Include="LoginForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="MultipleAccountTransactionForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="PhraseGenerator.h" />
@@ -237,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultipleAccountTransactionForm.resx">
+      <DependentUpon>MultipleAccountTransactionForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SingleAccountTransactionForm.resx">
       <DependentUpon>SingleAccountTransactionForm.h</DependentUpon>

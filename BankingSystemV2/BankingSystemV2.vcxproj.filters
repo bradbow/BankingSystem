@@ -228,6 +228,9 @@
     <ClCompile Include="SingleAccountTransactionForm.cpp">
       <Filter>Forms\Source</Filter>
     </ClCompile>
+    <ClCompile Include="MultipleAccountTransactionForm.cpp">
+      <Filter>Forms\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h">
@@ -359,6 +362,12 @@
     <ClInclude Include="SingleAccountTransactionForm.h">
       <Filter>Forms</Filter>
     </ClInclude>
+    <ClInclude Include="Delimiters.h">
+      <Filter>Persistence\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="MultipleAccountTransactionForm.h">
+      <Filter>Forms</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
@@ -385,6 +394,9 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SingleAccountTransactionForm.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

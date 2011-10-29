@@ -9,8 +9,8 @@ Transfer::Transfer
 ) : Transaction(id, amount, dt)
 {
 	_transactionType = "Transfer";
-	_deposit = new Deposit(_ts->getNextTransactionId(), amount, dt, toAccId);
-	_withdrawal = new Withdrawal(_ts->getNextTransactionId(), amount, dt, fromAccId);
+	_toAccId = toAccId;
+	_fromAccId = fromAccId;
 }
 
 // ----------------------------------------------------------------------------------------- // 
@@ -18,8 +18,18 @@ Transfer::Transfer
 
 void Transfer::execute()
 {
+	// create component transactions
+	_deposit = new Deposit(_ts->getNextTransactionId(), _amount, _date, _toAccId);
+	_withdrawal = new Withdrawal(_ts->getNextTransactionId(), _amount, _date, _fromAccId);
+
+	// perform
 	_deposit->execute();
 	_withdrawal->execute();
+
+	// persist componenet transactions
+	_ts->saveTransaction(_deposit);
+	_ts->saveTransaction(_withdrawal);
+	_ts->saveTransaction(this);
 }
 
 void Transfer::rollback()

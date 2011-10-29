@@ -6,6 +6,8 @@
 #include "ApplicationController.h"
 #include "AccountServices.h"
 #include "CreateSavingsAccountForm.h"
+#include "SingleAccountTransactionForm.h"
+#include "MultipleAccountTransactionForm.h"
 #include <string>
 #include <list>
 #include <sstream>
@@ -61,6 +63,7 @@ namespace BankingSystemV2 {
 		Customer* _customer;
 		AccountServices* _as;
 		TransactionServices* _ts;
+		Account* _currentAccount;
 
 
 	private: System::Windows::Forms::Panel^  panel1;
@@ -174,6 +177,12 @@ namespace BankingSystemV2 {
 				+= gcnew System::EventHandler(this, &Customer_Form::createNewAccount);
 			this->pnlCustomerAccounts->lbSummary->SelectedIndexChanged 
 				+= gcnew System::EventHandler(this, &Customer_Form::accountSelectionChanged);
+			this->pnlCustomerAccounts->btnDeposit->Click 
+				+= gcnew System::EventHandler(this, &Customer_Form::launchDeposit);
+			this->pnlCustomerAccounts->btnWithdraw->Click 
+				+= gcnew System::EventHandler(this, &Customer_Form::launchWithdrawal);
+			this->pnlCustomerAccounts->btnTransfer->Click 
+				+= gcnew System::EventHandler(this, &Customer_Form::launchTransfer);
 			// 
 			// Customer_Form
 			// 
@@ -223,6 +232,9 @@ private:
 
 		loadAccounts();
 
+		// diable buttons
+		disallowTransactions(NULL);
+
 	}
 
 	// update details event
@@ -252,7 +264,8 @@ private:
 
 		// get account and populate details and transactions
 		Account* account = AccountServices::instance()->getAccount(accId);
-		
+		_currentAccount = account;
+
 		// load details pane
 		loadDetailsPane(account);
 
@@ -291,6 +304,33 @@ private:
 		this->pnlCustomerDetails->txtPassword->Text = "";
 		this->pnlCustomerDetails->txtConfirmPassword->Text = "";
 
+	}
+
+	System::Void launchDeposit(System::Object^  sender, System::EventArgs^  e) 
+	{
+		
+		SingleAccountTransactionForm^ f = gcnew SingleAccountTransactionForm(_currentAccount, SingleAccountTransactionForm::DEPOSIT);
+		f->ShowDialog();
+		loadTransactionPane(_currentAccount);
+		loadDetailsPane(_currentAccount);
+	}
+
+	System::Void launchWithdrawal(System::Object^  sender, System::EventArgs^  e) 
+	{
+		
+		SingleAccountTransactionForm^ f = gcnew SingleAccountTransactionForm(_currentAccount, SingleAccountTransactionForm::WITHDRAWAL);
+		f->ShowDialog();
+		loadTransactionPane(_currentAccount);
+		loadDetailsPane(_currentAccount);
+	}
+
+	System::Void launchTransfer(System::Object^  sender, System::EventArgs^  e) 
+	{
+		
+		MultipleAccountTransactionForm^ f = gcnew MultipleAccountTransactionForm(_customer);
+		f->ShowDialog();
+		loadTransactionPane(_currentAccount);
+		loadDetailsPane(_currentAccount);
 	}
 
 	// ----------------------------------------------------------------------------------------- //

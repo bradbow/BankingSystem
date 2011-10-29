@@ -18,7 +18,8 @@ Withdrawal::Withdrawal
 void Withdrawal::execute()
 {
 	_preTransactionBalance = _ts->getPreTransactionBalance(_accountId);
-	_ts->deposit(_accountId, _amount);
+	_ts->withdraw(_accountId, _amount);
+	_ts->saveTransaction(this);
 }
 
 void Withdrawal::rollback()
