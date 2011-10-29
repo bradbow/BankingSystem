@@ -15,6 +15,7 @@ public:
 	std::string calculateDayOfWeek();
 	std::string getDateString()
 	{
+		// TODO Brad: dick head
 		std::string str = "dummy";
 		return str;
 	}

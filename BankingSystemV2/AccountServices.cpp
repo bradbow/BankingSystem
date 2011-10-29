@@ -5,6 +5,10 @@
 
 #include "stdafx.h"
 #include <sstream>
+#include <list>
+#include <set>
+#include <vector>
+
 
 using std::stringstream;
 
@@ -40,8 +44,8 @@ void AccountServices::makeSavingsAccount
 {
 	
 	int accountId = getNextAccountId();
-	SavingsAccount sa (accountId, customerId, accountName, interestRate);
-	_ds->addAccount(&sa);
+	SavingsAccount sa (accountId, accountName, interestRate);
+	AccountServices::_ds->addAccount(&sa);
 
 }
 
@@ -59,20 +63,14 @@ void AccountServices::makeCreditCardAccount
 	CreditCardAccount cca
 		(	
 			accountId,
-			customerId,
 			accountName, 
 			interestRate, 
 			balance, 
 			overdraftLimit
 		);
 
-	_ds->addAccount(&cca);
+	AccountServices::_ds->addAccount(&cca);
 
-}
-
-Account* AccountServices::getAccount(int accId)
-{
-	return _ds->getAccount(accId);
 }
 
 std::string AccountServices::repaymentOptionToString(HomeLoanAccount::RepaymentOption option)
@@ -96,26 +94,32 @@ std::string AccountServices::repaymentOptionToString(HomeLoanAccount::RepaymentO
 
 //// precondition: valid parameters passed in
 //// postcondition: a home loan account is created and returned
-//HomeLoanAccount *AccountServices::createHomeLoanAccount (int accountID, string accountName, 
-//                                   double interestRate, double balance,
-//                                   string propertyAddress, 
-//                                   HomeLoanAccount::repaymentOption option, 
-//								   double minimumRepayment){
+void AccountServices::makeHomeLoanAccount (string accountName, int customerId, 
+                                   double interestRate, double balance,
+                                   string propertyAddress, 
+                                   HomeLoanAccount::RepaymentOption option, 
+								   double minimumRepayment){
+
+	int accountId = getNextAccountId();
+									   
+								HomeLoanAccount hla(
+									accountId,
+									accountName,
+								interestRate,
+								balance,
+								propertyAddress,
+								option,
+								minimumRepayment);
+
+								AccountServices::_ds->addAccount(&hla);
+}
 //
-//	return new HomeLoanAccount(	accountID,
-//								accountName,
-//								interestRate,
-//								balance,
-//								propertyAddress,
-//								option,
-//								minimumRepayment);
-//}
-//
-//// precondition: valid accountID with a zero balance is passed in
-//// postcondition: account matching accountID is closed 
-//void AccountServices::closeAccount(int accountID){
-//
-//}
+// precondition: valid accountID with a zero balance is passed in
+// postcondition: account matching accountID is closed 
+void AccountServices::closeAccount(int accountID){
+
+	_ds->removeAccount(accountID);
+}
 //
 //// precondition: valid accountType and accountID are passed in
 //// postcondition: old details are replaced by new
@@ -125,14 +129,15 @@ std::string AccountServices::repaymentOptionToString(HomeLoanAccount::RepaymentO
 //
 //}
 //
-////// precondition: valid accountID passed in
-////// postcondition: Account matching accountID returned
-////Account *getAccount(int accountID){
-////
-////	Account *account = new Account(accountID, "accountName", 0.0, 0.0);
-////	return account;
-////}
-//
+
+////precondition: valid accountID passed in
+////postcondition: Account matching accountID returned
+Account *AccountServices::getAccount(int accountID){
+	
+	Account *account = _ds->getAccount(accountID);
+	return account;
+}
+
 //// precondition: valid transaction passed in
 //// postcondition: changes made to accounts contained within
 //// transaction
@@ -140,15 +145,23 @@ std::string AccountServices::repaymentOptionToString(HomeLoanAccount::RepaymentO
 //
 //// precondition: valid customerID passed in
 //// postcondition: list of accounts matching customerID returned
-//list<Account*> AccountServices::getCustomerAccounts(int customerID){
-//
-//	Customer customer(customerID, "password", "name", "address", "phoneNumber");
-//	//Customer customer = (Customer*)(getUser(userID));
-//	set<int> accountNumbers = customer.getAccounts();
-//	list<Account*> accounts;
-//	// retrieve the matching account for each of the the accountNumbers and add to accounts
-//	return accounts;
-//}
+list<Account*> AccountServices::getCustomerAccounts(set<int> customerAccountIDs){
+	
+	list<Account*> accounts;
+	set<int>::iterator it;
+	for(it = customerAccountIDs.begin();it != customerAccountIDs.end(); it++){	
+		accounts.push_back(getAccount(*it));
+	}
+	return accounts;
+}
 
-
+vector<Account*> AccountServices::getCustomerAccountsV(set<int> customerAccountIDs){
+	
+	vector<Account*> accounts;
+	set<int>::iterator it;
+	for(it = customerAccountIDs.begin();it != customerAccountIDs.end(); it++){	
+		accounts.push_back(getAccount(*it));
+	}
+	return accounts;
+}
 

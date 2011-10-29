@@ -16,6 +16,11 @@ public:
 
 	virtual std::string toString();
 
+
+private:
+	static const int NUM_FIELDS = 2;
+
+
 };
 #endif
 

@@ -24,9 +24,9 @@ public:
 	
 	Account
 	(
-		int accountId, int customerId, string accountName,
+		int accountId, string accountName,
 		double interestRate, double balance = 0
-	) : _accountId(accountId), _customerId(customerId), 
+	) : _accountId(accountId), 
 	    _accountName(accountName), _interestRate(interestRate),
 		_balance(balance){}
 
@@ -35,7 +35,6 @@ public:
 	// getters
 
 	int getAccountId(){return _accountId;}
-	int getCustomerId(){return _customerId;}
 	string getAccountName(){return _accountName;}
 	double getInterestRate(){return _interestRate;}
 	double getBalance(){return _balance;}
@@ -76,7 +75,6 @@ private:
 	// data members
 
 	int _accountId;
-	int _customerId;
 	string _accountName;
 	double _interestRate;
 	double _balance;

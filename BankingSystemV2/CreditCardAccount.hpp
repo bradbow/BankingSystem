@@ -15,12 +15,12 @@ public:
 
 	CreditCardAccount
 	(
-		int accountId, int customerId, string accountName,
+		int accountId, string accountName,
 		double interestRate, double balance, double overdraftLimit
 	) : 
 	CreditAccount
 	(
-		accountId, customerId, accountName, 
+		accountId, accountName, 
 		interestRate, balance
 	), _overdraftLimit(overdraftLimit)
 	{
@@ -44,7 +44,6 @@ public:
 	{
 		stringstream ss;
 		ss << getAccountId() << ", ";
-		ss << getCustomerId() << ", ";
 		ss << getAccountName() << ", ";
 		ss << getInterestRate() << ", ";
 		ss << getBalance() << ", ";
