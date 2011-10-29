@@ -90,6 +90,51 @@ void TextFileDataSource::persistData()
 	//persistRates();
 }
 
+list<Account*> TextFileDataSource::getAccountsForUser(int userId)
+{
+	list<Account*> accounts;
+	map<int, Account*>::iterator mit;
+	for (mit = _accounts.begin(); mit != _accounts.end(); mit++)
+	{
+		if (mit->second->getCustomerId() == userId)
+		{
+			accounts.push_back(mit->second);
+		}
+	}
+
+	return accounts;
+}
+
+list<Transaction*> TextFileDataSource::getTransactionsForAccount(int accId)
+{
+	list<Transaction*> transactions;
+	map<int, Transaction*>::iterator mit;
+	for (mit = _transactions.begin(); mit != _transactions.end(); mit++)
+	{
+		// check for withdraw or deposit
+		Transaction* t = mit->second;
+		Deposit* d = dynamic_cast<Deposit*>(t);
+		Withdrawal* w = dynamic_cast<Withdrawal*>(t);
+		
+		if (d)
+		{
+			if (d->getAccountId() == accId)
+			{
+				transactions.push_back(d);
+			}
+		}
+		else if (w)
+		{
+			if (w->getAccountId() == accId)
+			{
+				transactions.push_back(w);
+			}
+		}
+	}
+
+	return transactions;
+}
+
 // --------------------------------------------------------------------------------------------- //
 // helper / utility methods
 
@@ -367,7 +412,8 @@ void TextFileDataSource::ConstructAndAddTransferTransaction(string line)
 			TypeConv(lineSplit[FROM_ACCOUNT_ID])
 		);
 
-		_transactions.add(t->getId(), t);
+		_transactions.add(t->getDeposit()->getId(), t->getDeposit());
+		_transactions.add(t->getWithdrawal()->getId(), t->getWithdrawal());
 	}
 	else
 	{

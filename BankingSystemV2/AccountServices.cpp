@@ -14,6 +14,7 @@ using std::stringstream;
 
 DataSource* AccountServices::_ds = NULL;
 AccountServices* AccountServices::_accountServicesInstance = NULL;
+PhraseGenerator* AccountServices::_pg = NULL;
 
 // -------------------------------------------------------------------------------------------- //
 // constructors / destructors / instance retreival
@@ -31,6 +32,11 @@ AccountServices *AccountServices::instance(void){
 	return _accountServicesInstance;
 }
 
+AccountServices::AccountServices()
+{
+	_pg = PhraseGenerator::instance();
+}
+
 // -------------------------------------------------------------------------------------------- //
 // behaviours
 
@@ -43,9 +49,9 @@ int AccountServices::makeSavingsAccount
 )
 {
 	
-	int accountId = getNextAccountId();
-	SavingsAccount sa (accountId, customerId, accountName, interestRate);
-	AccountServices::_ds->addAccount(&sa);
+	int accountId = getNextSavingsAccountId();
+	SavingsAccount* sa = new SavingsAccount (accountId, customerId, accountName, interestRate);
+	AccountServices::_ds->addAccount(sa);
 	return accountId;
 
 }
@@ -60,7 +66,7 @@ int AccountServices::makeCreditCardAccount
 )
 {
 
-	int accountId = getNextAccountId();
+	int accountId = getNextCreditCardAccountId();
 	CreditCardAccount cca
 		(	
 			accountId,
@@ -103,7 +109,7 @@ int AccountServices::makeHomeLoanAccount (string accountName, int customerId,
                                    HomeLoanAccount::RepaymentOption option, 
 								   double minimumRepayment){
 
-	int accountId = getNextAccountId();
+	int accountId = getNextHomeLoanAccountId();
 									   
 								HomeLoanAccount hla(
 									accountId,
@@ -153,12 +159,7 @@ Account *AccountServices::getAccount(int customerId){
 //// precondition: valid customerID passed in
 //// postcondition: list of accounts matching customerID returned
 list<Account*> AccountServices::getCustomerAccounts(int customerId){
-	
-	// TODO Jeff: Invalid CustomerID Exception handling
-	
-	list<Account*> accounts;
-	//accounts = _ds;
-	return accounts;
+	return  _ds->getAccountsForUser(customerId);
 }
 
 
@@ -171,6 +172,39 @@ void AccountServices::setRates(vector<double> rates){
 	_ds->setCreditCardInterestRate(rates[CREDIT_CARD_RATE]);
 	_ds->setHomeLoanInterestRate(rates[HOME_LOAN_RATE]);
 
+}
+
+int AccountServices::getNextSavingsAccountId()
+{
+	int id;
+	do
+	{
+		id = _pg->getDigitPhrase(ACCOUNT_ID_LENGTH, SAVINGS_PREFIX);
+	}while (_ds->userExists(id));
+
+	return id;
+}
+
+int AccountServices::getNextCreditCardAccountId()
+{
+	int id;
+	do
+	{
+		id = _pg->getDigitPhrase(ACCOUNT_ID_LENGTH, CREDIT_CARD_PREFIX);
+	}while (_ds->userExists(id));
+
+	return id;
+}
+
+int AccountServices::getNextHomeLoanAccountId()
+{
+	int id;
+	do
+	{
+		id = _pg->getDigitPhrase(ACCOUNT_ID_LENGTH, HOME_LOAN_PREFIX);
+	}while (_ds->userExists(id));
+
+	return id;
 }
 
 

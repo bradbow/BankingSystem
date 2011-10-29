@@ -26,7 +26,7 @@ public:
 	(
 		int accountId, int customerId, string accountName,
 		double interestRate, double balance = 0
-	) : _accountId(accountId), 
+	) : _accountId(accountId), _customerId(customerId),
 	    _accountName(accountName), _interestRate(interestRate),
 		_balance(balance){}
 

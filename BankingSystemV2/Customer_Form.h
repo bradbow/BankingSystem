@@ -7,6 +7,7 @@
 #include "AccountServices.h"
 #include "CreateSavingsAccountForm.h"
 #include <string>
+#include <list>
 #include <sstream>
 
 namespace BankingSystemV2 {
@@ -31,6 +32,8 @@ namespace BankingSystemV2 {
 			
 			_ac = ac;
 			_customer = dynamic_cast<Customer*>(Session::getUser());
+			_as = AccountServices::instance();
+			_ts = TransactionServices::instance();
 			hideNonBaseDetailFields();
 
 			if (_customer == NULL)
@@ -56,6 +59,9 @@ namespace BankingSystemV2 {
 	private: 
 		ApplicationController* _ac;
 		Customer* _customer;
+		AccountServices* _as;
+		TransactionServices* _ts;
+
 
 	private: System::Windows::Forms::Panel^  panel1;
 	private: System::Windows::Forms::Button^  btnLogout;
@@ -166,6 +172,8 @@ namespace BankingSystemV2 {
 			this->pnlCustomerAccounts->TabIndex = 0;
 			this->pnlCustomerAccounts->btnNewAccount->Click 
 				+= gcnew System::EventHandler(this, &Customer_Form::createNewAccount);
+			this->pnlCustomerAccounts->lbSummary->SelectedIndexChanged 
+				+= gcnew System::EventHandler(this, &Customer_Form::accountSelectionChanged);
 			// 
 			// Customer_Form
 			// 
@@ -213,17 +221,7 @@ private:
 		this->pnlCustomerDetails->txtCustomerAddress->Text =  DotNetUtils::StdStringToSystemString(_customer->getAddress());
 		this->pnlCustomerDetails->txtCustomerPhone->Text =  DotNetUtils::StdStringToSystemString(_customer->getPhoneNumber());
 
-		// intiialise accounts
-		/*std::string str; System::String^ temp;
-		set<int> accountIds = _customer->getAccounts();
-		set<int>::iterator sit;
-		for (sit = accountIds.begin(); sit != accountIds.end(); sit++)
-		{
-			Account* ap = AccountServices::instance()->getAccount(*sit);
-			str = ap->getSummary();
-			temp = gcnew String(str.c_str());
-			this->pnlCustomerAccounts->lbSummary->Items->Add(temp);
-		}*/
+		loadAccounts();
 
 	}
 
@@ -295,9 +293,27 @@ private:
 	// ----------------------------------------------------------------------------------------- //
 	// Helper / Utiliy methods
 
+	void loadAccounts()
+	{
+		// clear
+		this->pnlCustomerAccounts->lbSummary->Items->Clear();
+		
+		// intiialise accounts
+		std::string str; System::String^ temp;
+		list<Account*> accounts = _as->getCustomerAccounts(_customer->getUserId());
+		list<Account*>::iterator lit;
+		for (lit = accounts.begin(); lit != accounts.end(); lit++)
+		{
+			str = (*lit)->getSummary();
+			temp = gcnew String(str.c_str());
+			this->pnlCustomerAccounts->lbSummary->Items->Add(temp);
+		}
+	}
+	
+	
 	void updateAccountsPanel()
 	{
-		MessageBox::Show(this, "finished");
+		loadAccounts();
 	}
 
 	void loadDetailsPane(Account* account)
@@ -334,16 +350,15 @@ private:
 		// clear existing
 		this->pnlCustomerAccounts->lbTransactionHistory->Items->Clear();
 		
-		/*TransactionServices* ts = TransactionServices::instance();
-		Transaction* t;
-		set<int> transIds = account->getTransactions();
-		set<int>::iterator sit;
-		for (sit = transIds.begin(); sit != transIds.end(); ++sit)
+		list<Transaction*> transactions = 
+			_ts->getTransactionsForAccount(account->getAccountId());
+		
+		list<Transaction*>::iterator lit;
+		for (lit = transactions.begin(); lit != transactions.end(); ++lit)
 		{
-			t = ts->getTransaction(*sit);
 			this->pnlCustomerAccounts->lbTransactionHistory->Items->
-				Add(DotNetUtils::StdStringToSystemString(t->getSummary()));
-		}*/
+				Add(DotNetUtils::StdStringToSystemString((*lit)->getSummary()));
+		}
 	}
 
 	void loadSavingsDetails(SavingsAccount* sa)

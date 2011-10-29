@@ -38,6 +38,11 @@ double TransactionServices::getPreTransactionBalance(int accId)
 	return acc->getBalance();
 }
 
+list<Transaction*> TransactionServices::getTransactionsForAccount(int accId)
+{
+	return _ds->getTransactionsForAccount(accId);
+}
+
 void TransactionServices::revert(Transaction* t)
 {
 	Deposit* d = dynamic_cast<Deposit*>(t);
