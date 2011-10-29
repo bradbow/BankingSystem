@@ -1,5 +1,10 @@
 #pragma once
 #include <string>
+#include "Delimiters.h"
+
+#ifndef _DATE_H
+#define _DATE_H 
+
 class Date
 {
 public:
@@ -15,8 +20,12 @@ public:
 	std::string calculateDayOfWeek();
 	std::string getDateString()
 	{
-		// TODO Brad: dick head
-		std::string str = "dummy";
+		std::string str = "";
+		stringstream ss;
+		ss << _day << DATE_DELIMITER;
+		ss << _month << DATE_DELIMITER;
+		ss << _year;
+		getline(ss,str);
 		return str;
 	}
 	static int getDaysBetweenDates(const Date * dtOne, const Date * dtTwo);
@@ -52,4 +61,4 @@ private:
 	// ----------------------------------------------------------------------------------------- //
 
 };
-
+#endif

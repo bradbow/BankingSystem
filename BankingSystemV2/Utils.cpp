@@ -35,7 +35,6 @@ vector<string> StringUtils::splitString(string str, char delimeter)
 	}
 
 	return vecSubStrs;
-
 }
 
 // --------------------------------------------------------------------------------------------- //
