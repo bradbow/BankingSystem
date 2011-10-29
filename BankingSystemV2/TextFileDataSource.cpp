@@ -91,7 +91,7 @@ void TextFileDataSource::loadData()
 
 void TextFileDataSource::persistData()
 {
-	persistCustomers();
+	persistUsers();
 }
 
 // --------------------------------------------------------------------------------------------- //
@@ -106,14 +106,12 @@ void TextFileDataSource::ConstructAndAddCustomer(string line)
 		NAME,
 		ADDRESS,
 		PHONE_NUMBER,
-		ACCOUNT_IDS,
 		NUM_FIELDS
 	};
 	
 	vector<string> lineSplit = StringUtils::splitString(line, ',');
 	if (lineSplit.size() == NUM_FIELDS)
 	{
-		vector<string> accountIds = StringUtils::splitString(lineSplit[ACCOUNT_IDS], ';');
 
 		// create customer
 		Customer* c = new Customer 
@@ -124,15 +122,6 @@ void TextFileDataSource::ConstructAndAddCustomer(string line)
 			lineSplit[ADDRESS],
 			lineSplit[PHONE_NUMBER]
 		);
-
-		// add account ids
-		vector<string>::iterator vit;
-		for (vit = accountIds.begin(); vit != accountIds.end(); ++vit)
-		{
-			c->addAccount(TypeConv(*vit));
-		}
-
-		_users.add(c->getUserId(), c);
 
 	}
 	else 
@@ -148,7 +137,6 @@ void TextFileDataSource::ConstructAndAddBankClerk(string line)
 	{
 		USER_ID,
 		PASSWORD,
-		EXTRA_MEMBER,
 		NUM_FIELDS
 	};
 
@@ -159,8 +147,7 @@ void TextFileDataSource::ConstructAndAddBankClerk(string line)
 		BankClerk* bc = new BankClerk
 		(
 			TypeConv(lineSplit[USER_ID]),
-			lineSplit[PASSWORD],
-			TypeConv(lineSplit[EXTRA_MEMBER])
+			lineSplit[PASSWORD]
 		);
 
 		_users.add(bc->getUserId(), bc);
@@ -180,7 +167,6 @@ void TextFileDataSource::ConstructAndAddSavingsAccount(string line)
 		ACCOUNT_NAME,
 		INTEREST_RATE,
 		BALANCE,
-		TRANSACTION_IDS,
 		NUM_FIELDS
 	};
 
@@ -188,7 +174,6 @@ void TextFileDataSource::ConstructAndAddSavingsAccount(string line)
 
 	if (lineSplit.size() == NUM_FIELDS)
 	{
-		vector<string> transIds = StringUtils::splitString(lineSplit[TRANSACTION_IDS], ';');
 	
 		SavingsAccount* sa = new SavingsAccount
 		(
@@ -198,12 +183,6 @@ void TextFileDataSource::ConstructAndAddSavingsAccount(string line)
 			TypeConv(lineSplit[INTEREST_RATE]),
 			TypeConv(lineSplit[BALANCE])
 		);
-
-		vector<string>::iterator vit;
-		for (vit = transIds.begin(); vit != transIds.end(); ++vit)
-		{
-			sa->addTransaction(TypeConv(*vit));
-		}
 
 		_accounts.add(sa->getAccountId(), sa);
 	}
@@ -223,7 +202,7 @@ void TextFileDataSource::ConstructAndAddCreditCardAccount(string line)
 		ACCOUNT_NAME,
 		INTEREST_RATE,
 		BALANCE,
-		TRANSACTION_IDS,
+		OVERDRAFT_LIMIT,
 		NUM_FIELDS
 	};
 
@@ -231,24 +210,18 @@ void TextFileDataSource::ConstructAndAddCreditCardAccount(string line)
 
 	if (lineSplit.size() == NUM_FIELDS)
 	{
-		vector<string> transIds = StringUtils::splitString(lineSplit[TRANSACTION_IDS], ';');
 	
-		SavingsAccount* sa = new SavingsAccount
+		CreditCardAccount* cca = new CreditCardAccount
 		(
 			TypeConv(lineSplit[ACCOUNT_ID]),
 			TypeConv(lineSplit[CUSTOMER_ID]),
 			lineSplit[ACCOUNT_NAME],
 			TypeConv(lineSplit[INTEREST_RATE]),
-			TypeConv(lineSplit[BALANCE])
+			TypeConv(lineSplit[BALANCE]),
+			TypeConv(lineSplit[OVERDRAFT_LIMIT])
 		);
 
-		vector<string>::iterator vit;
-		for (vit = transIds.begin(); vit != transIds.end(); ++vit)
-		{
-			sa->addTransaction(TypeConv(*vit));
-		}
-
-		_accounts.add(sa->getAccountId(), sa);
+		_accounts.add(cca->getAccountId(), cca);
 	}
 	else
 	{
@@ -268,7 +241,6 @@ void TextFileDataSource::ConstructAndAddHomeLoanAccount(string line)
 		PROPERTY_ADDRESS,
 		REPAYMENT_OPTION,
 		MIN_REPAYMENT,
-		TRANSACTION_IDS,
 		NUM_FIELDS
 	};
 
@@ -279,8 +251,6 @@ void TextFileDataSource::ConstructAndAddHomeLoanAccount(string line)
 		// TODO Brad & Jeff: Dangerous....
 		int nOption = TypeConv(lineSplit[REPAYMENT_OPTION]);
 		HomeLoanAccount::RepaymentOption option = static_cast<HomeLoanAccount::RepaymentOption>(nOption);
-
-		vector<string> transIds = StringUtils::splitString(lineSplit[TRANSACTION_IDS], ';');
 
 		HomeLoanAccount* hla = new HomeLoanAccount
 		(
@@ -293,12 +263,6 @@ void TextFileDataSource::ConstructAndAddHomeLoanAccount(string line)
 			option,
 			TypeConv(lineSplit[MIN_REPAYMENT])
 		);
-
-		vector<string>::iterator vit;
-		for (vit = transIds.begin(); vit != transIds.end(); ++vit)
-		{
-			hla->addTransaction(TypeConv(*vit));
-		}
 
 		_accounts.add(hla->getAccountId(), hla);
 	}
@@ -315,7 +279,6 @@ void TextFileDataSource::ConstructAndAddWithdrawalTransaction(string line)
 	{
 		ID,
 		AMOUNT,
-		CUSTOMER_ID,
 		DATE,
 		ACCOUNT_ID,
 		NUM_FIELDS
@@ -330,7 +293,6 @@ void TextFileDataSource::ConstructAndAddWithdrawalTransaction(string line)
 		(
 			TypeConv(lineSplit[ID]),
 			TypeConv(lineSplit[AMOUNT]),
-			TypeConv(lineSplit[CUSTOMER_ID]),
 			dt,
 			TypeConv(lineSplit[ACCOUNT_ID])
 		);
@@ -350,7 +312,6 @@ void TextFileDataSource::ConstructAndAddDepositTransaction(string line)
 	{
 		ID,
 		AMOUNT,
-		CUSTOMER_ID,
 		DATE,
 		ACCOUNT_ID,
 		NUM_FIELDS
@@ -366,7 +327,6 @@ void TextFileDataSource::ConstructAndAddDepositTransaction(string line)
 		(
 			TypeConv(lineSplit[ID]),
 			TypeConv(lineSplit[AMOUNT]),
-			TypeConv(lineSplit[CUSTOMER_ID]),
 			dt,
 			TypeConv(lineSplit[ACCOUNT_ID])
 		);
@@ -386,7 +346,6 @@ void TextFileDataSource::ConstructAndAddTransferTransaction(string line)
 	{
 		ID,
 		AMOUNT,
-		CUSTOMER_ID,
 		DATE,
 		TO_ACCOUNT_ID,
 		FROM_ACCOUNT_ID,
@@ -403,7 +362,6 @@ void TextFileDataSource::ConstructAndAddTransferTransaction(string line)
 		(
 			TypeConv(lineSplit[ID]),
 			TypeConv(lineSplit[AMOUNT]),
-			TypeConv(lineSplit[CUSTOMER_ID]),
 			dt,
 			TypeConv(lineSplit[TO_ACCOUNT_ID]),
 			TypeConv(lineSplit[FROM_ACCOUNT_ID])

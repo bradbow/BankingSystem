@@ -65,43 +65,6 @@ void Customer::setPhoneNumber(string phoneNumber){
 
 	_phoneNumber = phoneNumber;
 }
-// precondition: none
-// postcondition: returns account no's
-// as list
-set <int> Customer::getAccounts(void){
-
-	return _accounts;
-}
-// precondition: valid accountID passed in
-// postcondition: accountID addded to accounts
-bool Customer::addAccount(int accountID){
-
-	_accounts.insert(accountID);
-	return true;
-}
-// precondition: valid accountID passed in
-// postcondition: accountID removed from accounts
-// list
-bool Customer::removeAccount(int accountID){
-
-	// TODO Jeff: does this throw error if not in set?
-	_accounts.erase(_accounts.find(accountID));
-	return true;
-}
-// precondition: none
-// postcondition: returns true if accountID is listed
-// in accounts, otherwise false
-bool Customer::hasAccount(int accountID){
-
-	//TODO Jeff: add iterator code here
-	return true;
-}
-// precondition: none
-// postcondition: returns true if accounts is not empty
-bool Customer::hasAcocunt(void){
-
-	return !_accounts.empty();
-}
 
 std::string Customer::toString()
 {
@@ -110,15 +73,8 @@ std::string Customer::toString()
 		ss << _password << ",";
 		ss << _name << ",";
 		ss << _address << ",";
-		ss << _phoneNumber << ",";
-		
-		set<int>::iterator sit = _accounts.begin();
-		ss << *sit;
-		for (; sit != _accounts.end(); ++sit)
-		{
-			ss << ";" << *sit;
-		}
-
+		ss << _phoneNumber;
+	
 		std::string str;
 		getline(ss, str);
 

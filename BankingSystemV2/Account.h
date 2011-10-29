@@ -40,7 +40,6 @@ public:
 	double getInterestRate(){return _interestRate;}
 	double getBalance(){return _balance;}
 	string getAccountTypeName(){return _accountTypeName;}
-	std::set<int> getTransactions(){return _transaction;}
 
 	// ----------------------------------------------------------------------------------------- // 
 	// setters
@@ -56,9 +55,6 @@ public:
 	virtual void deposit(double amount) throw (TransactionException) = 0;
 	virtual void applyInterest() = 0;
 	virtual std::string toString() = 0;
-	void addTransaction(int id){_transaction.insert(id);}
-	void removeTransaction(int id){_transaction.erase(_transaction.find(id));}
-	bool hasTransaction(int id){return _transaction.find(id) == _transaction.end();}
 	
 	std::string getSummary()
 	{
@@ -85,7 +81,6 @@ private:
 	double _interestRate;
 	double _balance;
 	string _accountTypeName;
-	std::set<int> _transaction;
 
 	// ----------------------------------------------------------------------------------------- // 
 	

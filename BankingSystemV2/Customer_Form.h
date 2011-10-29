@@ -386,7 +386,7 @@ private:
 		this->pnlCustomerDetails->txtCustomerPhone->Text =  DotNetUtils::StdStringToSystemString(_customer->getPhoneNumber());
 
 		// intiialise accounts
-		std::string str; System::String^ temp;
+		/*std::string str; System::String^ temp;
 		set<int> accountIds = _customer->getAccounts();
 		set<int>::iterator sit;
 		for (sit = accountIds.begin(); sit != accountIds.end(); sit++)
@@ -395,7 +395,7 @@ private:
 			str = ap->getSummary();
 			temp = gcnew String(str.c_str());
 			this->pnlCustomerAccounts->lbSummary->Items->Add(temp);
-		}
+		}*/
 
 	}
 
@@ -465,7 +465,7 @@ private:
 		// clear existing
 		this->pnlCustomerAccounts->lbTransactionHistory->Items->Clear();
 		
-		TransactionServices* ts = TransactionServices::instance();
+		/*TransactionServices* ts = TransactionServices::instance();
 		Transaction* t;
 		set<int> transIds = account->getTransactions();
 		set<int>::iterator sit;
@@ -474,7 +474,7 @@ private:
 			t = ts->getTransaction(*sit);
 			this->pnlCustomerAccounts->lbTransactionHistory->Items->
 				Add(DotNetUtils::StdStringToSystemString(t->getSummary()));
-		}
+		}*/
 	}
 
 	void loadSavingsDetails(SavingsAccount* sa)

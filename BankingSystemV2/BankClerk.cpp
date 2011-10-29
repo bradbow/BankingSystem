@@ -8,16 +8,8 @@
 // postcondition: bank clerk created
 BankClerk::BankClerk(
 	int userName, 
-	string password,
-	int extraMember) : 
-User(userName, password), _extraMember(extraMember){}
-
-// destructor
-// precondition: none
-// postcondition: memory deallocated
-BankClerk::~BankClerk(void)
-{
-}
+	string password) : 
+User(userName, password){}
 
 std::string BankClerk::toString()
 {

@@ -5,16 +5,12 @@
 
 Transfer::Transfer
 (
-	int id, double amount, int customerId, 
-	Date dt, int toAccId, int fromAccId
-) : Transaction(id, amount, customerId, dt)
+	int id, double amount, Date dt, int toAccId, int fromAccId
+) : Transaction(id, amount, dt)
 {
-	_transactionType = "Deposit";
-	_toAccountId = toAccId;
-	_fromAccountId = fromAccId;
-	//_preFromAccountBalance = _fromAccount->getBalance();
-	//_preToAccountBalance = _toAccount->getBalance();
-
+	_transactionType = "Transfer";
+	_deposit = new Deposit(_ts->getNextTransactionId(), amount, dt, toAccId);
+	_withdrawal = new Withdrawal(_ts->getNextTransactionId(), amount, dt, fromAccId);
 }
 
 // ----------------------------------------------------------------------------------------- // 
@@ -22,14 +18,14 @@ Transfer::Transfer
 
 void Transfer::execute()
 {
-	//_fromAccount->withdraw(_amount);
-	//_toAccount->deposit(_amount);
+	_deposit->execute();
+	_withdrawal->execute();
 }
 
 void Transfer::rollback()
 {
-	//_toAccount->setBalance(_preToAccountBalance);
-	//_fromAccount->setBalance(_preFromAccountBalance);
+	_deposit->rollback();
+	_withdrawal->rollback();
 }
 
 

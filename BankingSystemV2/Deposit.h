@@ -2,9 +2,8 @@
 
 #ifndef _DEPOSIT_H
 #define _DEPOSIT_H 
-
-#include "Transaction.h"
 #include "Account.h"
+
 
 class Deposit : public Transaction
 {
@@ -13,7 +12,7 @@ public:
 	// ----------------------------------------------------------------------------------------- // 
 	// Constructors / Destructors
 
-	Deposit(int id, double amount, int customerId, Date dt, int accountId);
+	Deposit(int id, double amount, Date dt, int accountId);
 	
 	// ----------------------------------------------------------------------------------------- // 
 	// behaviours
@@ -23,8 +22,8 @@ public:
 
 	// ----------------------------------------------------------------------------------------- // 
 	// getters
-
-	Account* getAccount(){return _account;}
+	double getPreTransactionBalance(){return _preTransactionBalance;}
+	int getAccountId(){return _accountId;}
 
 	// ----------------------------------------------------------------------------------------- // 
 	
@@ -33,7 +32,7 @@ private:
 	// ----------------------------------------------------------------------------------------- // 
 	// data members
 
-	Account* _account;
+	int _accountId;
 	double _preTransactionBalance;
 
 	// ----------------------------------------------------------------------------------------- // 
