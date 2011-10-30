@@ -212,6 +212,7 @@ private:
 	// form closed
 	System::Void Customer_Form_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) 
 	{
+		_ac->saveDataToDataSource();
 		_ac->closeApplication();	 
 	}
 

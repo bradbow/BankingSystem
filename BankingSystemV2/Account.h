@@ -153,9 +153,9 @@ public:
 		std::string str;
 		std::stringstream ss;
 
-		ss << setw(40) << left << _accountId; 
-		ss << setw(40) << _accountTypeName; 
-		ss << setw(40) << _accountName << setw(12) << fixed << right << setprecision(2) <<  "$" << _balance;
+		ss << setw(30) << left << _accountId; 
+		ss << setw(30) << _accountTypeName; 
+		ss << setw(30) << _accountName << setw(12) << fixed << right << setprecision(2) <<  "$" << _balance;
 
 		getline(ss, str);
 		return str;

@@ -101,8 +101,6 @@ void ApplicationController::launchAppropriateUserForm(User* u)
 			bcf->Show();
 		}
 	}
-
-	// TODO exception, not a valid user type, or general error etc.
 }
 
 // --------------------------------------------------------------------------------------------- //

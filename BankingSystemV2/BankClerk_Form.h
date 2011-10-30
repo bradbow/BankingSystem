@@ -236,7 +236,7 @@ namespace BankingSystemV2 {
 				 // ToolStripMenuItem_logOut
 				 // 
 				 this->ToolStripMenuItem_logOut->Name = L"ToolStripMenuItem_logOut";
-				 this->ToolStripMenuItem_logOut->Size = System::Drawing::Size(62, 20);
+				 this->ToolStripMenuItem_logOut->Size = System::Drawing::Size(57, 20);
 				 this->ToolStripMenuItem_logOut->Text = L"Log Out";
 				 this->ToolStripMenuItem_logOut->Click += gcnew System::EventHandler(this, &BankClerk_Form::ToolStripMenuItem_logOut_Click);
 				 // 
@@ -907,6 +907,7 @@ namespace BankingSystemV2 {
 				 this->MainMenuStrip = this->menuStrip1;
 				 this->Name = L"BankClerk_Form";
 				 this->Text = L"BankClerk_Form";
+				 this->FormClosed += gcnew System::Windows::Forms::FormClosedEventHandler(this, &BankClerk_Form::BankClerk_Form_FormClosed);
 				 this->menuStrip1->ResumeLayout(false);
 				 this->menuStrip1->PerformLayout();
 				 this->panel_AdjustInteresttRate->ResumeLayout(false);
@@ -981,7 +982,7 @@ namespace BankingSystemV2 {
 				 list<Account*>::iterator it;
 				 for (it = customerAccounts.begin(); it != customerAccounts.end(); it++){
 
-					 listBox_AccountSelection->Items->Add((*it)->getAccountId() + "\t" + (*it)->getBalance());
+					 listBox_AccountSelection->Items->Add((*it)->getAccountId() + "\t" + "$" + (*it)->getBalance());
 				 }
 			 }
 
@@ -1171,16 +1172,20 @@ namespace BankingSystemV2 {
 				 if(
 					 this->textBox_Name->Text == "" || 
 					 this->textBox_Phone->Text == "" ||
-					 this->textBox_Address->Text == ""){}
-				 else
+					 this->textBox_Address->Text == "")
 				 {
-					 details[NAME] = DotNetUtils::SystemStringToStdString(this->textBox_Name->Text);
-					 details[ADDRESS] = DotNetUtils::SystemStringToStdString(this->textBox_Address->Text);
-					 details[PHONE] = DotNetUtils::SystemStringToStdString(this->textBox_Phone->Text);
-					 _us->updateCustomerDetails(_customer->getUserId(), details);
-					 MessageBox::Show(this, "Details successfully updated!");
+					MessageBox::Show(this, "All fields are required");
+					return;
 				 }
-				 loadCustomerDetails();
+
+				details[NAME] = DotNetUtils::SystemStringToStdString(this->textBox_Name->Text);
+				details[ADDRESS] = DotNetUtils::SystemStringToStdString(this->textBox_Address->Text);
+				details[PHONE] = DotNetUtils::SystemStringToStdString(this->textBox_Phone->Text);
+				_us->updateCustomerDetails(_customer->getUserId(), details);
+				MessageBox::Show(this, "Details successfully updated!");
+				 
+				loadCustomerDetails();
+
 			 }
 
 			 // resets the selected customers password
@@ -1253,6 +1258,13 @@ namespace BankingSystemV2 {
 				 _as->setRates(rates);
 			 }
 
+			 // close form account
+			 System::Void BankClerk_Form_FormClosed(System::Object^  sender, System::Windows::Forms::FormClosedEventArgs^  e) 
+			 {
+				 _ac->saveDataToDataSource();
+				 _ac->closeApplication();
+			 }
+
 			 // user changed tabs...
 	private: System::Void resetAllPanels(){
 
@@ -1319,7 +1331,9 @@ namespace BankingSystemV2 {
 
 
 			 }
-	};
+			 
+			
+};
 
 
 };

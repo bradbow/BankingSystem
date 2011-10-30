@@ -1,6 +1,5 @@
-1003,Joker,Cesar Romero,Arkham Assylum GOTHAM CITY,07 8765 4321
+1003,password,Cesar Romero,Arkham Assylum GOTHAM CITY,07 3881 0356
 1004,Penguin,Burgess Meredith,Arkham Assylum GOTHAM CITY,07 8765 4321
 1005,Riddler,Frank Gorshin,Arkham Assylum GOTHAM CITY,07 8765 4321
 1006,Catwoman,Julie Newmar,Arkham Assylum GOTHAM CITY,07 8765 4321
 1007,Catwoman,Eartha Kitt,Arkham Assylum GOTHAM CITY,07 8765 4321
-
