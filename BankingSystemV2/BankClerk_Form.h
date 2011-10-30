@@ -9,6 +9,7 @@
 #include "UserServices.h"
 #include <list>
 #include "Account.h"
+#include "Session.h"
 
 namespace BankingSystemV2 {
 
@@ -223,6 +224,10 @@ namespace BankingSystemV2 {
 				 this->tabPage_SetInterest->SuspendLayout();
 				 this->tabPage_Admin->SuspendLayout();
 				 this->SuspendLayout();
+
+				 this->passwordChange1->btnChange->Click 
+					 += gcnew System::EventHandler(this, &BankClerk_Form::changePassword);
+
 				 // 
 				 // menuStrip1
 				 // 
@@ -1063,8 +1068,6 @@ namespace BankingSystemV2 {
 
 	private: System::Void loadRatesPanel(){
 
-				 if(_customer == NULL){return;}
-
 				 clearRatesPanel();
 				 this->textBox_SavingsRate->Text = _as->getSavingsInterestRate().ToString();
 				 this->textBox_CreditRate->Text = _as->getCreditCardInterestRate().ToString();
@@ -1292,7 +1295,7 @@ namespace BankingSystemV2 {
 
 	private: System::Void tabControl_MainMenu_SelectIndexChanged(System::Object^  sender, System::EventArgs^  e){
 
-				 if(_customer == NULL){return;}
+				 
 
 				 enum{CUSTOMER, RATES, ADMIN};
 				 int index = this->tabControl_MainMenu->SelectedIndex;
@@ -1301,6 +1304,7 @@ namespace BankingSystemV2 {
 				 switch(index)
 				 {
 				 case CUSTOMER:
+					 if(_customer == NULL){return;}
 					 loadCustomerDetails();
 					 loadCustomerAccounts();
 					 break;
@@ -1313,6 +1317,34 @@ namespace BankingSystemV2 {
 				 }
 			 }
 
+
+			 System::Void changePassword(System::Object^  sender, System::EventArgs^  e) {
+
+				 System::String^ old = this->passwordChange1->txtOldPassword->Text;
+				 System::String^ newP = this->passwordChange1->txtNewPassword->Text;
+				 System::String^ newPconf =  this->passwordChange1->txtConfirmNewPassword->Text;
+				
+				 // check for empty text boxes
+				 if (old == "" || newP == "" || newPconf == "")
+				 {
+					 MessageBox::Show(this, "All fields are required");
+					 return;
+				 }
+
+				 string oldPass = DotNetUtils::SystemStringToStdString(old);
+				 string newPass = DotNetUtils::SystemStringToStdString(newP);
+				 string confirmPass = DotNetUtils::SystemStringToStdString(newPconf);
+
+				 if(!_us->validateUser(Session::getInstance()->getUser()->getUserId(), oldPass)){
+					MessageBox::Show(this, "Incorrect password entered");
+				 }
+				 else if(newP != newPconf){
+					MessageBox::Show(this, "Please make sure new password matches confirmed password");	
+				 }else{
+					_us->changePassword(Session::getUser()->getUserId(), newPass);
+					MessageBox::Show(this, "Password successfully updated");
+				 }
+			 }
 
 	private: System::Void passwordChange1_Load(System::Object^  sender, System::EventArgs^  e) {
 
