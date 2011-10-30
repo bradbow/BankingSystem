@@ -71,7 +71,7 @@ public:
 		ss << left << setw(15) << _id;
 		ss << setw(40) << _date.getDateString();
 		ss << setw(40) << _transactionType;
-		ss << setw(40) << "$" << right << fixed << setprecision(2) << amt;
+		ss << setw(40) << right << fixed << setprecision(2) << amt;
 
 		std::string str;
 		getline(ss, str);

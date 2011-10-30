@@ -1,12 +1,11 @@
 #include "Utils.h"
 #include "stdafx.h"
-#include <boost/algorithm/string.hpp>
 #include <vector>
 #include <sstream>
+#include <algorithm>
 #include <msclr\marshal_cppstd.h>
 using namespace System;
 using namespace std;
-using namespace boost;
 
 // --------------------------------------------------------------------------------------------- //
 // StringUtils
@@ -22,7 +21,7 @@ vector<string> StringUtils::splitString(string str, char delimeter)
 	while ((nIndex = strSub.find(delimeter)) >= 0)
 	{
 		strTemp = strSub.substr(0, nIndex);
-		trim(strTemp);
+		trimString(strTemp);
 		vecSubStrs.push_back(strTemp);
 		strSub = strSub.substr(nIndex + 1);
 	}
@@ -30,12 +29,22 @@ vector<string> StringUtils::splitString(string str, char delimeter)
 	if (!strSub.empty())
 	{
 		strTemp = strSub.substr(0, nIndex);
-		trim(strTemp);
+		trimString(strTemp);
 		vecSubStrs.push_back(strTemp);
 	}
 
 	return vecSubStrs;
 }
+
+// Rodrigo Cesar de Freitas Dias @ http://www.codeproject.com/script/Membership/View.aspx?mid=2038079
+void StringUtils::trimString(string& str)
+{
+  string::size_type pos1 = str.find_first_not_of(' ');
+  string::size_type pos2 = str.find_last_not_of(' ');
+  str = str.substr(pos1 == string::npos ? 0 : pos1, 
+    pos2 == string::npos ? str.length() - 1 : pos2 - pos1 + 1);
+}
+
 
 // --------------------------------------------------------------------------------------------- //
 // TypeConv

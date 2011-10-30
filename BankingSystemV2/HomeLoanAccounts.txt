@@ -1,1 +1,1 @@
-347658520, 1003, Cesar Romero, 13.74, 450000, Arkham Assylum GOTHAM CITY, 1000, 350000
+347658520, 1003, Cesar Romero, 13.74, 450, Arkham Assylum GOTHAM CITY, 0, 1000

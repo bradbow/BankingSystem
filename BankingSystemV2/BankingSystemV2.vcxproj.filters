@@ -400,5 +400,8 @@
     <EmbeddedResource Include="MultipleAccountTransactionForm.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="CPasswordChange.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

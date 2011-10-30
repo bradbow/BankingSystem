@@ -15,8 +15,10 @@ class StringUtils
 public:
 
 	static vector<string> splitString(string str, char delimiter);
+	
+	// Rodrigo Cesar de Freitas Dias @ http://www.codeproject.com/script/Membership/View.aspx?mid=2038079
+	static void trimString(std::string &s);
 };
-
 
 /*
 	Summary: a type converter class

@@ -6,7 +6,7 @@
 static const char DATE_DELIMITER = '-';
 
 // ID lengths
-static const int CUSTOMER_ID_LENGTH = 6;
+static const int CUSTOMER_ID_LENGTH = 4;
 static const int ACCOUNT_ID_LENGTH = 9;
 static const int TRANSACTION_ID_LENGTH = 8;
 static const int PASSWORD_LENGTH = 6;
