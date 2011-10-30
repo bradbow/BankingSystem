@@ -6,8 +6,14 @@
 using namespace BankingSystemV2;
 using namespace std;
 
+// ----------------------------------------------------------------------------------------- //
+// static initialisations
+
 ApplicationController* ApplicationController::_ac = NULL;
 DataSource* ApplicationController::_ds = NULL;
+
+// ----------------------------------------------------------------------------------------- //
+// instance retrieval / destruction
 
 ApplicationController* ApplicationController::getInstance()
 {
@@ -19,6 +25,10 @@ ApplicationController* ApplicationController::getInstance()
 	return _ac;
 }
 
+ApplicationController::~ApplicationController()
+{
+	delete _ac;
+}
 
 // --------------------------------------------------------------------------------------------- //
 // Data and services setting
@@ -47,9 +57,6 @@ void ApplicationController::createAndLinkServices()
 	as->setDataSource(_ds);
 	us->setDataSource(_ds);
 	ts->setDataSource(_ds);
-	// TODO make setDataSource private and add ApplicationController as a friend
-
-	// TODO add transaction services here
 }
 
 // --------------------------------------------------------------------------------------------- //
@@ -64,6 +71,11 @@ void ApplicationController::startApplication()
 
 	launchLoginForm();
 	Application::Run();
+}
+
+void ApplicationController::closeApplication()
+{
+	Application::Exit();
 }
 
 void ApplicationController::launchLoginForm()
@@ -91,11 +103,6 @@ void ApplicationController::launchAppropriateUserForm(User* u)
 	}
 
 	// TODO exception, not a valid user type, or general error etc.
-}
-
-void ApplicationController::closeApplication()
-{
-	Application::Exit();
 }
 
 // --------------------------------------------------------------------------------------------- //

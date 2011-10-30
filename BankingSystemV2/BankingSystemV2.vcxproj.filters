@@ -130,13 +130,7 @@
     <ClCompile Include="DebitAccount.cpp">
       <Filter>Accounts\Source</Filter>
     </ClCompile>
-    <ClCompile Include="BankClerk.cpp">
-      <Filter>Users\Source</Filter>
-    </ClCompile>
     <ClCompile Include="Customer.cpp">
-      <Filter>Users\Source</Filter>
-    </ClCompile>
-    <ClCompile Include="User.cpp">
       <Filter>Users\Source</Filter>
     </ClCompile>
     <ClCompile Include="Deposit.cpp">
@@ -363,11 +357,11 @@
     <ClInclude Include="SingleAccountTransactionForm.h">
       <Filter>Forms</Filter>
     </ClInclude>
-    <ClInclude Include="Delimiters.h">
-      <Filter>Persistence\Header</Filter>
-    </ClInclude>
     <ClInclude Include="MultipleAccountTransactionForm.h">
       <Filter>Forms</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalSettings.h">
+      <Filter>Persistence\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

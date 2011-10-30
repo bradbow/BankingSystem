@@ -2,12 +2,13 @@
 
 #ifndef _SAVINGS_ACCOUNT_H
 #define _SAVINGS_ACCOUNT_H
-
 #include <sstream>
 #include "DebitAccount.h"
 
 /*
-	For the specification given SavingsAccount does not actually extend DebitAccount
+	Summary: Models a savings account, most basic form of DebitAccount
+	Author: Brad Bow
+	Class Invariants: _balance >= 0
 */
 class SavingsAccount : public DebitAccount
 {
@@ -15,6 +16,13 @@ public:
 
 	// -------------------------------------------------------------------------------------------- //
 	// constructors / destructors
+
+	/*
+		Summary: constructor
+		Pre: customerId.length == CUSTOMER_ID_LENGTH
+			 interestRate >= 0.00
+		Post: SavingsAccount object created
+	*/
 	SavingsAccount
 	(
 		int accountId, int customerId, string accountName,
@@ -31,6 +39,12 @@ public:
 	// -------------------------------------------------------------------------------------------- //
 	// members
 
+	/*
+		Summary: returns a string representation of the account object
+				that allows the object to be persisted in a text file
+		Pre: none
+		Post: string representation (std::string) is returned										
+	*/
 	std::string toString()
 	{
 		stringstream ss;
@@ -45,7 +59,9 @@ public:
 
 		return str;
 	}
+
+	// -------------------------------------------------------------------------------------------- //
 };
 
 #endif
-
+// end of SavingsAccount.hpp
