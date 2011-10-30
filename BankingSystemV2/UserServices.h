@@ -27,7 +27,7 @@ public:
 		Pre: none
 		Post: dynamic memory relesaed
 	*/
-	~UserServices(void)
+	~UserServices(void);
 		
 	/*
 		Summary: returns static instance

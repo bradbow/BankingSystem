@@ -3,6 +3,7 @@
 #ifndef _APPLICATIONCONTROLLER_H
 #define _APPLICATIONCONTROLLER_H
 #include "DataSource.h"
+#include "IOExceptions.hpp"
 
 /*
 	Summary: High level program flow controller (sinleton)
@@ -59,7 +60,7 @@ public:
 		Pre: none
 		Post: application data loaded
 	*/
-	static void loadDataFromDataSource();
+	static void loadDataFromDataSource() throw (IOException);
 	
 	/*
 		Summary: saves the data to a data source

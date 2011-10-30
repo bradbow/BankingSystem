@@ -362,6 +362,9 @@
     <ClInclude Include="GlobalSettings.h">
       <Filter>Persistence\Header</Filter>
     </ClInclude>
+    <ClInclude Include="IOExceptions.hpp">
+      <Filter>Exceptions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">

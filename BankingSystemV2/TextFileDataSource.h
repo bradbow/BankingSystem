@@ -4,6 +4,7 @@
 #define _TEXTFILEDATASOURCE_H
 
 #include "DataSource.h"
+#include "IOExceptions.hpp"
 #include <string>
 using namespace std;
 

@@ -1,2 +1,2 @@
-1001,asdf,John Smith,123 Fake St,3411 4455
+1001,password,John Smith,123 Fake St,3411 4455
 1002,asdf,Sally Smith,789 Fake St,3445 7777

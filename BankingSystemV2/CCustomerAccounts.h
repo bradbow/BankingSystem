@@ -117,7 +117,6 @@ namespace BankingSystemV2 {
 			// 
 			// lbSummary
 			// 
-			this->lbSummary->FormattingEnabled = true;
 			this->lbSummary->Location = System::Drawing::Point(20, 33);
 			this->lbSummary->Name = L"lbSummary";
 			this->lbSummary->Size = System::Drawing::Size(515, 95);

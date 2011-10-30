@@ -191,6 +191,7 @@
     <ClInclude Include="Deposit.h" />
     <ClInclude Include="HomeLoanAccount.hpp" />
     <ClInclude Include="IdMap.h" />
+    <ClInclude Include="IOExceptions.hpp" />
     <ClInclude Include="LoginForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

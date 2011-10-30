@@ -63,10 +63,10 @@ public:
 	virtual std::string getSummary()
 	{
 		stringstream ss;
-		ss << _id << "     ";
-		ss << _date.getDateString() << "      ";
-		ss << _transactionType << "      ";
-		ss << _amount << "     ";
+		ss << left << setw(15) << _id;
+		ss << setw(40) << _date.getDateString();
+		ss << setw(40) << _transactionType;
+		ss << setw(40) << "$" << right << fixed << setprecision(2) << _amount;
 
 		std::string str;
 		getline(ss, str);

@@ -70,7 +70,6 @@ void TextFileDataSource::loadData()
 {
 	for (int nFile = 0; nFile < NUMBER_OF_FILES; nFile++)
 	{
-		// TODO assert on array size
 		std::ifstream rfsFile;
 		rfsFile.open(fileNames[nFile].c_str());
 		string line;
@@ -81,12 +80,8 @@ void TextFileDataSource::loadData()
 			while (!rfsFile.eof())
 			{
 				getline(rfsFile, line);
-				(this->*m_pfnsLoad[nFile])(line);					// call appropriate fnc
+				(this->*m_pfnsLoad[nFile])(line);
 			}
-		}
-		else 
-		{
-			// TODO Brad: file does not exist - exception?
 		}
 
 		rfsFile.close();
@@ -95,11 +90,10 @@ void TextFileDataSource::loadData()
 
 void TextFileDataSource::persistData()
 {
-
-	//persistUsers();
-	//persistAccounts();
-	//persistTransactions();
-	//persistRates();
+	persistUsers();
+	persistAccounts();
+	persistTransactions();
+	persistRates();
 }
 
 list<Account*> TextFileDataSource::getAccountsForUser(int userId)
@@ -179,11 +173,6 @@ void TextFileDataSource::ConstructAndAddCustomer(string line)
 		_users.add(c->getUserId(), c);
 
 	}
-	else 
-	{
-		// TODO exception for corrupt file
-	}
-
 	
 
 }
@@ -209,10 +198,7 @@ void TextFileDataSource::ConstructAndAddBankClerk(string line)
 
 		_users.add(bc->getUserId(), bc);
 	}
-	else
-	{
-		// TODO eception
-	}
+
 }
 
 void TextFileDataSource::ConstructAndAddSavingsAccount(string line)
@@ -242,10 +228,6 @@ void TextFileDataSource::ConstructAndAddSavingsAccount(string line)
 		);
 
 		_accounts.add(sa->getAccountId(), sa);
-	}
-	else
-	{
-		// TODO EXCEPTION
 	}
 
 }
@@ -280,10 +262,6 @@ void TextFileDataSource::ConstructAndAddCreditCardAccount(string line)
 
 		_accounts.add(cca->getAccountId(), cca);
 	}
-	else
-	{
-		// TODO EXCEPTION
-	}
 }
 
 void TextFileDataSource::ConstructAndAddHomeLoanAccount(string line)
@@ -305,7 +283,6 @@ void TextFileDataSource::ConstructAndAddHomeLoanAccount(string line)
 
 	if (lineSplit.size() == NUM_FIELDS)
 	{
-		// TODO Brad & Jeff: Dangerous....
 		int nOption = TypeConv(lineSplit[REPAYMENT_OPTION]);
 		HomeLoanAccount::RepaymentOption option = static_cast<HomeLoanAccount::RepaymentOption>(nOption);
 
@@ -323,10 +300,7 @@ void TextFileDataSource::ConstructAndAddHomeLoanAccount(string line)
 
 		_accounts.add(hla->getAccountId(), hla);
 	}
-	else
-	{
-		// TODO EXCEPTION
-	}
+
 }
 
 void TextFileDataSource::ConstructAndAddWithdrawalTransaction(string line)
@@ -356,10 +330,7 @@ void TextFileDataSource::ConstructAndAddWithdrawalTransaction(string line)
 
 		_transactions.add(w->getId(), w);
 	}
-	else
-	{
-		// TODO EXCEPTION
-	}
+
 }
 
 void TextFileDataSource::ConstructAndAddDepositTransaction(string line)
@@ -390,10 +361,7 @@ void TextFileDataSource::ConstructAndAddDepositTransaction(string line)
 
 		_transactions.add(d->getId(), d);
 	}
-	else
-	{
-		// TODO EXCEPTION
-	}
+
 }
 
 void TextFileDataSource::ConstructAndAddTransferTransaction(string line)
@@ -426,10 +394,7 @@ void TextFileDataSource::ConstructAndAddTransferTransaction(string line)
 
 		_transactions.add(t->getId(), t);
 	}
-	else
-	{
-		// TODO EXCEPTION
-	}
+
 
 }
 
