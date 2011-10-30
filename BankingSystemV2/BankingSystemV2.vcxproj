@@ -87,6 +87,7 @@
   <ItemGroup>
     <None Include="app.ico" />
     <None Include="BankClerks.txt" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="CreditAccounts.txt" />
     <None Include="Customers.txt" />
     <None Include="DepositTransactions.txt" />

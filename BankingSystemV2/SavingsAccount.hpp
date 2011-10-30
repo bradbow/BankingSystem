@@ -22,7 +22,7 @@ public:
 	) : DebitAccount
 	(
 		accountId, customerId, accountName,
-		interestRate, balance = 0
+		interestRate, balance
 	)  
 	{
 		setAccountTypeName("Savings");

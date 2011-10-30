@@ -1048,6 +1048,7 @@ namespace BankingSystemV2 {
 
 				 clearCreateHomeLoanPanel();
 				 this->textBox_CHLAccountName->Text = DotNetUtils::StdStringToSystemString(_customer->getName());
+				this->textBox_PropertyAddress->Text = DotNetUtils::StdStringToSystemString(_customer->getAddress());
 				 this->textBox_HomeLoanInterest->Text = _as->getHomeLoanInterestRate().ToString();
 				 this->textBox_HomeLoanBalance->Text = (_as->getDefaultBalance().ToString());
 				 this->textBox_HomeLoanBalance->Enabled = false;
@@ -1113,6 +1114,7 @@ namespace BankingSystemV2 {
 
 	private: System::Void button_CustomerSearch_Click(System::Object^  sender, System::EventArgs^  e) {
 
+				 resetAllPanels();
 
 				 // check for empty values
 				 if (this->textBox_CustomerId->Text == "" || this->textBox_CustomerId->Text == "")
@@ -1131,12 +1133,12 @@ namespace BankingSystemV2 {
 					 loadCustomerDetails();
 					 loadCustomerAccounts();
 				 }
-
-
 			 }
 
 			 // deletes the selected account
 	private: System::Void button_AccountCancel_Click(System::Object^  sender, System::EventArgs^  e) {
+
+				 if(_customer == NULL){return;}
 
 				 int index = this->listBox_AccountSelection->SelectedIndex;
 
@@ -1153,12 +1155,16 @@ namespace BankingSystemV2 {
 				 _as->closeAccount(accId);
 				 MessageBox::Show(this, "Account " + accId + " successfully deleted!");
 
+				 loadCustomerAccounts();
+
 			 }
 
 			 // updates a customers personal details
 	private: System::Void button_UpdateDetail_Click(System::Object^  sender, System::EventArgs^  e) {
 
-				 enum{NAME, PHONE, ADDRESS, NUM_DETAILS};
+				 if(_customer == NULL){return;}
+
+				 enum{NAME, ADDRESS, PHONE, NUM_DETAILS};
 
 				 string details[NUM_DETAILS];
 
@@ -1169,8 +1175,8 @@ namespace BankingSystemV2 {
 				 else
 				 {
 					 details[NAME] = DotNetUtils::SystemStringToStdString(this->textBox_Name->Text);
+					 details[ADDRESS] = DotNetUtils::SystemStringToStdString(this->textBox_Address->Text);
 					 details[PHONE] = DotNetUtils::SystemStringToStdString(this->textBox_Phone->Text);
-					 details[NUM_DETAILS] = DotNetUtils::SystemStringToStdString(this->textBox_Address->Text);
 					 _us->updateCustomerDetails(_customer->getUserId(), details);
 					 MessageBox::Show(this, "Details successfully updated!");
 				 }
@@ -1180,9 +1186,7 @@ namespace BankingSystemV2 {
 			 // resets the selected customers password
 	private: System::Void button_ResetPassword_Click(System::Object^  sender, System::EventArgs^  e) {
 
-				 if(_customer == NULL){
-					 return;
-				 }
+				 if(_customer == NULL){return;}
 
 				 this->textBox_Password->Text = DotNetUtils::StdStringToSystemString(
 					 _us->resetPassword(_customer->getUserId()));
@@ -1191,6 +1195,8 @@ namespace BankingSystemV2 {
 
 			 // creates a savings account in selected customers name
 	private: System::Void button_CreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {	 
+
+				 if(_customer == NULL){return;}
 
 				 int accountId = _as->makeSavingsAccount(
 					 DotNetUtils::SystemStringToStdString(this->textBox_CSAccountName->Text), 
@@ -1204,6 +1210,8 @@ namespace BankingSystemV2 {
 
 			 // creates a credit account in selected customers name
 	private: System::Void button_CCCreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {		 
+
+				 if(_customer == NULL){return;}
 
 				 int accountId = _as->makeCreditCardAccount(
 					 DotNetUtils::SystemStringToStdString(this->textBox_CCAccountName->Text),
@@ -1219,6 +1227,7 @@ namespace BankingSystemV2 {
 			 // creates a home loan account in selected customers name
 	private: System::Void button_CHLCreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {
 
+				 if(_customer == NULL){return;}
 
 				 int accountId = _as->makeHomeLoanAccount(
 					 DotNetUtils::SystemStringToStdString(this->textBox_CHLAccountName->Text), 
@@ -1245,7 +1254,19 @@ namespace BankingSystemV2 {
 			 }
 
 			 // user changed tabs...
+	private: System::Void resetAllPanels(){
+
+				 loadCustomerDetails();
+				 loadCustomerAccounts();
+				 loadCreateSavingsPanel();
+				 loadCreateCreditPanel();
+				 loadCreateHomeLoanPanel();
+			 }
+
+
 	private: System::Void tabControl_BCCustomer_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+
+				 if(_customer == NULL){return;}
 
 				 enum{DETAILS, SAVINGS, CREDIT, HOME_LOAN};
 
@@ -1264,11 +1285,14 @@ namespace BankingSystemV2 {
 					 break;
 				 case HOME_LOAN:
 					 loadCreateHomeLoanPanel();
+
 					 break;
 				 }
 			 }
 
 	private: System::Void tabControl_MainMenu_SelectIndexChanged(System::Object^  sender, System::EventArgs^  e){
+
+				 if(_customer == NULL){return;}
 
 				 enum{CUSTOMER, RATES, ADMIN};
 				 int index = this->tabControl_MainMenu->SelectedIndex;
