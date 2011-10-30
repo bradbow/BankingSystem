@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "Delimiters.h"
+#include "GlobalSettings.h"
 
 #ifndef _DATE_H
 #define _DATE_H 

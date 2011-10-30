@@ -1,3 +1,4 @@
 158748130, 1003, Cesar Romero, 4.5, 500
 172827675, 1004, Burgess Meredith, 4.9, 700
+189345672, 1003, Cesar Romero, 4.5, 1000
 
