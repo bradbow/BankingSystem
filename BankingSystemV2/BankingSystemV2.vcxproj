@@ -230,6 +230,9 @@
     <EmbeddedResource Include="CCustomerDetails.resx">
       <DependentUpon>CCustomerDetails.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CPasswordChange.resx">
+      <DependentUpon>CPasswordChange.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateSavingsAccountForm.resx">
       <DependentUpon>CreateSavingsAccountForm.h</DependentUpon>
     </EmbeddedResource>

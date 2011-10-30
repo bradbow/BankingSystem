@@ -35,14 +35,19 @@ namespace BankingSystemV2 {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^  textBox_OldPassword;
+	public: System::Windows::Forms::TextBox^  txtOldPassword;
 	protected: 
-	private: System::Windows::Forms::Label^  label_OldPassword;
-	private: System::Windows::Forms::TextBox^  textBox_NewPassword;
-	private: System::Windows::Forms::TextBox^  textBox_Confirm;
-	private: System::Windows::Forms::Label^  label_NewPassword;
-	private: System::Windows::Forms::Label^  label_ConfirmNew;
-	private: System::Windows::Forms::Button^  button_Change;
+
+	protected: 
+	public: System::Windows::Forms::Label^  label_OldPassword;
+	public: System::Windows::Forms::TextBox^  txtNewPassword;
+	public: System::Windows::Forms::TextBox^  txtConfirmNewPassword;
+
+
+	public: System::Windows::Forms::Label^  label_NewPassword;
+	public: System::Windows::Forms::Label^  label_ConfirmNew;
+	public: System::Windows::Forms::Button^  btnChange;
+
 
 	private:
 		/// <summary>
@@ -57,21 +62,22 @@ namespace BankingSystemV2 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->textBox_OldPassword = (gcnew System::Windows::Forms::TextBox());
+			this->txtOldPassword = (gcnew System::Windows::Forms::TextBox());
 			this->label_OldPassword = (gcnew System::Windows::Forms::Label());
-			this->textBox_NewPassword = (gcnew System::Windows::Forms::TextBox());
-			this->textBox_Confirm = (gcnew System::Windows::Forms::TextBox());
+			this->txtNewPassword = (gcnew System::Windows::Forms::TextBox());
+			this->txtConfirmNewPassword = (gcnew System::Windows::Forms::TextBox());
 			this->label_NewPassword = (gcnew System::Windows::Forms::Label());
 			this->label_ConfirmNew = (gcnew System::Windows::Forms::Label());
-			this->button_Change = (gcnew System::Windows::Forms::Button());
+			this->btnChange = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
-			// textBox_OldPassword
+			// txtOldPassword
 			// 
-			this->textBox_OldPassword->Location = System::Drawing::Point(141, 57);
-			this->textBox_OldPassword->Name = L"textBox_OldPassword";
-			this->textBox_OldPassword->Size = System::Drawing::Size(206, 20);
-			this->textBox_OldPassword->TabIndex = 0;
+			this->txtOldPassword->Location = System::Drawing::Point(141, 57);
+			this->txtOldPassword->Name = L"txtOldPassword";
+			this->txtOldPassword->PasswordChar = '*';
+			this->txtOldPassword->Size = System::Drawing::Size(206, 20);
+			this->txtOldPassword->TabIndex = 0;
 			// 
 			// label_OldPassword
 			// 
@@ -82,19 +88,21 @@ namespace BankingSystemV2 {
 			this->label_OldPassword->TabIndex = 1;
 			this->label_OldPassword->Text = L"Old Password:";
 			// 
-			// textBox_NewPassword
+			// txtNewPassword
 			// 
-			this->textBox_NewPassword->Location = System::Drawing::Point(141, 92);
-			this->textBox_NewPassword->Name = L"textBox_NewPassword";
-			this->textBox_NewPassword->Size = System::Drawing::Size(206, 20);
-			this->textBox_NewPassword->TabIndex = 2;
+			this->txtNewPassword->Location = System::Drawing::Point(141, 92);
+			this->txtNewPassword->Name = L"txtNewPassword";
+			this->txtNewPassword->PasswordChar = '*';
+			this->txtNewPassword->Size = System::Drawing::Size(206, 20);
+			this->txtNewPassword->TabIndex = 2;
 			// 
-			// textBox_Confirm
+			// txtConfirmNewPassword
 			// 
-			this->textBox_Confirm->Location = System::Drawing::Point(141, 129);
-			this->textBox_Confirm->Name = L"textBox_Confirm";
-			this->textBox_Confirm->Size = System::Drawing::Size(206, 20);
-			this->textBox_Confirm->TabIndex = 3;
+			this->txtConfirmNewPassword->Location = System::Drawing::Point(141, 129);
+			this->txtConfirmNewPassword->Name = L"txtConfirmNewPassword";
+			this->txtConfirmNewPassword->PasswordChar = '*';
+			this->txtConfirmNewPassword->Size = System::Drawing::Size(206, 20);
+			this->txtConfirmNewPassword->TabIndex = 3;
 			// 
 			// label_NewPassword
 			// 
@@ -114,26 +122,26 @@ namespace BankingSystemV2 {
 			this->label_ConfirmNew->TabIndex = 5;
 			this->label_ConfirmNew->Text = L"Confirm New Password:";
 			// 
-			// button_Change
+			// btnChange
 			// 
-			this->button_Change->Location = System::Drawing::Point(232, 173);
-			this->button_Change->Name = L"button_Change";
-			this->button_Change->Size = System::Drawing::Size(115, 23);
-			this->button_Change->TabIndex = 6;
-			this->button_Change->Text = L"Change Password";
-			this->button_Change->UseVisualStyleBackColor = true;
+			this->btnChange->Location = System::Drawing::Point(232, 173);
+			this->btnChange->Name = L"btnChange";
+			this->btnChange->Size = System::Drawing::Size(115, 23);
+			this->btnChange->TabIndex = 6;
+			this->btnChange->Text = L"Change Password";
+			this->btnChange->UseVisualStyleBackColor = true;
 			// 
 			// CPasswordChange
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->Controls->Add(this->button_Change);
+			this->Controls->Add(this->btnChange);
 			this->Controls->Add(this->label_ConfirmNew);
 			this->Controls->Add(this->label_NewPassword);
-			this->Controls->Add(this->textBox_Confirm);
-			this->Controls->Add(this->textBox_NewPassword);
+			this->Controls->Add(this->txtConfirmNewPassword);
+			this->Controls->Add(this->txtNewPassword);
 			this->Controls->Add(this->label_OldPassword);
-			this->Controls->Add(this->textBox_OldPassword);
+			this->Controls->Add(this->txtOldPassword);
 			this->Name = L"CPasswordChange";
 			this->Size = System::Drawing::Size(584, 343);
 			this->ResumeLayout(false);
