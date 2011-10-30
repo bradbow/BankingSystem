@@ -23,16 +23,16 @@ public:
 	// instance retrieval / destructor
 
 	/*
-		Summary: 
-		Pre: 
-		Post: 
+		Summary: destructor
+		Pre: none
+		Post: dynamic memory relesaed
 	*/
 	~UserServices(void)
 		
 	/*
-		Summary: 
-		Pre: 
-		Post: 
+		Summary: returns static instance
+		Pre: none
+		Post: UserServices* instance returned
 	*/
 	static UserServices *instance(void);
 

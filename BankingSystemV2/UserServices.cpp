@@ -18,7 +18,6 @@ UserServices *UserServices::instance(void){
 		return _userServicesInstance;
 	}		
 	return _userServicesInstance;
-
 }
 
 UserServices::~UserServices()
