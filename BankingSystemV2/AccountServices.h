@@ -1,6 +1,3 @@
-// AccountServices.h
-// Provides services to open, close, retrieve and modify customer 
-// accounts.
 
 #ifndef _ACCOUNT_SERVICES_H
 #define _ACCOUNT_SERVICES_H
@@ -32,7 +29,7 @@ public:
 	enum accountType{ SAVINGS_ACC, CREDIT_ACC, HOME_LOAN_ACC};
 
 	// -------------------------------------------------------------------------------------------- //
-	// constructors / destructors / instance retreival
+	// destructors / instance retreival
 
 	/*
 		Summary: returns the static insance of the AccountServices object (singleton)
@@ -220,3 +217,5 @@ private:
 };
 #endif
 
+// -------------------------------------------------------------------------------------------- //
+// end of AccountServices.h

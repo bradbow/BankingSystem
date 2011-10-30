@@ -2,9 +2,12 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-
 using namespace std;
 using namespace System;
+
+// --------------------------------------------------------------------------------------------- //
+// static initialisations
+
 IdMap<int, User*> TextFileDataSource::_users;
 IdMap<int, Account*> TextFileDataSource::_accounts;
 IdMap<int, Transaction*> TextFileDataSource::_transactions;
@@ -16,8 +19,9 @@ string fileNames [TextFileDataSource::NUMBER_OF_FILES] =
 		"HomeLoanAccounts.txt", "WithdrawalTransactions.txt", "DepositTransactions.txt", 
 		"TransferTransactions.txt", "Rates.txt"
 	};
+
 // --------------------------------------------------------------------------------------------- //
-// constructors / destructors / instance retrieval
+// destructors / instance retrieval
 
 TextFileDataSource* TextFileDataSource::getInstance()
 {
@@ -49,6 +53,14 @@ TextFileDataSource::TextFileDataSource()
 	IdMap<int, Account*> _accounts;
 	IdMap<int, Transaction*> _transactions;
 
+}
+
+TextFileDataSource::~TextFileDataSource()
+{
+	_users.~IdMap();
+	_accounts.~IdMap();
+	_transactions.~IdMap();
+	delete _ds;
 }
 
 // --------------------------------------------------------------------------------------------- //

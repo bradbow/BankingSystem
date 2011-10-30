@@ -1,33 +1,83 @@
 #pragma once
 #include <string>
+
+/*
+	Summary: Simplistic date model
+	Authors: Brad Bow & Jeff Perkins
+	Class Invariant: 
+*/
 class Date
 {
 public:
 
 	// ----------------------------------------------------------------------------------------- //
 	// Constructors / Desctructors
+
+	/*
+		Summary: empty constructor
+		Pre: none
+		Post: data object created
+	*/
 	Date(){};
+
+	/*
+		Summary: construct from string
+		Pre: stdDate is in format: dd[delim]mm[delim]yyyy
+		Post: date object is created
+	*/
 	Date(std::string strDate, char delim);
 
 	// ----------------------------------------------------------------------------------------- //
 	// Members
-	static bool isLeapYear(int year);
+
+	/*
+		Summary: calculates the day of the week
+		Pre: none
+		Post: day of the week returned
+	*/
 	std::string calculateDayOfWeek();
+
+	/*
+		Summary: returns the datestring
+		Pre: none
+		Post: date string returned
+	*/
 	std::string getDateString()
 	{
 		// TODO Brad: dick head
 		std::string str = "dummy";
 		return str;
 	}
-	static int getDaysBetweenDates(const Date * dtOne, const Date * dtTwo);
 
 	// ----------------------------------------------------------------------------------------- //
 	// getters
 
+	/*
+		Summary: returns day number
+		Pre: none
+		Post: day number returned
+	*/
 	int getDay(){return _day;}
+	
+	/*
+		Summary: returns month number	
+		Pre: none
+		Post: month number returned
+	*/
 	int getMonth(){return _month;}
+	
+	/*
+		Summary: return year number
+		Pre: none
+		Post: year number returned
+	*/
 	int getYear(){return _year;}
-	std::string getDayName(){return _dayName;}
+	
+	/*
+		Summary: returns the month name
+		Pre: none
+		Post: month name returned
+	*/
 	std::string getMonthName(){return _monthName;}
 
 	// ----------------------------------------------------------------------------------------- //
@@ -53,3 +103,4 @@ private:
 
 };
 
+// end of Date.h

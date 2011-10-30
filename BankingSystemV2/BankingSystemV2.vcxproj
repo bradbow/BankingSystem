@@ -101,7 +101,6 @@
     <ClCompile Include="AccountServices.cpp" />
     <ClCompile Include="ApplicationController.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="BankClerk.cpp" />
     <ClCompile Include="BankClerk_Form.cpp" />
     <ClCompile Include="BankingSystemV2.cpp" />
     <ClCompile Include="CCreditView.cpp" />
@@ -133,7 +132,6 @@
     <ClCompile Include="TextFileDataSource.cpp" />
     <ClCompile Include="TransactionServices.cpp" />
     <ClCompile Include="Transfer.cpp" />
-    <ClCompile Include="User.cpp" />
     <ClCompile Include="UserServices.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Withdrawal.cpp" />

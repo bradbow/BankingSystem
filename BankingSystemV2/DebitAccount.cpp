@@ -3,6 +3,12 @@
 // -------------------------------------------------------------------------------------------- //
 // constructors / destructors
 
+/*
+	Summary: constructor
+	Pre: customerId.length == CUSTOMER_ID_LENGTH
+			interesetRate >= 0.00
+	Post: CreditCardAccount created
+*/
 DebitAccount::DebitAccount
 (
 	int accountId, int customerId, string accountName,
@@ -17,11 +23,11 @@ Account
 // -------------------------------------------------------------------------------------------- //
 // behaviours
 
-void DebitAccount::applyInterest()
-{
-	// TODO apply interest
-}
-
+/*
+	Summary: deposits money into a debit account
+	Pre: amount > 0
+	Post: _balance = _balance + amount
+*/
 void DebitAccount::deposit(double amount)
 {
 	
@@ -30,6 +36,12 @@ void DebitAccount::deposit(double amount)
 
 }
 
+/*
+	Summary: performs a withdrawal on a DebitAccount
+	Pre: amount > 0
+			_balance - amount > 0
+	Post: _balance = _balacne - amount
+*/
 void DebitAccount::withdraw(double amount)
 {
 
@@ -40,3 +52,4 @@ void DebitAccount::withdraw(double amount)
 }
 
 // -------------------------------------------------------------------------------------------- //
+// end of DebitAccount.cpp

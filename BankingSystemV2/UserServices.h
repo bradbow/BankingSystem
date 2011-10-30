@@ -1,8 +1,3 @@
-// UserServices.h
-// Provides services to add, remove, retrieve and modify user
-// accounts. Uses the Singleton Pattern to ensure there is only
-// ever one UserServices
-
 #include "User.h"
 #include "Customer.h"
 #include "DataSource.h"
@@ -12,68 +7,145 @@
 #ifndef _USER_SERVICES_H
 #define _USER_SERVICES_H
 
+/*
+	Summary: Provides services to add, remove, retrieve and modify user
+			 accounts. Uses the Singleton Pattern to ensure there is only
+			 ever one UserServices
+	Author: Jeff Perkins
+ */
 class UserServices
 {
 public:
+
 	enum userType { CUSTOMER, BANK_CLERK };
-	~UserServices(void){}
-	// employs singleton pattern to ensure that there is only ever one
-	// AccountServices instance
-	// precondition: none
-	// postcondition: an AccountSerices is returned, if none is alreay
-	// available one is created then returned
+
+	// ----------------------------------------------------------------------------------------- //
+	// instance retrieval / destructor
+
+	/*
+		Summary: 
+		Pre: 
+		Post: 
+	*/
+	~UserServices(void)
+		
+	/*
+		Summary: 
+		Pre: 
+		Post: 
+	*/
 	static UserServices *instance(void);
 
-	// precondition: valid customer details passed in
-	// postcondition: customer created and added to applicationData
+	// ----------------------------------------------------------------------------------------- //
+	// member methods
+
+	/*
+		Summary: creates a customer
+		Pre: none
+		Post: customer created and added to data source
+	*/
 	void createCustomer(string name, string address, string phoneNumber);
 
-	// precondition: valid bank clerk details passed in
-	// postcondition: bank clerk created and added to applicationData
+	/*
+		Summary: creates a bank clerks
+		Pre: none
+		Post: bank clerk created and added to data source
+	*/
 	void createBankClerk();
-
-	// precondition: none
-	// postcondition: validates userName and password pair
+	
+	/*
+		Summary: validates a users credentials
+		Pre: none
+		Post: returns true is userName and password match a user false
+			  otherwise
+	*/
 	bool validateUser(int username, string password);
 
-	// precondition: valid userId passed in
-	// postcondition: exchanges old password for new one
+	/*
+		Summary: changes teh password for a user
+		Pre: userId identifies a User stored in data source
+		Post: password changed
+	*/
 	void changePassword(int userId, string password);
 
-	// precondition: valid userId and password pair passed in
-	// postconditon: password reset to new password which is then returned
+	/*
+		Summary: resets the password for a user
+		Pre: userID identifies a user stored in data source
+		Post: users password is reset to a random password
+	*/
 	string resetPassword(int userID);
 
-	// precondition: none
-	// returns true if user exists in application data, false otherwise
+	/*
+		Summary: tests to see if a user exists
+		Pre: none
+		Post: returns true if userID identifies a user stored in 
+			  data source, false otherwise
+	*/
 	bool userExists(int userID);
 
-	// precondition: none
-	// postcondition: returns true if user matching userID is successfully
-	// deleted
+	/*
+		Summary: deletes a user form the data source
+		Pre: userID identifies a user stored in the data source
+		Post: user identified by userId is deleted
+	*/
 	bool deleteUser(int userID);
 
-	// precondition: valid user userID and details passed in
-	// postcondition: old details are exchanged for new
+	/*
+		Summary: updates a customers details
+		Pre: details.length == 3 (name, address, phone)
+		Post: user details are updated
+	*/
 	void updateCustomerDetails(int userID, string details[]);
 
-	// precondition: valid userID passed in
-	// postcondition: user matching userID is returned
+	/*
+		Summary: returns a user identified by userID
+		Pre: none
+		Post: user pointer returned that points to user identified
+			  by userID, if no such user exists NULL pointer is
+			  returned
+	*/
 	User *getUser(int userID);
-
+	
+	/*
+		Summary: sets the data source for the service
+		Pre: none
+		Post: _ds = ds
+	*/
 	void setDataSource(DataSource* ds){_ds = ds;}
+	
+	// ----------------------------------------------------------------------------------------- //
 
 private:
+
+	// ----------------------------------------------------------------------------------------- //
+	// data members
 	
 	static UserServices* _userServicesInstance;
 	static DataSource* _ds;
 	
-	// precondition: none
-	// postcondition: password generated of min password length
+	// ----------------------------------------------------------------------------------------- //
+	// util methods
+
+	/*
+		Summary: generates a password for a user
+		Pre: none
+		Post: random passord is generated
+	*/
 	string generatePassword(void);
+
+	// ----------------------------------------------------------------------------------------- //
+	// private constructor (singleton)
+	
+	/*
+		Summary: private constructor (singleton)
+		Pre: none
+		Post: UserSerives object instanctiated
+	*/
 	UserServices(void){}
-	static const int PASSWORD_LENGTH = 6;
+	
+	// ----------------------------------------------------------------------------------------- //
 	
 };
 #endif
 
+// end of UserServices.h

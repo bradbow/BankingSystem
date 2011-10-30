@@ -34,45 +34,18 @@ Date::Date(string strDate, char delim)
 {
 	vector<string> dateSplit = StringUtils::splitString(strDate, delim);
 	
-	// set the day, month, year numbers
+	// set the day, month, year numbers and month name
 	_day = TypeConv(dateSplit[DAY]);
 	_month = TypeConv(dateSplit[MONTH]);
 	_year = TypeConv(dateSplit[YEAR]);
-
-	// set the day and month names
 	int index = TypeConv(dateSplit[MONTH]);
 	_monthName = MONTH_NAMES[index - 1];
-	// TODO calculate day name
 
 }
 
 // ----------------------------------------------------------------------------------------- //
 // Members
 
-bool Date::isLeapYear(int year)
-{
 
-	if (year % 4 == 0)
-	{
-		if (year % 100 == 0)
-		{
-			return year % 400 == 0;
-		}
-		else
-		{
-			return true;
-		}
-	}
-	else
-	{
-		return false;
-	}
-
-}
-
-int Date::getDaysBetweenDates(const Date* dtOne, const Date* dtTwo)
-{
-	return 0;
-}
 
 

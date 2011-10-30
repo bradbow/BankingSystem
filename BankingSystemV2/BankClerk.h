@@ -1,26 +1,40 @@
-// BankClerk.h
-// Models a bank clerk
-#include "User.h"
 
+#include "User.h"
+#include <sstream>
 #ifndef _BANKCLERK_H
 #define _BANKCLERK_H 
 
+/*
+	Summary: modes a bank clerk user
+	Author: Jeff Perkins
+*/
 class BankClerk : public User
 {
 public:
 
+	// -------------------------------------------------------------------------------------------- //
 	// constructor
-	// precondition: valid bank clerk details passed in
-	// postcondition: bank clerk created
-	BankClerk(int userName, string password);
 
-	virtual std::string toString();
+	BankClerk(int userId, string password) : User(userId, password){};
 
+	// -------------------------------------------------------------------------------------------- //
+	// member methods
 
-private:
-	static const int NUM_FIELDS = 2;
+	virtual std::string toString()
+	{
+		stringstream ss;
+		ss << _userId << ", ";
+		ss << _password;
 
+		std::string str;
+		getline(ss, str);
+
+		return str;
+	}
+
+	// -------------------------------------------------------------------------------------------- //
 
 };
 #endif
 
+// end of User.h

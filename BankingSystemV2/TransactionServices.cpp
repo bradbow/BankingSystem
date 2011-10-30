@@ -22,6 +22,11 @@ TransactionServices* TransactionServices::instance()
 	return _ts;
 }
 
+TransactionServices::~TransactionServices()
+{
+	delete _ts;
+}
+
 // --------------------------------------------------------------------------------------------- //
 // member methods
 
@@ -61,7 +66,7 @@ void TransactionServices::revert(Transaction* t)
 
 int TransactionServices::getNextTransactionId()
 {
-	return _pg->getDigitPhrase(ID_LENGTH);
+	return _pg->getDigitPhrase(TRANSACTION_ID_LENGTH);
 }
 
 void TransactionServices::deposit(int accId, double amount)
@@ -95,3 +100,4 @@ Date TransactionServices::getCurrentDate(char delim)
 	return dt;
 }
 
+// --------------------------------------------------------------------------------------------- //

@@ -19,6 +19,7 @@ using namespace std;
 /*
 	Summary: This class models a bank account object
 	Author: Brad Bow (n6532365 @ QUT)
+	Class invariants: _balance >= 0
 */
 class Account
 {
@@ -126,6 +127,7 @@ public:
 	// behaviours
 
 	/*
+		Pure Virtual
 		Summary: deposits a given amount into the account
 		Pre: amount > 0
 		Post: balance = balance + amount
@@ -133,14 +135,7 @@ public:
 	virtual void deposit(double amount) throw (TransactionException) = 0;
 
 	/*
-		Summary: applies interest for an account.  This is not implemented
-				 due to limitations in date capabilities
-		Pre: NA
-		Post: NA
-	*/
-	virtual void applyInterest() = 0;
-
-	/*
+		Pure Virtual
 		Summary: returns a string representation of the account object
 				 that allows the object to be persisted in a text file
 		Pre: none

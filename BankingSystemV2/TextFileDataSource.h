@@ -12,6 +12,8 @@ using namespace std;
 	banking system application using text files.  Implements data source
 	with integer id conventions for application objects.
 
+	Employes singleton pattern to ensure data integrity across application
+
 	Author: Brad Bow
 */
 
@@ -33,47 +35,112 @@ public:
 		NUMBER_OF_FILES
 	};
 
-	// constructors / destructors
-	static TextFileDataSource* getInstance();
-	virtual ~TextFileDataSource(void){};
+	// -------------------------------------------------------------------------------------------- //
+	// destruction / instance retrieval
 
-	// persistence
+	static TextFileDataSource* getInstance();
+	virtual ~TextFileDataSource(void);
+
+	// -------------------------------------------------------------------------------------------- //
+	// member methods
+
+	/*
+		Summary: persists the application data
+		Pre: none
+		Post: application data persisted
+	*/
 	virtual void persistData();
+	
+	/*
+		Summary: loads the data from teh persistence source into application objects
+		Pre: none
+		Post: application objects created and put into IdMap collections
+	*/
 	virtual void loadData();
 
-	// getters for application objects
+	/*
+		GETTERS FOR OBJECTS
+
+		Summary: getters that return pointer to application objecst (users, accounts,
+				 transactions)
+		Pre: none
+		Post: point returned to relevant object.  Null if object does not exist
+			  in data source
+	*/
 	virtual User* getUser(int userId){return _users.get(userId);}
 	virtual Account* getAccount(int accountId){return _accounts.get(accountId);}
 	virtual Transaction* getTransaction(int transactionId){return _transactions.get(transactionId);}
 
-	// methods to add application objects
-	virtual void addUser(User* user){_users.add(user->getUserId(), user);}
-	virtual void addAccount(Account* account){_accounts.add(account->getAccountId(), account);}
-	virtual void addTransaction(Transaction* transaction){_transactions.add(transaction->getId(), transaction);}
+	/*
+		EXISTENCE TESTING FOR OBJECTS
 
-	// methods to remove application objects from data source
-	virtual void removeUser(int userId){_users.remove(userId);}
-	virtual void removeAccount(int accountId){_accounts.remove(accountId);}
-	virtual void removeTransaction(int transactionId){_transactions.remove(transactionId);}
-
-	// relational queries
-	virtual list<Account*> getAccountsForUser(int userId);
-	virtual list<Transaction*> getTransactionsForAccount(int accId);
-	
-	// methods for retreiving interest rates
-	virtual double getSavingsInterestRate(){return _savingsRate;}
-	virtual double getCreditCardInterestRate(){return _creditCardRate;}
-	virtual double getHomeLoanInterestRate(){return _homeLoanRate;}
-
+		Summary: existence testing for membership of objects in data source
+		Pre: none
+		Post: true returned if object is member of data source, false otherwise
+	*/
 	// testing for existence
 	virtual bool userExists(int userId){return _users.has(userId);}
 	virtual bool accountExists(int accId){return _accounts.has(accId);}
 	virtual bool transactionExists(int transId){return _transactions.has(transId);}
 
-	// methods for settting interest rates
+	/*
+		ADDITION OF OBJECTS TO DATA SOURCE
+
+		Summary: addition methods for adding application objects to data source
+		Pre: none
+		Post: new object (user, account, transaction) is added to data source
+			  and will be persisted unless removed
+	*/
+	virtual void addUser(User* user){_users.add(user->getUserId(), user);}
+	virtual void addAccount(Account* account){_accounts.add(account->getAccountId(), account);}
+	virtual void addTransaction(Transaction* transaction){_transactions.add(transaction->getId(), transaction);}
+
+	/*
+		REMOVAL OF OBJECTS FROM DATA SOURCE
+		
+		Summary: removes application objects from data source
+		Pre: none
+		Post: if object exists it is removed from data source
+	*/
+	virtual void removeUser(int userId){_users.remove(userId);}
+	virtual void removeAccount(int accountId){_accounts.remove(accountId);}
+	virtual void removeTransaction(int transactionId){_transactions.remove(transactionId);}
+
+	/*
+		RELATIONAL QUERIES ON DATA SOURCE
+		
+		Summary: returns collections of relational results from data source
+				 i.e. customer : accounts and account : transactions
+		Pre: none
+		Post: list returned with desired one to many relation, if query 
+			  subject has no matching records list.length == 0
+	*/
+	virtual list<Account*> getAccountsForUser(int userId);
+	virtual list<Transaction*> getTransactionsForAccount(int accId);
+	
+	/*
+		GETTERS FOR RATES
+		
+		Summary: returns rates for various accounts
+		Pre: none
+		Post: rates returned
+	*/
+	virtual double getSavingsInterestRate(){return _savingsRate;}
+	virtual double getCreditCardInterestRate(){return _creditCardRate;}
+	virtual double getHomeLoanInterestRate(){return _homeLoanRate;}
+
+	/*
+		SETTERS FOR RATES
+		
+		Summary: sets rates for various accounts
+		Pre: none
+		Post: rates set
+	*/
 	virtual void setSavingsInterestRate(double value){_savingsRate = value;}
 	virtual void setCreditCardInterestRate(double value){_creditCardRate = value;}
 	virtual void setHomeLoanInterestRate(double value){_homeLoanRate = value;}
+
+	// -------------------------------------------------------------------------------------------- //
 
 protected:
 
@@ -117,4 +184,4 @@ private:
 
 #endif
 
-
+// end of TextFileDataSource.h
